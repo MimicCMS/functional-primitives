@@ -44,6 +44,58 @@ to completely match Laravel's function. If you are using Laravel, then you will
 be using Laravel's functions. This library is for those that don't want to pull
 the Laravel library, but still want to use similar functions.
 
+# Guide Table of Contents
+
+ * [Collection Callback Functions](#helper-functions)
+   * [Drop First Function](#drop-first-function)
+   * [Drop Last Function](#drop-last-function)
+   * [Each Function](#each-function)
+   * [Filter Function](#filter-function)
+   * [First Function](#first-function)
+   * [First Index Of Function](#first-index-of-function)
+   * [Flat Map Function](#flat-map-function)
+   * [Flatten Function](#flatten-function)
+   * [Group Function](#group-function)
+   * [Head Function](#head-function)
+   * [Invoke Function](#invoke-function)
+   * [Invoke First Function](#invoke-first-function)
+   * [Invoke Last Function](#invoke-last-function)
+   * [Last Function](#last-function)
+   * [Last Index Of Function](#last-index-of-function)
+   * [Map Function](#map-function)
+   * [Memoize Function](#memorize-function)
+   * [None Function](#none-function)
+   * [Partition Function](#partition-function)
+   * [Pick Function](#pick-function)
+   * [Pluck Function](#pluck-function)
+   * [Reduce Function](#reduce-function)
+   * [Reduce Left Function](#reduce-left-function)
+   * [Reduce Right Function](#reduce-right-function)
+   * [Reject Function](#reject-function)
+   * [Select Function](#select-function)
+   * [Short Function](#short-function)
+   * [Some Function](#some-function)
+   * [Sort Function](#sort-function)
+   * [Tail Function](#tail-function)
+   * [Unique Function](#unique-function)
+   * [Zip Function](#zip-function)
+ * [Helper Functions](#helper-functions)
+   * [Contains Function](#contains-function)
+   * [False Function](#false-function)
+   * [Falsy Function](#falsy-function)
+   * [True Function](#true-function)
+   * [Truthy Function](#truthy-function)
+   * [Value Function](#value-function)
+   * [With Function](#with-function)
+ * [Mathematics Callback Functions](#mathematics-functions)
+   * [Average Function](#average-function)
+   * [Difference Function](#difference-function)
+   * [Maximum Function](#maximum-function)
+   * [Minimum Function](#minimum-function)
+   * [Product Function](#product-function)
+   * [Quotient Function](#quotient-function)
+   * [Sum Function](#sum-function)
+
 # Helper Functions
 
 Helper functions don't take a callback and provide a simple way to iterate
@@ -58,6 +110,10 @@ through a collection performing a specialized task and return the result.
 ## True Function
 
 ## Truthy Function
+
+## Value Function
+
+## With Function
 
 
 # Collection Callback Functions
@@ -346,6 +402,35 @@ $total = \Mimic\Functional\quotientDivisor(array(1, 2, 3), 5);
 ```php
 $total = \Mimic\Functional\quotientDivisor(array(1, 2, 3, 0, 4, 5), 1);
 $total = \Mimic\Functional\quotientDivisor(array(1, 2, 3, 4, 5, 0), 1);
+```
+
+`$total` will be `0` for both calls. Any `0` value will break the final value
+and it will always be zero. Do a filter to remove `0` values.
+
+```php
+$total = \Mimic\Functional\quotient(array(5, 10, 100));
+```
+
+`$total` will be `50`. The execution will be `5 / 1`, `10 / 5` and finally
+`100 / 2` for `50`.
+
+```php
+$total = \Mimic\Functional\quotient(array(2, 4, 10));
+```
+
+`$total` will be `5`. The execution will be `2 / 1`, `4 / 2`, and finally
+`10 / 2` for `5`.
+
+```php
+$total = \Mimic\Functional\quotient(array(1, 2, 3), 5);
+```
+
+`$total` will be `0.3`. The execution will be `1 / 5`, `2 / 0.2` and finally
+`3 / 10` for `0.3`.
+
+```php
+$total = \Mimic\Functional\quotient(array(1, 2, 3, 0, 4, 5), 1);
+$total = \Mimic\Functional\quotient(array(1, 2, 3, 4, 5, 0), 1);
 ```
 
 `$total` will be `0` for both calls. Any `0` value will break the final value
