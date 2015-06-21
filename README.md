@@ -103,7 +103,39 @@ through a collection performing a specialized task and return the result.
 
 ## Contains Function
 
+Contains looks for whether the given value exists in the collection.
 
+```php
+$values = array('something', 'else', 'here');
+$exists = \Mimic\Functional\contains($values, 'else');
+
+if ($exists) {
+	echo "Else exists in values.";
+}
+
+$exists = \Mimic\Functional\contains($values, 'hello');
+
+if ( ! $exists ) {
+	echo "Hello does not exist in values.";
+}
+```
+
+You may also use a strict check to ensure that the type matches.
+
+```php
+$values = array('0', 1, 3, 5);
+$exists = \Mimic\Functional\contains($values, 3, true);
+
+if ($exists) {
+	echo "3 exists in values.";
+}
+
+$exists = \Mimic\Functional\contains($values, 0, true);
+
+if ( ! $exists ) {
+	echo "0 integer does not exists in values.";
+}
+```
 
 ## False Function
 
