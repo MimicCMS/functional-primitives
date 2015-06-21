@@ -39,11 +39,8 @@ function average($collection) {
  * @return int
  */
 function difference($collection, $initial = 0) {
-	return reduce($collection, $initial, function($element, $current) {
-		if ( is_numeric($element) ) {
-			return $current - $element;
-		}
-		return $current;
+	return reduceNumber($collection, $initial, function($element, $current) {
+		return $current - $element;
 	});
 }
 
@@ -55,11 +52,8 @@ function difference($collection, $initial = 0) {
  *   Will return null, if none of the elements are numeric.
  */
 function maximum($collection) {
-	return reduce($collection, null, function($element, $current) {
-		if ( is_numeric($element) ) {
-			return $element > $current ? $element : $current;
-		}
-		return $current;
+	return reduceNumber($collection, null, function($element, $current) {
+		return $element > $current ? $element : $current;
 	});
 }
 
@@ -71,11 +65,8 @@ function maximum($collection) {
  *   Will return null, if none of the elements are numeric.
  */
 function minimum($collection) {
-	return reduce($collection, null, function($element, $current) {
-		if ( is_numeric($element) ) {
-			return $element < $current ? $element : $current;
-		}
-		return $current;
+	return reduceNumber($collection, null, function($element, $current) {
+		return $element < $current ? $element : $current;
 	});
 }
 
@@ -87,11 +78,8 @@ function minimum($collection) {
  * @return int|float
  */
 function product($collection, $initial = 1) {
-	return reduce($collection, $initial, function($element, $current) {
-		if ( is_numeric($element) ) {
-			return $current * $element;
-		}
-		return $current;
+	return reduceNumber($collection, $initial, function($element, $current) {
+		return $current * $element;
 	});
 }
 
@@ -163,10 +151,40 @@ function quotient($collection, $initial = null) {
  * @return int|float
  */
 function sum($collection, $initial = 0) {
-	return reduce($collection, $initial, function($element, $current) {
+	return reduceNumber($collection, $initial, function($element, $current) {
+		return $current + $element;
+	});
+}
+
+/**
+ * Reduce numeric values in a collection.
+ *
+ * @param array<int,float>|\Traversable<int,float> $collection
+ * @param float|int|null $initial
+ * @param \Closure $callback {
+ *     @param float|int $element
+ *     @param float|int|null $current
+ * }
+ * @return float|int|null
+ */
+function reduceNumber($collection, $initial, \Closure $callback) {
+	return reduce($collection, $initial, collectionNumberOperation($callback));
+}
+
+/**
+ * Check whether element is numeric applying callback or return current value.
+ *
+ * @param \Closure $callback {
+ *     @param float|int $element
+ *     @param float|int|null $current
+ * }
+ * @return float|int|null
+ */
+function collectionNumberOperation(\Closure $callback) {
+	return function($element, $current) use ($callback) {
 		if ( is_numeric($element) ) {
-			return $current + $element;
+			return $callback($element, $current);
 		}
 		return $current;
-	});
+	};
 }
