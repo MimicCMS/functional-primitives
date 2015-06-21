@@ -316,7 +316,7 @@ $total = \Mimic\Functional\product(array(1, 2, 3, 4, 5, 0), 1);
 `$total` will be `0` for both calls. Any `0` value will break the final value
 and it will always be zero. Do a filter to remove `0` values.
 
-## Quotient Function
+## Quotient Functions
 
 Quotient returns the total of values divided by the initial value. The default
 value is `1` and is optional. Passing `0` (zero) will do nothing and the
