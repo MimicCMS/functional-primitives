@@ -1,0 +1,17 @@
+{
+	"name": "mimic-cms/functional-primitives",
+	"description": "Functional primitives library.",
+	"minimum-stability": "dev",
+	"license": "MIT",
+	"require-dev": {
+		"codeclimate/php-test-reporter": "dev-master"
+	},
+	"autoload": {
+		"files": [
+			"src/functional.php"
+		]
+	},
+	"autoload-dev": {
+		"classmap": ["tests/"]
+	}
+}
