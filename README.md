@@ -326,7 +326,7 @@ function will not escape when the initial value is zero causing a delay.
 $total = \Mimic\Functional\quotientDivisor(array(5, 10, 100));
 ```
 
-`$total` will be `50`. So the result will be `5 / 1`, `10 / 5` and finally
+`$total` will be `50`. The execution will be `5 / 1`, `10 / 5` and finally
 `100 / 2` for `50`.
 
 ```php
@@ -337,10 +337,11 @@ $total = \Mimic\Functional\quotientDivisor(array(2, 4, 10));
 `10 / 2` for `5`.
 
 ```php
-$total = \Mimic\Functional\quotientDivisor(array(1, 2, 3, 4, 5), 5);
+$total = \Mimic\Functional\quotientDivisor(array(1, 2, 3), 5);
 ```
 
-`$total` will be `600`.
+`$total` will be `0.3`. The execution will be `1 / 5`, `2 / 0.2` and finally
+`3 / 10` for `0.3`.
 
 ```php
 $total = \Mimic\Functional\quotientDivisor(array(1, 2, 3, 0, 4, 5), 1);
