@@ -11,7 +11,7 @@ namespace Mimic\Functional;
 /**
  * Average of all numeric elements in a collection.
  *
- * @param \Traversable<int|float>|array<int|float> $collection
+ * @param array<int,float>|\Traversable<int,float> $collection
  * @return int
  */
 function average($collection) {
@@ -35,7 +35,7 @@ function average($collection) {
 /**
  * Difference of all numeric elements in a collection.
  *
- * @param \Traversable<int|float>|array<int|float> $collection
+ * @param array<int,float>|\Traversable<int,float> $collection
  * @return int
  */
 function difference($collection, $initial = 0) {
@@ -50,7 +50,7 @@ function difference($collection, $initial = 0) {
 /**
  * Maximum numeric value from collection.
  *
- * @param \Traversable<int|float>|array<int|float> $collection
+ * @param array<int,float>|\Traversable<int,float> $collection
  * @return int|float|null
  *   Will return null, if none of the elements are numeric.
  */
@@ -66,7 +66,7 @@ function maximum($collection) {
 /**
  * Minimum numeric value from collection.
  *
- * @param \Traversable<int|float>|array<int|float> $collection
+ * @param array<int,float>|\Traversable<int,float> $collection
  * @return int|float|null
  *   Will return null, if none of the elements are numeric.
  */
@@ -82,7 +82,7 @@ function minimum($collection) {
 /**
  * Product of all numeric elements in a collection.
  *
- * @param \Traversable<int|float>|array<int|float> $collection
+ * @param array<int,float>|\Traversable<int,float> $collection
  * @param int|float $initial
  * @return int|float
  */
@@ -103,7 +103,7 @@ function product($collection, $initial = 1) {
  * `2 / 1`, `3 / 2`. That may not be the most clear. Take another collection,
  * `3, 6, 8`, where the default operation will be `3 / 1`, `6 / 3`, `8 / 2`.
  *
- * @param \Traversable<int|float>|array<int|float> $collection
+ * @param array<int,float>|\Traversable<int,float> $collection
  * @param int|float $initial
  *
  * @return int|float
@@ -132,7 +132,7 @@ function quotientDivisor($collection, $initial = 1) {
  * languages. {@link \Mimic\Functional\quotientDivisor} has the opposite, where
  * the quotient is the divisor.
  *
- * @param \Traversable<int|float>|array<int|float> $collection
+ * @param array<int,float>|\Traversable<int,float> $collection
  * @param int|float|null $initial
  *
  * @return int|float|null
@@ -158,7 +158,7 @@ function quotient($collection, $initial = null) {
 /**
  * Sum all numeric values in collection.
  *
- * @param \Traversable|array $collection
+ * @param array<int,float>|\Traversable<int,float> $collection
  * @param int|float $initial
  * @return int|float
  */
