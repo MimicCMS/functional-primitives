@@ -8,7 +8,9 @@
 	},
 	"autoload": {
 		"files": [
-			"src/functional.php"
+			"src/functional-collection.php",
+			"src/functional-helpers.php",
+			"src/functional-math.php"
 		]
 	},
 	"autoload-dev": {
