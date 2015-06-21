@@ -103,6 +103,8 @@ through a collection performing a specialized task and return the result.
 
 ## Contains Function
 
+
+
 ## False Function
 
 ## Falsy Function
@@ -142,7 +144,7 @@ parameters.
 
 ## Drop Last Function
 
-## Each
+## Each Function
 
 Each iterates through each element passing to a callback, but nothing is saved
 and nothing is returned when iteration is completed.
@@ -206,7 +208,7 @@ $squares = \Mimic\Functional\map($values, function($element) {
 
 ## Pluck Function
 
-## Reduce
+## Reduce Function
 
 Iterates through a collection returning a single value after processing all of
 the elements. The initial value must also be passed as the second argument.
@@ -239,7 +241,7 @@ $sum = \Mimic\Functional\reduce($values, 5, function($element, $current) {
 
 ## Select Function
 
-## Short
+## Short Function
 
 Short will check the callback and break out of the collection once the callback
 returns true. This is useful, when you need to escape out of the collection
@@ -277,8 +279,6 @@ $contains = \Mimic\Functional\reduce($values, true, false, function($element) us
 ## Tail Function
 
 ## Unique Function
-
-## With Function
 
 ## Zip Function
 
@@ -407,33 +407,43 @@ $total = \Mimic\Functional\quotientDivisor(array(1, 2, 3, 4, 5, 0), 1);
 `$total` will be `0` for both calls. Any `0` value will break the final value
 and it will always be zero. Do a filter to remove `0` values.
 
-```php
-$total = \Mimic\Functional\quotient(array(5, 10, 100));
-```
-
-`$total` will be `50`. The execution will be `5 / 1`, `10 / 5` and finally
-`100 / 2` for `50`.
+The `quotient()` function is more like how language handles operator precedence.
+These two functions exist for the purposes of which one is how you want to
+handle the division. The initial value is by default, not used.
 
 ```php
-$total = \Mimic\Functional\quotient(array(2, 4, 10));
+$total = \Mimic\Functional\quotient(array(100, 10, 5));
 ```
 
-`$total` will be `5`. The execution will be `2 / 1`, `4 / 2`, and finally
-`10 / 2` for `5`.
+`$total` will be `2`. The execution will be `100 / 10 / 5` which is `2`.
 
 ```php
-$total = \Mimic\Functional\quotient(array(1, 2, 3), 5);
+$total = \Mimic\Functional\quotient(array(10, 5), 100);
 ```
 
-`$total` will be `0.3`. The execution will be `1 / 5`, `2 / 0.2` and finally
-`3 / 10` for `0.3`.
+`$total` will be `2`. The execution will be `100 / 10 / 5` which is `2`.
 
 ```php
-$total = \Mimic\Functional\quotient(array(1, 2, 3, 0, 4, 5), 1);
-$total = \Mimic\Functional\quotient(array(1, 2, 3, 4, 5, 0), 1);
+$total = \Mimic\Functional\quotient(array(1, 2, 3, 0, 4, 5), 100);
+$total = \Mimic\Functional\quotient(array(1, 2, 3, 4, 5, 0), 100);
 ```
 
-`$total` will be `0` for both calls. Any `0` value will break the final value
-and it will always be zero. Do a filter to remove `0` values.
+The `0` values will be ignored or filtered from the evaluation. So the execution
+will be `100 / 1 / 2 / 3 / 4 / 5`, which is `0.83333333`.
 
 ## Sum Function
+
+Sum returns the total of values added from the initial value. The
+default value is `0` and is optional.
+
+```php
+$total = \Mimic\Functional\difference(array(1, 2, 3, 4, 5));
+```
+
+`$total` will be `15`.
+
+```php
+$total = \Mimic\Functional\difference(array(1, 2, 3, 4, 5), 15);
+```
+
+`$total` will be `30`.
