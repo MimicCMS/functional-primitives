@@ -8,7 +8,6 @@ use Mimic\Functional as F;
  * @since 0.1.0
  */
 class CollectionNumberOperationFuncTest extends PHPUnit_Framework_TestCase {
-
 	public function dataProvider() {
 		return array(
 			array(1, 0, 1, true),
@@ -22,10 +21,11 @@ class CollectionNumberOperationFuncTest extends PHPUnit_Framework_TestCase {
 	/**
 	 * @dataProvider dataProvider
 	 */
-	public function testDataProviderResults($element, $current, $expected, $willBeCalled) {
+	public function testCallbackIsCalledAndPassesResult($element, $current, $expected, $willBeCalled) {
 		$called = false;
 		$callback = function($element, $current) use (&$called) {
 			$called = true;
+			return $element;
 		};
 		$operation = F\collectionNumberOperation($callback);
 		$actual = $operation($element, $current);
