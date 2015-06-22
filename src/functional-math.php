@@ -34,7 +34,7 @@ function average($collection) {
 		return 0;
 	}
 
-	return $total / $amount;
+	return $amount / $total;
 }
 
 /**
@@ -185,7 +185,6 @@ function sum($collection, $initial = 0) {
 /**
  * Reduce numeric values in a collection.
  *
- * @api
  * @since 0.1.0
  *
  * @param array<Number>|\Traversable<Number> $collection
@@ -203,7 +202,6 @@ function reduceNumber($collection, $initial, \Closure $callback) {
 /**
  * Check whether element is numeric applying callback or return current value.
  *
- * @api
  * @since 0.1.0
  *
  * @param \Closure $callback {
