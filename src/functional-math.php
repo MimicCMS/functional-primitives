@@ -25,7 +25,7 @@ function average($collection) {
 
 	each($collection, function($element) use (&$amount, &$total) {
 		if ( is_numeric($element) ) {
-			$amount += (int) $element;
+			$amount += $element;
 			$total += 1;
 		}
 	});
