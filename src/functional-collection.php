@@ -36,6 +36,9 @@ namespace Mimic\Functional;
  * Each element in the returned array will have an index matched to the original
  * array index.
  *
+ * @api
+ * @since 0.1.0
+ *
  * @param \Traversable|array $collection
  * @param MapCollectionCallback|\Closure $callback
  * @return array
@@ -51,6 +54,9 @@ function map($collection, \Closure $callback) {
 /**
  * Iterate through each element of collection passing to callback.
  *
+ * @api
+ * @since 0.1.0
+ *
  * @param \Traversable|array $collection
  * @param MapCollectionCallback|\Closure $callback
  * @return void
@@ -63,6 +69,9 @@ function each($collection, \Closure $callback) {
 
 /**
  * Iterate through each element of collection to reduce to a single value.
+ *
+ * @api
+ * @since 0.1.0
  *
  * @param \Traversable|array $collection
  * @param mixed $initial
@@ -81,6 +90,9 @@ function reduce($collection, $initial, \Closure $callback) {
  *
  * This prevents the entire loop from executing for some performance. At worst,
  * every element will be evaluated.
+ *
+ * @api
+ * @since 0.1.0
  *
  * @param \Traversable|array $collection
  * @param mixed $passed
@@ -102,6 +114,9 @@ function short($collection, $passed, $default, \Closure $callback) {
 /**
  * Whether every element in collection passes callback evaluation.
  *
+ * @api
+ * @since 0.1.0
+ *
  * @param \Traversable|array $collection
  * @param MapCollectionCallback|\Closure $callback
  * @return boolean
@@ -116,6 +131,9 @@ function every($collection, \Closure $callback) {
 /**
  * Whether none of the elements in collection passes callback evaluation.
  *
+ * @api
+ * @since 0.1.0
+ *
  * @param \Traversable|array $collection
  * @param MapCollectionCallback|\Closure $callback
  * @return boolean
@@ -129,6 +147,9 @@ function none($collection, \Closure $callback) {
 
 /**
  * Drop elements in collection up to when callback is false.
+ *
+ * @api
+ * @since 0.1.0
  *
  * @param \Traversable|array $collection
  * @param MapCollectionCallback|\Closure $callback
@@ -150,6 +171,9 @@ function dropFirst($collection, \Closure $callback) {
 
 /**
  * Drop all elements in collection after callback returns true.
+ *
+ * @api
+ * @since 0.1.0
  *
  * @param \Traversable|array $collection
  * @param MapCollectionCallback|\Closure $callback
@@ -271,12 +295,4 @@ function unique() {
 
 function zip() {
 	/** @todo Incomplete */
-}
-
-function compose() {
-	/** @todo Incomplete */
-}
-
-function pipeline() {
-
 }
