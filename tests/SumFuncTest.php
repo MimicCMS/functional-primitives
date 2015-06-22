@@ -16,11 +16,11 @@ class SumFuncTest extends PHPUnit_Framework_TestCase {
 		$this->assertEquals(-15, F\sum(array(-1, -2, -3, -4, -5)));
 	}
 
-	public function testWithFloatIsNegativeFloat() {
+	public function testWithFloatIsFloat() {
 		$this->assertEquals(17.5, F\sum(array(1.5, 2.5, 3.5, 4.5, 5.5)));
 	}
 
-	public function testWithFloatIsFloat() {
+	public function testWithFloatIsNegativeFloat() {
 		$this->assertEquals(-17.5, F\sum(array(-1.5, -2.5, -3.5, -4.5, -5.5)));
 	}
 
@@ -28,23 +28,23 @@ class SumFuncTest extends PHPUnit_Framework_TestCase {
 		$this->assertEquals(0, F\sum(array('', 'something5', 'else', 'what')));
 	}
 
-	public function testIsNegative15_withInitial() {
+	public function testIs20_withInitial() {
 		$this->assertEquals(20, F\sum(array(1, 2, 3, 4, 5), 5));
 	}
 
-	public function testIs15_withInitial() {
+	public function testIsNegative10_withInitial() {
 		$this->assertEquals(-10, F\sum(array(-1, -2, -3, -4, -5), 5));
 	}
 
-	public function testWithFloatIsNegativeFloat_withInitial() {
+	public function testWithFloatIsFloat_withInitial() {
 		$this->assertEquals(22.5, F\sum(array(1.5, 2.5, 3.5, 4.5, 5.5), 5));
 	}
 
-	public function testWithFloatIsFloat_withInitial() {
+	public function testWithFloatIsNegativeFloat_withInitial() {
 		$this->assertEquals(-12.5, F\sum(array(-1.5, -2.5, -3.5, -4.5, -5.5), 5));
 	}
 
-	public function testWithStringIsZero_withInitial() {
+	public function testWithStringIsFive_withInitial() {
 		$this->assertEquals(5, F\sum(array('', 'something5', 'else', 'what'), 5));
 	}
 }
