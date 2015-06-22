@@ -10,6 +10,12 @@ components.
 Library supports PHP5.3. Other versions of PHP are supported allowing for
 features in other versions.
 
+## Installation
+
+You may install this library using composer.
+
+**TODO: Need to add composer configuration.**
+
 ## Inspirations
 
 ### Functional PHP Library
@@ -95,60 +101,6 @@ the Laravel library, but still want to use similar functions.
    * [Product Function](#product-function)
    * [Quotient Function](#quotient-function)
    * [Sum Function](#sum-function)
-
-# Helper Functions
-
-Helper functions don't take a callback and provide a simple way to iterate
-through a collection performing a specialized task and return the result.
-
-## Contains Function
-
-Contains looks for whether the given value exists in the collection.
-
-```php
-$values = array('something', 'else', 'here');
-$exists = \Mimic\Functional\contains($values, 'else');
-
-if ($exists) {
-	echo "Else exists in values.";
-}
-
-$exists = \Mimic\Functional\contains($values, 'hello');
-
-if ( ! $exists ) {
-	echo "Hello does not exist in values.";
-}
-```
-
-You may also use a strict check to ensure that the type matches.
-
-```php
-$values = array('0', 1, 3, 5);
-$exists = \Mimic\Functional\contains($values, 3, true);
-
-if ($exists) {
-	echo "3 exists in values.";
-}
-
-$exists = \Mimic\Functional\contains($values, 0, true);
-
-if ( ! $exists ) {
-	echo "0 integer does not exists in values.";
-}
-```
-
-## False Function
-
-## Falsy Function
-
-## True Function
-
-## Truthy Function
-
-## Value Function
-
-## With Function
-
 
 # Collection Callback Functions
 
@@ -313,6 +265,145 @@ $contains = \Mimic\Functional\reduce($values, true, false, function($element) us
 ## Unique Function
 
 ## Zip Function
+
+# Helper Functions
+
+Helper functions don't take a callback and provide a simple way to iterate
+through a collection performing a specialized task and return the result.
+
+## Contains Function
+
+Contains looks for whether the given value exists in the collection.
+
+```php
+$values = array('something', 'else', 'here');
+$exists = \Mimic\Functional\contains($values, 'else');
+
+if ($exists) {
+	echo "Else exists in values.";
+}
+
+$exists = \Mimic\Functional\contains($values, 'hello');
+
+if ( ! $exists ) {
+	echo "Hello does not exist in values.";
+}
+```
+
+You may also use a strict check to ensure that the type matches.
+
+```php
+$values = array(1, 3, '5');
+$exists = \Mimic\Functional\contains($values, 3, true);
+
+if ($exists) {
+	echo "3 exists in values.";
+}
+
+$exists = \Mimic\Functional\contains($values, 5, true);
+
+if ( ! $exists ) {
+	echo "5 integer does not exists in values.";
+}
+```
+
+## False Function
+
+False function checks that every value in the array is false. This is useful in
+combination with map where you evaluate some clause and then use this function
+for whether every value is identical to false.
+
+```php
+$values = array(1, 3, 5, 7);
+$evenEvaluation = \Mimic\Functional\map($values, function($element) {
+	return ($element % 2) === 0;
+});
+
+$allOdd = \Mimic\Functional\false($evenEvaluation);
+
+if ($allOdd) {
+	echo "All values are odd.";
+}
+```
+
+## Falsy Function
+
+Falsy function checks that every value in the array evaluates to false. Please
+note that certain values that aren't false, will still evaluate to false.
+
+```php
+$values = array(false, 0, '', null);
+$allFalsy = \Mimic\Functional\falsy($values);
+
+if ($allFalsy) {
+	echo "All values are falsy.";
+}
+```
+
+## True Function
+
+True function checks that every value in the array is true. This is useful in
+combination with map where you evaluate some clause and then use this function
+for whether every value is identical to true.
+
+```php
+$values = array(2, 4, 6, 8);
+$evenEvaluation = \Mimic\Functional\map($values, function($element) {
+	return ($element % 2) === 0;
+});
+
+$allEven = \Mimic\Functional\true($evenEvaluation);
+
+if ($allEven) {
+	echo "All values are even.";
+}
+```
+
+## Truthy Function
+
+Truthy function checks that every value in the array evaluates to true. Please
+note that certain values that aren't true, will still evaluate to true.
+
+```php
+$values = array(true, 1, -1, '0', array());
+$allTruthy = \Mimic\Functional\truthy($values);
+
+if ($allTruthy) {
+	echo "All values are truthy.";
+}
+```
+
+## Value Function
+
+Value returns the given value, unless a callback is given to value, then the
+result from the callback called with no arguments will be returned.
+
+```php
+$zero = \Mimic\Functional\value(0);
+$true = \Mimic\Functional\value(true);
+$true = \Mimic\Functional\value(function() { return true; });
+```
+
+The value function will work with objects. Please be aware that this shortcut
+does not need to be used with PHP5.4 and later.
+
+```php
+$object = \Mimic\Functional\value(new Type());
+```
+
+## With Function
+
+With function passes the given value to the callback and returns the result of
+the callback.
+
+```php
+$callback = function($value) {
+	return ! $value;
+};
+$false = \Mimic\Functional\with(true, $callback);
+
+$true = \Mimic\Functional\with(false, $callback);
+```
 
 # Mathematics Functions
 
