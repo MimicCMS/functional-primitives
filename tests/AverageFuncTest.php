@@ -18,12 +18,12 @@ class AverageFuncTest extends PHPUnit_Framework_TestCase {
 		$this->assertEquals(2, F\average(array(0, '', 'something', 'what', 1, 2, 3, 4)));
 	}
 
-	public function testAverageWithFloatsIsIncomplete() {
-		$this->assertEquals(2.3333333333333335, F\average(array(1.5, 2.5, 2.5, 2.5, 3.5, 4)));
+	public function testAverageWithFloats() {
+		$this->assertEquals(2.75, F\average(array(1.5, 2.5, 2.5, 2.5, 3.5, 4)));
 	}
 
 	public function testAverageWithFloatsIsTwoAndAHalf() {
-		$this->assertEquals(2.5, (float) F\average(array(2.5, 2.5, 2.5, 2.5, 2.5, 2.5)));
+		$this->assertEquals(2.5, F\average(array(2.5, 2.5, 2.5, 2.5, 2.5, 2.5)));
 	}
 
 	public function testAverageWithIntsIsTwo() {
