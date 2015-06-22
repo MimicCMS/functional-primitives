@@ -34,7 +34,7 @@ function average($collection) {
 		return 0;
 	}
 
-	return (float) $amount / $total;
+	return (float) $amount / (float) $total;
 }
 
 /**
