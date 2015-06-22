@@ -30,20 +30,20 @@ class DifferenceFuncTest extends PHPUnit_Framework_TestCase {
 		$this->assertEquals(0, F\difference(array('', 'something5', 'else', 'what')));
 	}
 
-	public function testIsNegative15_initialValue() {
-		$this->assertEquals(-20, F\difference(array(1, 2, 3, 4, 5), 5));
+	public function testIsNegative10_initialValue() {
+		$this->assertEquals(-10, F\difference(array(1, 2, 3, 4, 5), 5));
 	}
 
-	public function testIs15_initialValue() {
-		$this->assertEquals(20, F\difference(array(-1, -2, -3, -4, -5), -5));
+	public function testIs10_initialValue() {
+		$this->assertEquals(10, F\difference(array(-1, -2, -3, -4, -5), -5));
 	}
 
 	public function testWithFloatIsNegativeFloat_initialValue() {
-		$this->assertEquals(-22.5, F\difference(array(1.5, 2.5, 3.5, 4.5, 5.5), 5));
+		$this->assertEquals(-12.5, F\difference(array(1.5, 2.5, 3.5, 4.5, 5.5), 5));
 	}
 
-	public function testWithFloatIsFloat_initialValue() {
-		$this->assertEquals(23, F\difference(array(-1.5, -2.5, -3.5, -4.5, -5.5), -5.5));
+	public function testWithFloatIsInt_initialValue() {
+		$this->assertEquals(12, F\difference(array(-1.5, -2.5, -3.5, -4.5, -5.5), -5.5));
 	}
 
 	public function testWithStringIsZero_initialValue() {
