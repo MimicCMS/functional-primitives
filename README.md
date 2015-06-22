@@ -4,11 +4,11 @@
 [![Test Coverage](https://codeclimate.com/github/MimicCMS/functional-primitives/coverage.png)](https://codeclimate.com/github/MimicCMS/functional-primitives)
 [![Build Status](https://travis-ci.org/MimicCMS/functional-primitives.svg?branch=master)](https://travis-ci.org/MimicCMS/functional-primitives)
 
-Function primitives form a base of function composition allowing for reusable
-components.
+Function primitives form a base of function composition allowing for reusable components.
 
-Library supports PHP5.3. Other versions of PHP are supported allowing for
-features in other versions.
+Library uses [semantic versioning](http://semver.org), so that you should be able to upgrade supporting version 1. Version 2 will probably support different ways of function composition, using generators, coroutines and other available language constructs. Also, it will take lessons learned from using this library and apply better API. Later major versions will drop support for PHP5.3. The only reason PHP5.3 is supported, is that all of the code will run on PHP5.3 and to widen the amount of users that can develop using the library.
+
+Library supports PHP5.3. Other versions of PHP are supported allowing for features in other versions.
 
 ## Installation
 
@@ -20,35 +20,19 @@ You may install this library using composer.
 
 ### Functional PHP Library
 
-This library is inspired by Lars Strojny
-[Functional PHP](https://github.com/lstrojny/functional-php) repository. The
-differences are that the functions do not check for whether any of the values
-are correct and will fail if the collection passed is not an array or traversal.
-You will get a notice or warning and you will need to fix that in your code.
+This library is inspired by Lars Strojny [Functional PHP](https://github.com/lstrojny/functional-php) repository. The differences are that the functions do not check for whether any of the values are correct and will fail if the collection passed is not an array or traversal. You will get a notice or warning and you will need to fix that in your code.
 
-Validations should happen outside of the function and the functions in this
-library assume that you are passing correct values as arguments.
+Validations should happen outside of the function and the functions in this library assume that you are passing correct values as arguments.
 
-The other change is that the code in this library reuses existing functions as
-much as possible. The goal is function composition and reducing duplicated code.
-The best way to do that is to reuse as much code as possible, even if it will
-have less performance.
+The other change is that the code in this library reuses existing functions as much as possible. The goal is function composition and reducing duplicated code. The best way to do that is to reuse as much code as possible, even if it will have less performance.
 
 ### Laravel Helpers
 
-Some of the functions from Laravel repository have been ported to this library.
-The names will be different and are under the same namespace as the rest of the
-library.
+Some of the functions from Laravel repository have been ported to this library. The names will be different and are under the same namespace as the rest of the library.
 
-There are going to be differences. I'm going off of the documentation web site
-and not the PHP code. The behavior won't match exactly, but based on the
-documentation, should at least provide similar behavior.
+There are going to be differences. I'm going off of the documentation web site and not the PHP code. The behavior won't match exactly, but based on the documentation, should at least provide similar behavior.
 
-The Laravel test suite for the Laravel helpers might be pulled and copied to
-this library to provide a match, but I don't really think it matters that much
-to completely match Laravel's function. If you are using Laravel, then you will
-be using Laravel's functions. This library is for those that don't want to pull
-the Laravel library, but still want to use similar functions.
+The Laravel test suite for the Laravel helpers might be pulled and copied to this library to provide a match, but I don't really think it matters that much to completely match Laravel's function. If you are using Laravel, then you will be using Laravel's functions. This library is for those that don't want to pull the Laravel library, but still want to use similar functions.
 
 # Guide Table of Contents
 
@@ -104,8 +88,7 @@ the Laravel library, but still want to use similar functions.
 
 # Collection Callback Functions
 
-Most collection callback will have the element, index and collection passed as
-arguments.
+Most collection callback will have the element, index and collection passed as arguments.
 
 ```php
 $callback = function($element, $index, $collection) {
@@ -121,8 +104,7 @@ $callback = function($element, $current, $index, $collection) {
 };
 ```
 
-It is not required to have each parameter and it is recommend to only have the
-parameters.
+It is not required to have each parameter and it is recommend to only have the parameters.
 
 ## Drop First Function
 
@@ -130,8 +112,7 @@ parameters.
 
 ## Each Function
 
-Each iterates through each element passing to a callback, but nothing is saved
-and nothing is returned when iteration is completed.
+Each iterates through each element passing to a callback, but nothing is saved and nothing is returned when iteration is completed.
 
 ```php
 $values = array(0, 1, 2, 3, 4);
@@ -169,8 +150,7 @@ $values = array(0, 1, 2, 3, 4);
 
 ## Map Function
 
-Map iterates through each element applying callback to each. The return value is
-saved and returned in an array.
+Map iterates through each element applying callback to each. The return value is saved and returned in an array.
 
 ```php
 $values = array(0, 1, 2, 3, 4);
@@ -194,8 +174,7 @@ $squares = \Mimic\Functional\map($values, function($element) {
 
 ## Reduce Function
 
-Iterates through a collection returning a single value after processing all of
-the elements. The initial value must also be passed as the second argument.
+Iterates through a collection returning a single value after processing all of the elements. The initial value must also be passed as the second argument.
 
 ```php
 $values = array(0, 1, 2, 3, 4);
@@ -227,12 +206,9 @@ $sum = \Mimic\Functional\reduce($values, 5, function($element, $current) {
 
 ## Short Function
 
-Short will check the callback and break out of the collection once the callback
-returns true. This is useful, when you need to escape out of the collection
-after a condition is met.
+Short will check the callback and break out of the collection once the callback returns true. This is useful, when you need to escape out of the collection after a condition is met.
 
-You should also see `dropFirst()` and `dropLast()` for removing elements from a
-collection.
+You should also see `dropFirst()` and `dropLast()` for removing elements from a collection.
 
 ```php
 $values = array(0, 1, 2, 3, 4);
@@ -268,8 +244,7 @@ $contains = \Mimic\Functional\reduce($values, true, false, function($element) us
 
 # Helper Functions
 
-Helper functions don't take a callback and provide a simple way to iterate
-through a collection performing a specialized task and return the result.
+Helper functions don't take a callback and provide a simple way to iterate through a collection performing a specialized task and return the result.
 
 ## Contains Function
 
@@ -309,9 +284,7 @@ if ( ! $exists ) {
 
 ## False Function
 
-False function checks that every value in the array is false. This is useful in
-combination with map where you evaluate some clause and then use this function
-for whether every value is identical to false.
+False function checks that every value in the array is false. This is useful in combination with map where you evaluate some clause and then use this function for whether every value is identical to false.
 
 ```php
 $values = array(1, 3, 5, 7);
@@ -328,8 +301,7 @@ if ($allOdd) {
 
 ## Falsy Function
 
-Falsy function checks that every value in the array evaluates to false. Please
-note that certain values that aren't false, will still evaluate to false.
+Falsy function checks that every value in the array evaluates to false. Please note that certain values that aren't false, will still evaluate to false.
 
 ```php
 $values = array(false, 0, '', null);
@@ -342,9 +314,7 @@ if ($allFalsy) {
 
 ## True Function
 
-True function checks that every value in the array is true. This is useful in
-combination with map where you evaluate some clause and then use this function
-for whether every value is identical to true.
+True function checks that every value in the array is true. This is useful in combination with map where you evaluate some clause and then use this function for whether every value is identical to true.
 
 ```php
 $values = array(2, 4, 6, 8);
@@ -361,8 +331,7 @@ if ($allEven) {
 
 ## Truthy Function
 
-Truthy function checks that every value in the array evaluates to true. Please
-note that certain values that aren't true, will still evaluate to true.
+Truthy function checks that every value in the array evaluates to true. Please note that certain values that aren't true, will still evaluate to true.
 
 ```php
 $values = array(true, 1, -1, '0', array());
@@ -375,8 +344,7 @@ if ($allTruthy) {
 
 ## Value Function
 
-Value returns the given value, unless a callback is given to value, then the
-result from the callback called with no arguments will be returned.
+Value returns the given value, unless a callback is given to value, then the result from the callback called with no arguments will be returned.
 
 ```php
 $zero = \Mimic\Functional\value(0);
@@ -384,8 +352,7 @@ $true = \Mimic\Functional\value(true);
 $true = \Mimic\Functional\value(function() { return true; });
 ```
 
-The value function will work with objects. Please be aware that this shortcut
-does not need to be used with PHP5.4 and later.
+The value function will work with objects. Please be aware that this shortcut does not need to be used with PHP5.4 and later.
 
 ```php
 $object = \Mimic\Functional\value(new Type());
@@ -393,8 +360,7 @@ $object = \Mimic\Functional\value(new Type());
 
 ## With Function
 
-With function passes the given value to the callback and returns the result of
-the callback.
+With function passes the given value to the callback and returns the result of the callback.
 
 ```php
 $callback = function($value) {
@@ -407,18 +373,13 @@ $true = \Mimic\Functional\with(false, $callback);
 
 # Mathematics Functions
 
-Functions which take a collection and apply some process to the collection.
-These functions don't take a callback and are helpers for common math operations
-for collections containing integers and floats.
+Functions which take a collection and apply some process to the collection. These functions don't take a callback and are helpers for common math operations for collections containing integers and floats.
 
-The functions will work with numeric strings, integers and floats. You could
-also combine the types in the collection.
+The functions will work with numeric strings, integers and floats. You could also combine the types in the collection.
 
 ## Average Function
 
-Average returns the average using basic PHP operations. This function does not
-use `GMP` or `bcmath` extensions. If you need more accurate results, then you
-will need to use another function.
+Average returns the average using basic PHP operations. This function does not use `GMP` or `bcmath` extensions. If you need more accurate results, then you will need to use another function.
 
 ```php
 $average = \Mimic\Functional\average(array(0, 1, 2, 3, 4));
@@ -434,8 +395,7 @@ $average = \Mimic\Functional\average(array(1.5, 2.5, 2.5, 2.5, 3.5, 4.5));
 
 ## Difference Function
 
-Difference returns the total of values subtracted from the initial value. The
-default value is `0` and is optional.
+Difference returns the total of values subtracted from the initial value. The default value is `0` and is optional.
 
 ```php
 $total = \Mimic\Functional\difference(array(1, 2, 3, 4, 5));
@@ -471,9 +431,7 @@ $min = \Mimic\Functional\minimum(array(1, 2, 3, 4, 5));
 
 ## Product Function
 
-Product returns the total of values multiplied by the initial value. The default
-value is `1` and is optional. Passing `0` (zero) will do nothing and the
-function will not escape when the initial value is zero causing a delay.
+Product returns the total of values multiplied by the initial value. The default value is `1` and is optional. Passing `0` (zero) will do nothing and the function will not escape when the initial value is zero causing a delay.
 
 ```php
 $total = \Mimic\Functional\product(array(1, 2, 3, 4, 5));
@@ -492,47 +450,38 @@ $total = \Mimic\Functional\product(array(1, 2, 3, 0, 4, 5), 1);
 $total = \Mimic\Functional\product(array(1, 2, 3, 4, 5, 0), 1);
 ```
 
-`$total` will be `0` for both calls. Any `0` value will break the final value
-and it will always be zero. Do a filter to remove `0` values.
+`$total` will be `0` for both calls. Any `0` value will break the final value and it will always be zero. Do a filter to remove `0` values.
 
 ## Quotient Functions
 
-Quotient returns the total of values divided by the initial value. The default
-value is `1` and is optional. Passing `0` (zero) will do nothing and the
-function will not escape when the initial value is zero causing a delay.
+Quotient returns the total of values divided by the initial value. The default value is `1` and is optional. Passing `0` (zero) will do nothing and the function will not escape when the initial value is zero causing a delay.
 
 ```php
 $total = \Mimic\Functional\quotientDivisor(array(5, 10, 100));
 ```
 
-`$total` will be `50`. The execution will be `5 / 1`, `10 / 5` and finally
-`100 / 2` for `50`.
+`$total` will be `50`. The execution will be `5 / 1`, `10 / 5` and finally `100 / 2` for `50`.
 
 ```php
 $total = \Mimic\Functional\quotientDivisor(array(2, 4, 10));
 ```
 
-`$total` will be `5`. The execution will be `2 / 1`, `4 / 2`, and finally
-`10 / 2` for `5`.
+`$total` will be `5`. The execution will be `2 / 1`, `4 / 2`, and finally `10 / 2` for `5`.
 
 ```php
 $total = \Mimic\Functional\quotientDivisor(array(1, 2, 3), 5);
 ```
 
-`$total` will be `0.3`. The execution will be `1 / 5`, `2 / 0.2` and finally
-`3 / 10` for `0.3`.
+`$total` will be `0.3`. The execution will be `1 / 5`, `2 / 0.2` and finally `3 / 10` for `0.3`.
 
 ```php
 $total = \Mimic\Functional\quotientDivisor(array(1, 2, 3, 0, 4, 5), 1);
 $total = \Mimic\Functional\quotientDivisor(array(1, 2, 3, 4, 5, 0), 1);
 ```
 
-`$total` will be `0` for both calls. Any `0` value will break the final value
-and it will always be zero. Do a filter to remove `0` values.
+`$total` will be `0` for both calls. Any `0` value will break the final value and it will always be zero. Do a filter to remove `0` values.
 
-The `quotient()` function is more like how language handles operator precedence.
-These two functions exist for the purposes of which one is how you want to
-handle the division. The initial value is by default, not used.
+The `quotient()` function is more like how language handles operator precedence. These two functions exist for the purposes of which one is how you want to handle the division. The initial value is by default, not used.
 
 ```php
 $total = \Mimic\Functional\quotient(array(100, 10, 5));
@@ -551,13 +500,11 @@ $total = \Mimic\Functional\quotient(array(1, 2, 3, 0, 4, 5), 100);
 $total = \Mimic\Functional\quotient(array(1, 2, 3, 4, 5, 0), 100);
 ```
 
-The `0` values will be ignored or filtered from the evaluation. So the execution
-will be `100 / 1 / 2 / 3 / 4 / 5`, which is `0.83333333`.
+The `0` values will be ignored or filtered from the evaluation. So the execution will be `100 / 1 / 2 / 3 / 4 / 5`, which is `0.83333333`.
 
 ## Sum Function
 
-Sum returns the total of values added from the initial value. The
-default value is `0` and is optional.
+Sum returns the total of values added from the initial value. The default value is `0` and is optional.
 
 ```php
 $total = \Mimic\Functional\difference(array(1, 2, 3, 4, 5));
