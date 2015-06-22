@@ -10,27 +10,21 @@ use Mimic\Functional as F;
  * @todo Need to use QuickTest library.
  */
 class AverageFuncTest extends PHPUnit_Framework_TestCase {
-	public function testAverageIsTwo() {
-		$this->assertEquals(2, F\average(array(0, 1, 2, 3, 4)));
+	public function dataProvider() {
+		return array(
+			array(2, array(1, 2, 3, 4)),
+			array(2, array(0, '', 'something', 'what', 1, 2, 3, 4)),
+			array(2.75, array(1.5, 2.5, 2.5, 2.5, 3.5, 4)),
+			array(2.5, array(2.5, 2.5, 2.5, 2.5, 2.5, 2.5)),
+			array(2, array(2, 2, 2, 2, 2, 2)),
+			array(0, array('', 'Something5', 'okay', 'what')),
+		);
 	}
 
-	public function testAverageIsTwo_withStrings() {
-		$this->assertEquals(2, F\average(array(0, '', 'something', 'what', 1, 2, 3, 4)));
-	}
-
-	public function testAverageWithFloats() {
-		$this->assertEquals(2.75, F\average(array(1.5, 2.5, 2.5, 2.5, 3.5, 4)));
-	}
-
-	public function testAverageWithFloatsIsTwoAndAHalf() {
-		$this->assertEquals(2.5, F\average(array(2.5, 2.5, 2.5, 2.5, 2.5, 2.5)));
-	}
-
-	public function testAverageWithIntsIsTwo() {
-		$this->assertEquals(2, F\average(array(2, 2, 2, 2, 2, 2)));
-	}
-
-	public function testAverageWithoutNumericIsZero() {
-		$this->assertEquals(0, F\average(array('', 'Something5', 'okay', 'what')));
+	/**
+	 * @dataProvider dataProvider
+	 */
+	public function testResults($result, $collection) {
+		$this->assertEquals($result, F\average($collection));
 	}
 }
