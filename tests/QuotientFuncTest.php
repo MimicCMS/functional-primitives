@@ -8,25 +8,34 @@ use Mimic\Functional as F;
  * @since 0.1.0
  */
 class QuotientFuncTest extends PHPUnit_Framework_TestCase {
-	/*
-	public function testIsClosure_UsingFileExistsFunction() {
-		$callback = \Mimic\bind_callback('file_exists');
-		$this->assertTrue($callback instanceof \Closure);
+	public function dataProvider() {
+		return array(
+			array(null, -1, array(1, 2, 3, 4, 5)),
+			array(null, -1, array(-1, -2, -3, -4, -5)),
+			array(null, -1, array(-1, -2, -3, -4, -5, 0)),
+			array(null, -1, array(1.5, 2.5, 3.5, 4.5, 5.5)),
+			array(null, -1, array(-1.5, -2.5, -3.5, -4.5, -5.5)),
+			array(null, -1, array(-1.5, -2.5, -3.5, -4.5, -5.5, 0.0)),
+			array(null, 1,  array('', 'something5', 'else', 'what')),
+			array(5, -1, array(1, 2, 3, 4, 5)),
+			array(5, -1, array(-1, -2, -3, -4, -5)),
+			array(5, -1, array(-1, -2, -3, -4, -5, 0)),
+			array(5, -1, array(1.5, 2.5, 3.5, 4.5, 5.5)),
+			array(5, -1, array(-1.5, -2.5, -3.5, -4.5, -5.5)),
+			array(5, -1, array(-1.5, -2.5, -3.5, -4.5, -5.5, 0.0)),
+			array(5, 1,  array('', 'something5', 'else', 'what')),
+		);
 	}
 
-	public function testFileExistsFunction_FileDoesNotExist() {
-		$callback = \Mimic\bind_callback('file_exists', __DIR__ . '/nonexistantfile.doesnotexist');
-		$this->assertFalse($callback());
-	}
-
-	public function testFileExistsFunction_DirectoryExists() {
-		$callback = \Mimic\bind_callback('file_exists', __DIR__);
-		$this->assertTrue($callback());
-	}
-
-	public function testFileExistsFunction_FileExists() {
-		$callback = \Mimic\bind_callback('file_exists', __FILE__);
-		$this->assertTrue($callback());
-	}
+	/**
+	 * @dataProvider dataProvider
 	 */
+	public function testResults($initial, $result, $collection) {
+		if ($initial === null) {
+			$this->assertEquals($result, F\quotient($collection));
+		}
+		else {
+			$this->assertEquals($result, F\quotient($collection, $initial));
+		}
+	}
 }
