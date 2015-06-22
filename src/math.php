@@ -156,16 +156,10 @@ function quotientDivisor($collection, $initial = 1) {
  */
 function quotient($collection, $initial = null) {
 	return reduce($collection, $initial, function($element, $current) {
-		// Do not allow elements that are zero to be divided to prevent divid
-		// by zero exceptions.
-		// This may prevent 0.nnnnnn numbers.
-		if ($element == 0) {
-			return $current;
-		}
 		if ($current === null && is_numeric($element)) {
 			return $element;
 		}
-		if ( is_numeric($element) ) {
+		if ( is_numeric($element) && $element !== 0 ) {
 			return $current / $element;
 		}
 		return $current;

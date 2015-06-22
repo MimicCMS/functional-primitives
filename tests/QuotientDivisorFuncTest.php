@@ -25,6 +25,7 @@ class QuotientDivisorFuncTest extends PHPUnit_Framework_TestCase {
 			array(5, -0.51333333333333331, array(-1.5, -2.5, -3.5, -4.5, -5.5)),
 			array(5, 0.0, array(-1.5, -2.5, -3.5, -4.5, -5.5, 0.0)),
 			array(5, 5,  array('', 'something5', 'else', 'what')),
+			array(0, 50.0, array(100, 10, 5)),
 		);
 	}
 
