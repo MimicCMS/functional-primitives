@@ -13,6 +13,9 @@ namespace Mimic\Functional;
 /**
  * Average of all numeric elements in a collection.
  *
+ * @api
+ * @since 0.1.0
+ *
  * @param array<Number>|\Traversable<Number> $collection
  * @return Number
  */
@@ -37,6 +40,9 @@ function average($collection) {
 /**
  * Difference of all numeric elements in a collection.
  *
+ * @api
+ * @since 0.1.0
+ *
  * @param array<Number>|\Traversable<Number> $collection
  * @return Number
  */
@@ -48,6 +54,9 @@ function difference($collection, $initial = 0) {
 
 /**
  * Maximum numeric value from collection.
+ *
+ * @api
+ * @since 0.1.0
  *
  * @param array<Number>|\Traversable<Number> $collection
  * @return Number|null
@@ -62,6 +71,9 @@ function maximum($collection) {
 /**
  * Minimum numeric value from collection.
  *
+ * @api
+ * @since 0.1.0
+ *
  * @param array<Number>|\Traversable<Number> $collection
  * @return Number|null
  *   Will return null, if none of the elements are numeric.
@@ -74,6 +86,9 @@ function minimum($collection) {
 
 /**
  * Product of all numeric elements in a collection.
+ *
+ * @api
+ * @since 0.1.0
  *
  * @param array<Number>|\Traversable<Number> $collection
  * @param Number $initial
@@ -92,6 +107,9 @@ function product($collection, $initial = 1) {
  * as the divisor. For a collection, `1, 2, 3`, the operation would be `1 / 1`,
  * `2 / 1`, `3 / 2`. That may not be the most clear. Take another collection,
  * `3, 6, 8`, where the default operation will be `3 / 1`, `6 / 3`, `8 / 2`.
+ *
+ * @api
+ * @since 0.1.0
  *
  * @param array<Number>|\Traversable<Number> $collection
  * @param Number $initial
@@ -122,6 +140,9 @@ function quotientDivisor($collection, $initial = 1) {
  * languages. {@link \Mimic\Functional\quotientDivisor} has the opposite, where
  * the quotient is the divisor.
  *
+ * @api
+ * @since 0.1.0
+ *
  * @param array<Number>|\Traversable<Number> $collection
  * @param Number|null $initial
  *
@@ -148,6 +169,9 @@ function quotient($collection, $initial = null) {
 /**
  * Sum all numeric values in collection.
  *
+ * @api
+ * @since 0.1.0
+ *
  * @param array<Number>|\Traversable<Number> $collection
  * @param Number $initial
  * @return Number
@@ -160,6 +184,9 @@ function sum($collection, $initial = 0) {
 
 /**
  * Reduce numeric values in a collection.
+ *
+ * @api
+ * @since 0.1.0
  *
  * @param array<Number>|\Traversable<Number> $collection
  * @param Number|null $initial
@@ -175,6 +202,9 @@ function reduceNumber($collection, $initial, \Closure $callback) {
 
 /**
  * Check whether element is numeric applying callback or return current value.
+ *
+ * @api
+ * @since 0.1.0
  *
  * @param \Closure $callback {
  *     @param Number $element
