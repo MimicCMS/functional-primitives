@@ -1,5 +1,7 @@
 <?php
 
+use Mimic\Functional as F;
+
 /**
  * Unit Test for quotientDivisor Mimic library function.
  *
