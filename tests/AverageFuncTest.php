@@ -12,7 +12,7 @@ use Mimic\Functional as F;
 class AverageFuncTest extends PHPUnit_Framework_TestCase {
 	public function dataProvider() {
 		return array(
-			array(2, array(1, 2, 3, 4)),
+			array(2.5, array(1, 2, 3, 4)),
 			array(2, array(0, '', 'something', 'what', 1, 2, 3, 4)),
 			array(2.75, array(1.5, 2.5, 2.5, 2.5, 3.5, 4)),
 			array(2.5, array(2.5, 2.5, 2.5, 2.5, 2.5, 2.5)),

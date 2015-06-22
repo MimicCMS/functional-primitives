@@ -12,9 +12,10 @@ class QuotientDivisorFuncTest extends PHPUnit_Framework_TestCase {
 		return array(
 			array(null, 1.875, array(1, 2, 3, 4, 5)),
 			array(null, -1.875, array(-1, -2, -3, -4, -5)),
-			array(null, 2.5666666666666669, array(-1, -2, -3, -4, -5, 0)),
-			array(null, -2.5666666666666669, array(1.5, 2.5, 3.5, 4.5, 5.5)),
-			array(null, 0.0, array(100, 10, 5)),
+			array(null, -0.0, array(-1, -2, -3, -4, -5, 0)),
+			array(null, 2.5666666666666669, array(1.5, 2.5, 3.5, 4.5, 5.5)),
+			array(null, -2.5666666666666669, array(-1.5, -2.5, -3.5, -4.5, -5.5)),
+			array(null, 50.0, array(100, 10, 5)),
 			array(null, 0.0, array(100, 10, 5, 0.0)),
 			array(null, 1,  array('', 'something5', 'else', 'what')),
 			array(5, 0.375, array(1, 2, 3, 4, 5)),
