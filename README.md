@@ -3,6 +3,7 @@
 [![Code Climate](https://codeclimate.com/github/MimicCMS/functional-primitives.png)](https://codeclimate.com/github/MimicCMS/functional-primitives)
 [![Test Coverage](https://codeclimate.com/github/MimicCMS/functional-primitives/coverage.png)](https://codeclimate.com/github/MimicCMS/functional-primitives)
 [![Build Status](https://travis-ci.org/MimicCMS/functional-primitives.svg?branch=master)](https://travis-ci.org/MimicCMS/functional-primitives)
+[![Scrutinizer Code Quality](https://scrutinizer-ci.com/g/MimicCMS/functional-primitives/badges/quality-score.png?b=master)](https://scrutinizer-ci.com/g/MimicCMS/functional-primitives/?branch=master)
 
 Function primitives form a base of function composition allowing for reusable components.
 
