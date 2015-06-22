@@ -30,10 +30,10 @@ class ProductFuncTest extends PHPUnit_Framework_TestCase {
 	 */
 	public function testResults($initial, $result, $collection) {
 		if ($initial === null) {
-			$this->assertEquals($result, F\sum($collection));
+			$this->assertEquals($result, F\product($collection));
 		}
 		else {
-			$this->assertEquals($result, F\sum($collection, $initial));
+			$this->assertEquals($result, F\product($collection, $initial));
 		}
 	}
 }
