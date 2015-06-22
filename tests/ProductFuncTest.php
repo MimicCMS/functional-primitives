@@ -8,43 +8,32 @@ use Mimic\Functional as F;
  * @since 0.1.0
  */
 class ProductFuncTest extends PHPUnit_Framework_TestCase {
-	public function testIs120() {
-		$this->assertEquals(120, F\product(array(1, 2, 3, 4, 5)));
+	public function dataProvider() {
+		return array(
+			array(null, 120, array(1, 2, 3, 4, 5)),
+			array(null, -120, array(-1, -2, -3, -4, -5)),
+			array(null, 0, array(-1, -2, -3, -4, -5, 0)),
+			array(null, 324.84375, array(1.5, 2.5, 3.5, 4.5, 5.5)),
+			array(null, -324.84375, array(-1.5, -2.5, -3.5, -4.5, -5.5)),
+			array(null, 1,  array('', 'something5', 'else', 'what')),
+			array(5, 600, array(1, 2, 3, 4, 5)),
+			array(5, -600, array(-1, -2, -3, -4, -5)),
+			array(5, 0, array(-1, -2, -3, -4, -5, 0)),
+			array(5, 1624.21875, array(1.5, 2.5, 3.5, 4.5, 5.5)),
+			array(5, -1624.21875, array(-1.5, -2.5, -3.5, -4.5, -5.5)),
+			array(5, 5, array('', 'something5', 'else', 'what')),
+		);
 	}
 
-	public function testIsNegative120() {
-		$this->assertEquals(-120, F\product(array(-1, -2, -3, -4, -5)));
-	}
-
-	public function testWithFloat() {
-		$this->assertEquals(324.84375, F\product(array(1.5, 2.5, 3.5, 4.5, 5.5)));
-	}
-
-	public function testWithFloatIsNegativeFloat() {
-		$this->assertEquals(-324.84375, F\product(array(1.5, 2.5, 3.5, 4.5, 5.5, -1)));
-	}
-
-	public function testWithStringIsOne() {
-		$this->assertEquals(1, F\product(array('', 'something5', 'else', 'what')));
-	}
-
-	public function testIs600_withInitial() {
-		$this->assertEquals(600, F\product(array(1, 2, 3, 4, 5), 5));
-	}
-
-	public function testIsNegative600_withInitial() {
-		$this->assertEquals(-600, F\product(array(1, 2, 3, 4, 5, -1), 5));
-	}
-
-	public function testWithFloat_withInitial() {
-		$this->assertEquals(1624.21875, F\product(array(1.5, 2.5, 3.5, 4.5, 5.5), 5));
-	}
-
-	public function testWithFloatIsNegativeFloat_withInitial() {
-		$this->assertEquals(-1624.21875, F\product(array(1.5, 2.5, 3.5, 4.5, 5.5, -1), 5));
-	}
-
-	public function testWithStringIsFive_withInitial() {
-		$this->assertEquals(5, F\product(array('', 'something5', 'else', 'what'), 5));
+	/**
+	 * @dataProvider dataProvider
+	 */
+	public function testResults($initial, $result, $collection) {
+		if ($initial === null) {
+			$this->assertEquals($result, F\sum($collection));
+		}
+		else {
+			$this->assertEquals($result, F\sum($collection, $initial));
+		}
 	}
 }

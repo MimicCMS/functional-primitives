@@ -10,43 +10,32 @@ use Mimic\Functional as F;
  * @todo Need to use QuickTest library.
  */
 class DifferenceFuncTest extends PHPUnit_Framework_TestCase {
-	public function testIsNegative15() {
-		$this->assertEquals(-15, F\difference(array(1, 2, 3, 4, 5)));
+	public function dataProvider() {
+		return array(
+			array(null, -15, array(1, 2, 3, 4, 5)),
+			array(null, 15, array(-1, -2, -3, -4, -5)),
+			array(null, 15, array(-1, -2, -3, -4, -5, 0)),
+			array(null, -17.5, array(1.5, 2.5, 3.5, 4.5, 5.5)),
+			array(null, 17.5, array(-1.5, -2.5, -3.5, -4.5, -5.5)),
+			array(null, 0,  array('', 'something5', 'else', 'what')),
+			array(5, -10, array(1, 2, 3, 4, 5)),
+			array(5, 10, array(-1, -2, -3, -4, -5)),
+			array(5, 10, array(-1, -2, -3, -4, -5, 0)),
+			array(5, -12.5, array(1.5, 2.5, 3.5, 4.5, 5.5)),
+			array(-5.5, 12, array(-1.5, -2.5, -3.5, -4.5, -5.5)),
+			array(5, 5, array('', 'something5', 'else', 'what')),
+		);
 	}
 
-	public function testIs15() {
-		$this->assertEquals(15, F\difference(array(-1, -2, -3, -4, -5)));
-	}
-
-	public function testWithFloatIsNegativeFloat() {
-		$this->assertEquals(-17.5, F\difference(array(1.5, 2.5, 3.5, 4.5, 5.5)));
-	}
-
-	public function testWithFloatIsFloat() {
-		$this->assertEquals(17.5, F\difference(array(-1.5, -2.5, -3.5, -4.5, -5.5)));
-	}
-
-	public function testWithStringIsZero() {
-		$this->assertEquals(0, F\difference(array('', 'something5', 'else', 'what')));
-	}
-
-	public function testIsNegative10_initialValue() {
-		$this->assertEquals(-10, F\difference(array(1, 2, 3, 4, 5), 5));
-	}
-
-	public function testIs10_initialValue() {
-		$this->assertEquals(10, F\difference(array(-1, -2, -3, -4, -5), -5));
-	}
-
-	public function testWithFloatIsNegativeFloat_initialValue() {
-		$this->assertEquals(-12.5, F\difference(array(1.5, 2.5, 3.5, 4.5, 5.5), 5));
-	}
-
-	public function testWithFloatIsInt_initialValue() {
-		$this->assertEquals(12, F\difference(array(-1.5, -2.5, -3.5, -4.5, -5.5), -5.5));
-	}
-
-	public function testWithStringIsZero_initialValue() {
-		$this->assertEquals(5, F\difference(array('', 'something5', 'else', 'what'), 5));
+	/**
+	 * @dataProvider dataProvider
+	 */
+	public function testResults($initial, $result, $collection) {
+		if ($initial === null) {
+			$this->assertEquals($result, F\difference($collection));
+		}
+		else {
+			$this->assertEquals($result, F\difference($collection, $initial));
+		}
 	}
 }
