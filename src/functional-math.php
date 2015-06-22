@@ -64,8 +64,8 @@ function difference($collection, $initial = 0) {
  */
 function maximum($collection) {
 	return reduceNumber($collection, null, function($element, $current) {
-		if ( ! is_numeric($element) ) {
-			return $current;
+		if ( $current === null ) {
+			return $element;
 		}
 		return $element > $current ? $element : $current;
 	});
@@ -83,8 +83,8 @@ function maximum($collection) {
  */
 function minimum($collection) {
 	return reduceNumber($collection, null, function($element, $current) {
-		if ( ! is_numeric($element) ) {
-			return $current;
+		if ( $current === null ) {
+			return $element;
 		}
 		return $element < $current ? $element : $current;
 	});
