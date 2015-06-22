@@ -159,7 +159,7 @@ function quotient($collection, $initial = null) {
 		if ($current === null && is_numeric($element)) {
 			return $element;
 		}
-		if ( is_numeric($element) && $element !== 0 ) {
+		if ( is_numeric($element) && $element != 0 ) {
 			return $current / $element;
 		}
 		return $current;
