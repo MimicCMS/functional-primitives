@@ -12,12 +12,13 @@ use Mimic\Functional as F;
 class ValueFuncTest extends PHPUnit_Framework_TestCase {
 	public function dataProvider() {
 		return array(
-			array(array()),
-			array(0),
-			array(1),
-			array(true),
-			array(false),
-			array((object) array()),
+			array(array(), array()),
+			array(0, 0),
+			array(1, 1),
+			array(true, true),
+			array(false, false),
+			array((object) array(), (object) array()),
+			array(true, function() { return true; }),
 		);
 	}
 
@@ -25,7 +26,7 @@ class ValueFuncTest extends PHPUnit_Framework_TestCase {
 	 * @dataProvider dataProvider
 	 * @covers ::Mimic\Functional\value
 	 */
-	public function testResults($value) {
-		$this->assertEquals($value, F\value($value));
+	public function testResults($expected, $value) {
+		$this->assertEquals($expected, F\value($value));
 	}
 }
