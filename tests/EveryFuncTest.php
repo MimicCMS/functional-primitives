@@ -6,6 +6,8 @@ use Mimic\Functional as F;
  * Unit Test for every Mimic library function.
  *
  * @since 0.1.0
+ *
+ * @todo Need to use QuickTest library.
  */
 class EveryFuncTest extends PHPUnit_Framework_TestCase {
 	public function dataProvider_Passthrough() {
