@@ -39,10 +39,10 @@ class ShortFuncTest extends PHPUnit_Framework_TestCase {
 			$self->assertTrue(array_key_exists($index, $data), 'index does not exist in given data');
 			$self->assertEquals($data[$index], $element, 'existing array does not match given element');
 			$self->assertEquals($data, $collection, 'given collection does not match data');
-			return $executed > $stop;
+			return $executed >= $stop;
 		};
 
 		$this->assertEquals($expected, F\short($data, $passed, $default, $callback));
-		$this->assertEquals($stop, ($executed + 1), 'stop does not equal executed');
+		$this->assertEquals($stop, $executed, 'stop does not equal executed');
 	}
 }
