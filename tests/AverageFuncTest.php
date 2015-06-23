@@ -23,6 +23,7 @@ class AverageFuncTest extends PHPUnit_Framework_TestCase {
 
 	/**
 	 * @dataProvider dataProvider
+	 * @covers \Mimic\Functional\average
 	 */
 	public function testResults($result, $collection) {
 		$this->assertEquals($result, F\average($collection));

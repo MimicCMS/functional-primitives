@@ -6,6 +6,8 @@ use Mimic\Functional as F;
  * Unit Test for sum Mimic library function.
  *
  * @since 0.1.0
+ *
+ * @todo Need to use QuickTest library.
  */
 class SumFuncTest extends PHPUnit_Framework_TestCase {
 	public function dataProvider() {
@@ -27,6 +29,7 @@ class SumFuncTest extends PHPUnit_Framework_TestCase {
 
 	/**
 	 * @dataProvider dataProvider
+	 * @covers \Mimic\Functional\sum
 	 */
 	public function testResults($initial, $result, $collection) {
 		if ($initial === null) {

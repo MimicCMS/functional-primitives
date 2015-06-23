@@ -6,6 +6,8 @@ use Mimic\Functional as F;
  * Unit Test for quotientDivisor Mimic library function.
  *
  * @since 0.1.0
+ *
+ * @todo Need to use QuickTest library.
  */
 class QuotientDivisorFuncTest extends PHPUnit_Framework_TestCase {
 	public function dataProvider() {
@@ -31,6 +33,7 @@ class QuotientDivisorFuncTest extends PHPUnit_Framework_TestCase {
 
 	/**
 	 * @dataProvider dataProvider
+	 * @covers \Mimic\Functional\quotientDivisor
 	 */
 	public function testResults($initial, $result, $collection) {
 		if ($initial === null) {

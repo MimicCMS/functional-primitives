@@ -6,6 +6,8 @@ use Mimic\Functional as F;
  * Unit Test for reduceNumber Mimic library function.
  *
  * @since 0.1.0
+ *
+ * @todo Need to use QuickTest library.
  */
 class ReduceNumberFuncTest extends PHPUnit_Framework_TestCase {
 	public function dataProvider() {
@@ -20,10 +22,11 @@ class ReduceNumberFuncTest extends PHPUnit_Framework_TestCase {
 
 	/**
 	 * @dataProvider dataProvider
+	 * @covers \Mimic\Functional\reduceNumber
 	 */
 	public function testCallbackIsCalledAndPassesResult($initial, $expected, $willBeCalled, $collection) {
 		$called = false;
-		$callback = function($element, $current) use (&$called) {
+		$callback = function($element) use (&$called) {
 			$called = true;
 			return $element;
 		};

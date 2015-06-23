@@ -22,6 +22,7 @@ class CollectionNumberOperationFuncTest extends PHPUnit_Framework_TestCase {
 
 	/**
 	 * @dataProvider dataProvider
+	 * @covers \Mimic\Functional\collectionNumberOperation
 	 */
 	public function testCallbackIsCalledAndPassesResult($element, $current, $expected, $willBeCalled) {
 		$called = false;

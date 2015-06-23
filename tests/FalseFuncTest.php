@@ -21,6 +21,7 @@ class FalseFuncTest extends PHPUnit_Framework_TestCase {
 
 	/**
 	 * @dataProvider dataProvider
+	 * @covers \Mimic\Functional\false
 	 */
 	public function testResults($result, $collection) {
 		$this->assertEquals($result, F\false($collection));

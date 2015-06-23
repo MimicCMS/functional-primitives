@@ -22,6 +22,7 @@ class TruthyFuncTest extends PHPUnit_Framework_TestCase {
 
 	/**
 	 * @dataProvider dataProvider
+	 * @covers \Mimic\Functional\truthy
 	 */
 	public function testResults($result, $collection) {
 		$this->assertEquals($result, F\truthy($collection));

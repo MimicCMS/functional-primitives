@@ -6,6 +6,8 @@ use Mimic\Functional as F;
  * Unit Test for quotient Mimic library function.
  *
  * @since 0.1.0
+ *
+ * @todo Need to use QuickTest library.
  */
 class QuotientFuncTest extends PHPUnit_Framework_TestCase {
 	public function dataProvider() {
@@ -29,6 +31,7 @@ class QuotientFuncTest extends PHPUnit_Framework_TestCase {
 
 	/**
 	 * @dataProvider dataProvider
+	 * @covers \Mimic\Functional\quotient
 	 */
 	public function testResults($initial, $result, $collection) {
 		if ($initial === null) {
