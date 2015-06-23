@@ -130,6 +130,9 @@ function with($value, \Closure $callback) {
 /**
  * Negate result of collection item callback.
  *
+ * @api
+ * @since 0.1.0
+ *
  * @param MapCollectionCallback|\Closure
  * @return MapCollectionCallback|\Closure
  */
