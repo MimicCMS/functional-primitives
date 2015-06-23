@@ -30,9 +30,9 @@ class MapFuncTest extends PHPUnit_Framework_TestCase {
 
 	/**
 	 * @dataProvider dataProvider
-	 * @covers ::Mimic\Functional\average
+	 * @covers ::Mimic\Functional\map
 	 */
-	public function testCallbackParameters($data) {
+	public function testResults($data) {
 		$self = $this;
 		$executed = 0;
 
