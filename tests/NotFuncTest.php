@@ -14,7 +14,8 @@ class NotFuncTest extends PHPUnit_Framework_TestCase {
 		return array(
 			array(false, true),
 			array(true, false),
-			array(false, array()),
+			array(true, array()),
+			array(false, array(1)),
 			array(true, ''),
 			array(false, 1),
 			array(true, 0),
@@ -49,7 +50,7 @@ class NotFuncTest extends PHPUnit_Framework_TestCase {
 	 */
 	public function testDoubleBang($expected, $value) {
 		$callback = F\not(F\not(function($element) {
-			return !$element;
+			return !!$element;
 		}));
 		$this->assertEquals($expected, $callback($value, null, null));
 	}
