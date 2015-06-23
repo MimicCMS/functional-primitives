@@ -45,7 +45,7 @@ class MapFuncTest extends PHPUnit_Framework_TestCase {
 			return true;
 		});
 
-		$expected = array_fill_keys(array_keys($data), array_fill(0, count($data), true));
+		$expected = array_fill_keys(array_keys($data), true);
 
 		$this->assertEquals(count($data), $executed);
 		$this->assertEquals($expected, $actual);
