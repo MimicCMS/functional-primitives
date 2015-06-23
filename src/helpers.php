@@ -3,6 +3,16 @@
  * @package Mimic\Functional
  * @since 0.1.0
  * @license MIT
+ *
+ * @typedef MapCollectionCallback \Closure {
+ *     @param mixed $element
+ *       Item in the collection.
+ *     @param string|int $index
+ *       Index of element in the collection.
+ *     @param \Traversable|array $collection
+ *       Collection. Writes to collection will not do anything.
+ *     @return mixed
+ * }
  */
 
 /** @package Mimic\Functional */
@@ -20,9 +30,7 @@ namespace Mimic\Functional;
  * @return boolean
  */
 function contains($collection, $value, $strict = false) {
-	return short($collection, true, false, function($element) use ($value, $strict) {
-		return $value === $element || (!$strict && $value == $element);
-	});
+	return short($collection, true, false, compare($value, $strict));
 }
 
 /**
@@ -35,7 +43,7 @@ function contains($collection, $value, $strict = false) {
  * @return boolean
  */
 function false($collection) {
-	return contains($collection, false, true);
+	return every($collection, compare(false, true));
 }
 
 /**
@@ -48,7 +56,7 @@ function false($collection) {
  * @return boolean
  */
 function falsy($collection) {
-	return contains($collection, false, false);
+	return every($collection, compare(false, false));
 }
 
 /**
@@ -61,7 +69,7 @@ function falsy($collection) {
  * @return boolean
  */
 function true($collection) {
-	return contains($collection, true, true);
+	return every($collection, compare(true, true));
 }
 
 /**
@@ -74,7 +82,7 @@ function true($collection) {
  * @return boolean
  */
 function truthy($collection) {
-	return contains($collection, true, false);
+	return every($collection, compare(true, false));
 }
 
 /**
@@ -117,6 +125,34 @@ function value($value) {
  */
 function with($value, \Closure $callback) {
 	return $callback(value($value));
+}
+
+/**
+ * Negate result of collection item callback.
+ *
+ * @param MapCollectionCallback|\Closure
+ * @return MapCollectionCallback|\Closure
+ */
+function not(\Closure $callback) {
+	return function($element, $index, $collection) use ($callback) {
+		return ! $callback($element, $index, $collection);
+	};
+}
+
+/**
+ * Comparison function which checks whether the element matches given value.
+ *
+ * @api
+ * @since 0.1.0
+ *
+ * @param mixed $value
+ * @param boolean $strict
+ * @return MapCollectionCallback|\Closure
+ */
+function compare($value, $strict = false) {
+	return function($element) use ($value, $strict) {
+		return $value === $element || (!$strict && $value == $element);
+	};
 }
 
 
