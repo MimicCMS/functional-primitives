@@ -7,6 +7,8 @@
 
 Function primitives form a base of function composition allowing for reusable components.
 
+## Upgrade Policy
+
 Library uses [semantic versioning](http://semver.org), so that you should be able to upgrade supporting version 1. Version 2 will probably support different ways of function composition, using generators, coroutines and other available language constructs. Also, it will take lessons learned from using this library and apply better API. Later major versions will drop support for PHP5.3. The only reason PHP5.3 is supported, is that all of the code will run on PHP5.3 and to widen the amount of users that can develop using the library.
 
 Library supports PHP5.3. Other versions of PHP are supported allowing for features in other versions.
