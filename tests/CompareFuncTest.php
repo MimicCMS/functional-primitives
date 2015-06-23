@@ -21,7 +21,7 @@ class CompareFuncTest extends PHPUnit_Framework_TestCase {
 
 	/**
 	 * @dataProvider dataProvider
-	 * @covers \Mimic\Functional\compare
+	 * @covers ::Mimic\Functional\compare
 	 */
 	public function testResults($expected, $check, $value, $strict) {
 		$callback = F\compare($value, $strict);
