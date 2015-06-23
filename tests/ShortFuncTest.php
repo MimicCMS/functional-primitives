@@ -14,10 +14,14 @@ class ShortFuncTest extends PHPUnit_Framework_TestCase {
 		$values = array_fill(0, 5, 1);
 		$keys = array_fill_keys(array('index1', 'index2', 'index3', 'index4', 'index5'), 1);
 		return array(
-			array(true, false, true, 11, $values),
-			array(true, false, false, 3, $values),
-			array(true, false, true, 11, $keys),
-			array(true, false, false, 3, $keys),
+			array(false, true, true,  6, $values),
+			array(false, true, false, 3, $values),
+			array(false, true, true,  6, $keys),
+			array(false, true, false, 3, $keys),
+			array(true, false, true,  3, $values),
+			array(true, false, false, 6, $values),
+			array(true, false, true,  3, $keys),
+			array(true, false, false, 6, $keys),
 		);
 	}
 

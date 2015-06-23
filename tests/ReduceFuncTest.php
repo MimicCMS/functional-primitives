@@ -47,7 +47,7 @@ class ReduceFuncTest extends PHPUnit_Framework_TestCase {
 			return $initial .' '. $element;
 		};
 
-		$expected = 'something else hello world';
+		$expected = ' something else hello world';
 
 		$this->assertEquals($expected, F\reduce($data, '', $callback));
 	}
@@ -62,7 +62,7 @@ class ReduceFuncTest extends PHPUnit_Framework_TestCase {
 			return $element .' '. $initial;
 		};
 
-		$expected = 'world hello else something';
+		$expected = 'world hello else something ';
 
 		$this->assertEquals($expected, F\reduce($data, '', $callback));
 	}
