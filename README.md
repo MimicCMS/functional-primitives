@@ -43,6 +43,7 @@ The Laravel test suite for the Laravel helpers might be pulled and copied to thi
    * [Drop First Function](#drop-first-function)
    * [Drop Last Function](#drop-last-function)
    * [Each Function](#each-function)
+   * [Every Function](#every-function)
    * [Filter Function](#filter-function)
    * [First Function](#first-function)
    * [First Index Of Function](#first-index-of-function)
@@ -73,9 +74,11 @@ The Laravel test suite for the Laravel helpers might be pulled and copied to thi
    * [Unique Function](#unique-function)
    * [Zip Function](#zip-function)
  * [Helper Functions](#helper-functions)
+   * [Compare Function](#compare-function)
    * [Contains Function](#contains-function)
    * [False Function](#false-function)
    * [Falsy Function](#falsy-function)
+   * [Not Function](#not-function)
    * [True Function](#true-function)
    * [Truthy Function](#truthy-function)
    * [Value Function](#value-function)
@@ -126,6 +129,8 @@ $values = array(0, 1, 2, 3, 4);
 
 // Output: 014916
 ```
+
+## Every Function
 
 ## Filter Function
 
@@ -249,6 +254,34 @@ $contains = \Mimic\Functional\reduce($values, true, false, function($element) us
 
 Helper functions don't take a callback and provide a simple way to iterate through a collection performing a specialized task and return the result.
 
+## Compare Function
+
+Creates a callback to be used in collection functions that compares the collection element to the compare value. Optionally testing whether the type also matches.
+
+```php
+$value = 1;
+$checkTypeMatches = true;
+$callback = \Mimic\Functional\compare($value, $checkTypeMatches);
+
+$false = $callback(0);
+$false = $callback('0');
+
+$true = $callback(1);
+```
+
+If you don't have a strict check, then it will simply compare two values.
+
+```php
+$value = 1;
+$checkTypeMatches = false;
+$callback = \Mimic\Functional\compare($value, $checkTypeMatches);
+
+$false = $callback(0);
+
+$true = $callback(1);
+$true = $callback('1');
+```
+
 ## Contains Function
 
 Contains looks for whether the given value exists in the collection.
@@ -312,6 +345,22 @@ $allFalsy = \Mimic\Functional\falsy($values);
 
 if ($allFalsy) {
 	echo "All values are falsy.";
+}
+```
+
+## Not Function
+
+Negates any boolean value that is given to the callback. The function is meant to be passed as collection callback functions.
+
+```php
+$callback = function($element) {
+	return true;
+}
+
+$negate = \Mimic\Functional\not($callback);
+
+if ( ! $negate(1, null, null) ) {
+	echo "You shall not pass!"
 }
 ```
 
