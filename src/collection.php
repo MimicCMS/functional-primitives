@@ -123,7 +123,7 @@ function short($collection, $passed, $default, \Closure $callback) {
  *   All elements must pass evaluation for true to be returned.
  */
 function every($collection, \Closure $callback) {
-	return short($collection, true, false, function($element, $index, $collection) use ($callback) {
+	return short($collection, false, true, function($element, $index, $collection) use ($callback) {
 		return ! $callback($element, $index, $collection);
 	});
 }
