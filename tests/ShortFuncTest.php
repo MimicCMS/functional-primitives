@@ -38,9 +38,7 @@ class ShortFuncTest extends PHPUnit_Framework_TestCase {
 			return $executed > $stop;
 		};
 
-		$actual = F\short($data, $passed, $default, $callback);
-
-		$this->assertEquals(count($data), $executed);
-		$this->assertEquals($expected, $actual);
+		$this->assertEquals($expected, F\short($data, $passed, $default, $callback));
+		$this->assertEquals($stop, $executed, 'stop does not equal executed');
 	}
 }
