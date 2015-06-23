@@ -1,5 +1,7 @@
 <?php
 
+use Mimic\Functional as F;
+
 /**
  * Unit Test for with Mimic library function.
  *
