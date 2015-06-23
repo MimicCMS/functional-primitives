@@ -33,7 +33,7 @@ class QuotientDivisorFuncTest extends PHPUnit_Framework_TestCase {
 
 	/**
 	 * @dataProvider dataProvider
-	 * @covers \Mimic\Functional\quotientDivisor
+	 * @covers ::Mimic\Functional\quotientDivisor
 	 */
 	public function testResults($initial, $result, $collection) {
 		if ($initial === null) {

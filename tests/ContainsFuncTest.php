@@ -39,7 +39,7 @@ class ContainsFuncTest extends PHPUnit_Framework_TestCase {
 
 	/**
 	 * @dataProvider dataProvider
-	 * @covers \Mimic\Functional\contains
+	 * @covers ::Mimic\Functional\contains
 	 */
 	public function testResults($result, $strict, $value, $collection) {
 		$this->assertEquals($result, F\contains($collection, $value, $strict));

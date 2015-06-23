@@ -25,7 +25,7 @@ class NotFuncTest extends PHPUnit_Framework_TestCase {
 		return array(
 			array(true, true),
 			array(false, false),
-			array(true, array()),
+			array(true, 'something'),
 			array(false, ''),
 			array(true, 1),
 			array(false, 0),
@@ -34,23 +34,23 @@ class NotFuncTest extends PHPUnit_Framework_TestCase {
 
 	/**
 	 * @dataProvider dataProviderTrue
-	 * @covers \Mimic\Functional\not
+	 * @covers ::Mimic\Functional\not
 	 */
 	public function testNegation($expected, $value) {
 		$callback = F\not(function($element) {
 			return !!$element;
 		});
-		$this->assertEquals($expected, $callback($value));
+		$this->assertEquals($expected, $callback($value, null, null));
 	}
 
 	/**
 	 * @dataProvider dataProviderNegate
-	 * @covers \Mimic\Functional\not
+	 * @covers ::Mimic\Functional\not
 	 */
 	public function testDoubleBang($expected, $value) {
 		$callback = F\not(F\not(function($element) {
 			return !$element;
 		}));
-		$this->assertEquals($expected, $callback($value));
+		$this->assertEquals($expected, $callback($value, null, null));
 	}
 }

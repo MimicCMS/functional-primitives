@@ -22,7 +22,7 @@ class MaximumFuncTest extends PHPUnit_Framework_TestCase {
 
 	/**
 	 * @dataProvider dataProvider
-	 * @covers \Mimic\Functional\maximum
+	 * @covers ::Mimic\Functional\maximum
 	 */
 	public function testResults($result, $collection) {
 		$this->assertEquals($result, F\maximum($collection));

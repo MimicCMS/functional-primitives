@@ -22,7 +22,7 @@ class MinimumFuncTest extends PHPUnit_Framework_TestCase {
 
 	/**
 	 * @dataProvider dataProvider
-	 * @covers \Mimic\Functional\minimum
+	 * @covers ::Mimic\Functional\minimum
 	 */
 	public function testResults($result, $collection) {
 		$this->assertEquals($result, F\minimum($collection));

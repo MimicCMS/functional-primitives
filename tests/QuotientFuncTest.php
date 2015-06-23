@@ -31,7 +31,7 @@ class QuotientFuncTest extends PHPUnit_Framework_TestCase {
 
 	/**
 	 * @dataProvider dataProvider
-	 * @covers \Mimic\Functional\quotient
+	 * @covers ::Mimic\Functional\quotient
 	 */
 	public function testResults($initial, $result, $collection) {
 		if ($initial === null) {

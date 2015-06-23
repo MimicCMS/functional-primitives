@@ -22,7 +22,7 @@ class ReduceNumberFuncTest extends PHPUnit_Framework_TestCase {
 
 	/**
 	 * @dataProvider dataProvider
-	 * @covers \Mimic\Functional\reduceNumber
+	 * @covers ::Mimic\Functional\reduceNumber
 	 */
 	public function testCallbackIsCalledAndPassesResult($initial, $expected, $willBeCalled, $collection) {
 		$called = false;

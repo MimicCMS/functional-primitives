@@ -22,7 +22,7 @@ class TrueFuncTest extends PHPUnit_Framework_TestCase {
 
 	/**
 	 * @dataProvider dataProvider
-	 * @covers \Mimic\Functional\true
+	 * @covers ::Mimic\Functional\true
 	 */
 	public function testResults($result, $collection) {
 		$this->assertEquals($result, F\true($collection));

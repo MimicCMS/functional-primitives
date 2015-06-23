@@ -14,7 +14,7 @@ class TruthyFuncTest extends PHPUnit_Framework_TestCase {
 		return array(
 			array(false, array(false, true, false, false)),
 			array(false, array('0', true, 0, '')),
-			array(true, array(1, array(), '1', true)),
+			array(true, array(1, 'something', '1', true)),
 			array(true, array(1, -1, 'false', true)),
 			array(true,  array(true, true, true, true)),
 		);
@@ -22,7 +22,7 @@ class TruthyFuncTest extends PHPUnit_Framework_TestCase {
 
 	/**
 	 * @dataProvider dataProvider
-	 * @covers \Mimic\Functional\truthy
+	 * @covers ::Mimic\Functional\truthy
 	 */
 	public function testResults($result, $collection) {
 		$this->assertEquals($result, F\truthy($collection));

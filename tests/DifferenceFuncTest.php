@@ -29,7 +29,7 @@ class DifferenceFuncTest extends PHPUnit_Framework_TestCase {
 
 	/**
 	 * @dataProvider dataProvider
-	 * @covers \Mimic\Functional\difference
+	 * @covers ::Mimic\Functional\difference
 	 */
 	public function testResults($initial, $result, $collection) {
 		if ($initial === null) {

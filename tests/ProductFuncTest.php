@@ -29,7 +29,7 @@ class ProductFuncTest extends PHPUnit_Framework_TestCase {
 
 	/**
 	 * @dataProvider dataProvider
-	 * @covers \Mimic\Functional\product
+	 * @covers ::Mimic\Functional\product
 	 */
 	public function testResults($initial, $result, $collection) {
 		if ($initial === null) {

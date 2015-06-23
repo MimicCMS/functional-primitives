@@ -29,7 +29,7 @@ class SumFuncTest extends PHPUnit_Framework_TestCase {
 
 	/**
 	 * @dataProvider dataProvider
-	 * @covers \Mimic\Functional\sum
+	 * @covers ::Mimic\Functional\sum
 	 */
 	public function testResults($initial, $result, $collection) {
 		if ($initial === null) {

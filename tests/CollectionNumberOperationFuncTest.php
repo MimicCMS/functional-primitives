@@ -22,11 +22,11 @@ class CollectionNumberOperationFuncTest extends PHPUnit_Framework_TestCase {
 
 	/**
 	 * @dataProvider dataProvider
-	 * @covers \Mimic\Functional\collectionNumberOperation
+	 * @covers ::Mimic\Functional\collectionNumberOperation
 	 */
 	public function testCallbackIsCalledAndPassesResult($element, $current, $expected, $willBeCalled) {
 		$called = false;
-		$callback = function($element, $current) use (&$called) {
+		$callback = function($element) use (&$called) {
 			$called = true;
 			return $element;
 		};
