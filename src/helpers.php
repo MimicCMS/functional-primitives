@@ -142,6 +142,8 @@ function with($value, Closure $callback) {
  * @api
  * @since 0.1.0
  *
+ * @todo Needs tests.
+ *
  * @param Closure $callback
  * @return MemoizeCache
  */
