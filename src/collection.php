@@ -245,10 +245,6 @@ function lastIndexOf() {
 	/** @todo Incomplete */
 }
 
-function memoize() {
-	/** @todo Incomplete */
-}
-
 function partition() {
 	/** @todo Incomplete */
 }
