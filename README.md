@@ -181,27 +181,51 @@ $false = \Mimic\Functional\every(array(1, 2, 1, 1), $callback);
 
 ## Filter Function
 
+
+
 ## First Function
+
+
 
 ## First Index Of Function
 
+
+
 ## Flat Map Function
+
+
 
 ## Flatten Function
 
+
+
 ## Group Function
+
+
 
 ## Head Function
 
+
+
 ## Invoke Function
+
+
 
 ## Invoke First Function
 
+
+
 ## Invoke Last Function
+
+
 
 ## Last Function
 
+
+
 ## Last Index Of Function
+
+
 
 ## Map Function
 
@@ -219,6 +243,8 @@ $squares = \Mimic\Functional\map($values, function($element) {
 
 ## Memoize Function
 
+
+
 ## None Function
 
 Iterates through a collection checking that none of the elements pass the callback. This is the opposite of [every()](#every-function).
@@ -234,9 +260,15 @@ $false = \Mimic\Functional\none(array(1, 2, 2, 2), $callback);
 
 ## Partition Function
 
+
+
 ## Pick Function
 
+
+
 ## Pluck Function
+
+
 
 ## Reduce Function
 
@@ -264,11 +296,19 @@ $sum = \Mimic\Functional\reduce($values, 5, function($element, $current) {
 
 ## Reduce Left Function
 
+
+
 ## Reduce Right Function
+
+
 
 ## Reject Function
 
+
+
 ## Select Function
+
+
 
 ## Short Function
 
@@ -300,13 +340,23 @@ $contains = \Mimic\Functional\reduce($values, true, false, function($element) us
 
 ## Some Function
 
+
+
 ## Sort Function
+
+
 
 ## Tail Function
 
+
+
 ## Unique Function
 
+
+
 ## Zip Function
+
+
 
 # Helper Functions
 
