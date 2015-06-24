@@ -132,6 +132,17 @@ $values = array(0, 1, 2, 3, 4);
 
 ## Every Function
 
+Iterates through a collection checking that every element pass the callback. This is the opposite of [none()](#none-function).
+
+```php
+$callback = function($element) {
+	return $element === 1;
+};
+
+$true = \Mimic\Functional\every(array(1, 1, 1, 1), $callback);
+$false = \Mimic\Functional\every(array(1, 2, 1, 1), $callback);
+```
+
 ## Filter Function
 
 ## First Function
@@ -173,6 +184,17 @@ $squares = \Mimic\Functional\map($values, function($element) {
 ## Memoize Function
 
 ## None Function
+
+Iterates through a collection checking that none of the elements pass the callback. This is the opposite of [every()](#every-function).
+
+```php
+$callback = function($element) {
+	return $element === 1;
+};
+
+$true = \Mimic\Functional\none(array(2, 2, 2, 2), $callback);
+$false = \Mimic\Functional\none(array(1, 2, 2, 2), $callback);
+```
 
 ## Partition Function
 
