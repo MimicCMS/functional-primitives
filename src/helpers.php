@@ -18,13 +18,17 @@
 /** @package Mimic\Functional */
 namespace Mimic\Functional;
 
+use Closure;
+use Traversable;
+use Mimic\MemorizeCache;
+
 /**
  * Whether value exists in collection.
  *
  * @api
  * @since 0.1.0
  *
- * @param \Traversable|array $collection
+ * @param Traversable|array $collection
  * @param mixed $value
  * @param boolean $strict
  * @return boolean
@@ -39,7 +43,7 @@ function contains($collection, $value, $strict = false) {
  * @api
  * @since 0.1.0
  *
- * @param \Traversable|array $collection
+ * @param Traversable|array $collection
  * @return boolean
  */
 function false($collection) {
@@ -52,7 +56,7 @@ function false($collection) {
  * @api
  * @since 0.1.0
  *
- * @param \Traversable|array $collection
+ * @param Traversable|array $collection
  * @return boolean
  */
 function falsy($collection) {
@@ -65,7 +69,7 @@ function falsy($collection) {
  * @api
  * @since 0.1.0
  *
- * @param type $collection
+ * @param Traversable|array $collection
  * @return boolean
  */
 function true($collection) {
@@ -78,7 +82,7 @@ function true($collection) {
  * @api
  * @since 0.1.0
  *
- * @param type $collection
+ * @param Traversable|array $collection
  * @return boolean
  */
 function truthy($collection) {
@@ -94,7 +98,7 @@ function truthy($collection) {
  * @api
  * @since 0.1.0
  *
- * @param mixed|\Closure $value
+ * @param mixed|Closure $value
  *   If value is a callback, then it is called without any arguments. Not all
  *   callbacks are supported. Array callbacks will fail.
  * @return mixed
@@ -120,11 +124,29 @@ function value($value) {
  *
  * @param mixed $value
  *   If value is a callback, then it is called without any arguments.
- * @param \Closure $callback
+ * @param Closure $callback
  * @return mixed
  */
-function with($value, \Closure $callback) {
+function with($value, Closure $callback) {
 	return $callback(value($value));
+}
+
+/**
+ * Memorize caches the result for a given set of arguments.
+ *
+ * Functions or callbacks that use this must have pure functions or callbacks
+ * that return the same result every time the same set of arguments are passed.
+ * Not following this will break the execution of the process and given
+ * inaccurate results.
+ *
+ * @api
+ * @since 0.1.0
+ *
+ * @param Closure $callback
+ * @return MemoizeCache
+ */
+function memoize(Closure $callback) {
+	return new MemoizeCache($callback);
 }
 
 /**
@@ -133,10 +155,10 @@ function with($value, \Closure $callback) {
  * @api
  * @since 0.1.0
  *
- * @param MapCollectionCallback|\Closure
- * @return MapCollectionCallback|\Closure
+ * @param MapCollectionCallback|Closure
+ * @return MapCollectionCallback|Closure
  */
-function not(\Closure $callback) {
+function not(Closure $callback) {
 	return function($element, $index, $collection) use ($callback) {
 		return ! $callback($element, $index, $collection);
 	};
@@ -150,12 +172,39 @@ function not(\Closure $callback) {
  *
  * @param mixed $value
  * @param boolean $strict
- * @return MapCollectionCallback|\Closure
+ * @return MapCollectionCallback|Closure
  */
 function compare($value, $strict = false) {
 	return function($element) use ($value, $strict) {
 		return $value === $element || (!$strict && $value == $element);
 	};
+}
+
+/**
+ * Hashes an array preventing closures from throwing errors.
+ *
+ * This is not really part of the API and you should probably use something else
+ * if you want this implemented correctly. It is not tuned for performance.
+ *
+ * @api
+ * @since 0.1.0
+ *
+ * @todo Needs tests.
+ *
+ * @param array<mixed> $args
+ * @return string
+ */
+function hash_array(array $args = array()) {
+	$serializableArgs = array();
+	foreach ( $args as $arg ) {
+		if (is_object($arg) || $arg instanceof Closure) {
+			$serializableArgs[] = get_class($arg) .':'. spl_object_hash($arg);
+		} else {
+			$serializableArgs[] = $arg;
+		}
+	}
+
+	return serialize($serializableArgs);
 }
 
 
