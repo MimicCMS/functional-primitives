@@ -241,10 +241,6 @@ $squares = \Mimic\Functional\map($values, function($element) {
 
 `$squares` will contain `array(0, 1, 4, 9, 16)`.
 
-## Memoize Function
-
-
-
 ## None Function
 
 Iterates through a collection checking that none of the elements pass the callback. This is the opposite of [every()](#every-function).
@@ -455,6 +451,77 @@ if ($allFalsy) {
 	echo "All values are falsy.";
 }
 ```
+
+## Memoize Function
+
+[Memorization](https://en.wikipedia.org/wiki/Memoization) is the process of storing or saving the results of the function call. This caching allows for very quickly returning results that may take a while to process. This should only be used for pure functions or functions that will always return the same output for the given inputs. Doing this for functions that don't have this behavior will fail.
+
+The closure that is returned by the memoize function has the same definition of the callback that is passed to the function. It simply wraps the callback with the behavior of storing the results and returning the original result value. Given the hashing process, this should only be used when there is still a performance gain even with the hashing. This should be simple to compare. Run performance benchmarks without memoize and run them with memoize. If it is faster to use memoize, then use it. Be aware that additional memory will be consumed with every call that uses different arguments.
+
+
+```php
+$memoizedCallback = \Mimic\Functional\memoize(function($name) {
+	echo "Function called!\n";
+	return 'hello '. $name;
+});
+
+$result = $memoizedCallback('Jacob');
+
+// Output: Function called!
+// $result = 'hello Jacob';
+
+// Second call
+$result = $memoizedCallback('Jacob');
+
+// Output: (No output from call)
+// $result = 'hello Jacob';
+```
+
+It is also possible to clear all of the results by calling `clear() on the returned object.
+
+```php
+$memoizedCallback = \Mimic\Functional\memoize(function($name) {
+	echo "Function called!";
+	return 'hello '. $name;
+});
+
+$result = $memoizedCallback('Jacob');
+
+// Output: Function called!
+// $result = 'hello Jacob';
+
+$memoizedCallback->clear();
+
+$result = $memoizedCallback('Jacob');
+
+// Output: Function called!
+// $result = 'hello Jacob';
+```
+
+Finally, it is possible to clear the result of a single value by passing the original argument to the `clean` method.
+
+```php
+$memoizedCallback = \Mimic\Functional\memoize(function($name) {
+	echo "Function called!";
+	return 'hello '. $name;
+});
+
+$result = $memoizedCallback('Jacob');
+
+// Output: Function called!
+// $result = 'hello Jacob';
+
+$memoizedCallback->clean('Jacob');
+
+$result = $memoizedCallback('Jacob');
+
+// Output: Function called!
+// $result = 'hello Jacob';
+```
+
+The result of the call when there are no arguments will also be cached. You may also clean the result of invocation without any arguments by calling `$memoizedCallback->clean();` or calling `clean` method, also without any arguments.
+
+**Warning:** At the moment, memorized can not be passed to other functions in the library. This will be fixed before release.
 
 ## Not Function
 
