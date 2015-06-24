@@ -114,7 +114,43 @@ It is not required to have each parameter and it is recommend to only have the p
 
 ## Drop First Function
 
+Drop elements in collection until callback returns false. This will remove elements from the initial part of the array.
+
+```php
+$values = array(0, 1, 2, 3, 4);
+
+$filtered = \Mimic\Functional\dropFirst($values, function($element) {
+	return $element < 2;
+});
+```
+
+`$filtered` would be `array(2, 3, 4)`.
+
+If the array is not sorted, then the above will not give the desired results.
+
+```php
+$values = array(2, 0, 1, 3, 4);
+
+$filtered = \Mimic\Functional\dropFirst($values, function($element) {
+	return $element < 2;
+});
+```
+
+`$filtered` would be `array(2, 0, 1, 3, 4)`.
+
 ## Drop Last Function
+
+Drop elements in collection after callback returns true. This will remove elements from the rest of the array.
+
+```php
+$values = array(0, 1, 2, 3, 4);
+
+$filtered = \Mimic\Functional\dropFirst($values, function($element) {
+	return $element >= 3;
+});
+```
+
+`$filtered` would be `array(0, 1, 2)`.
 
 ## Each Function
 
