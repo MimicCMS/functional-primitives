@@ -206,7 +206,7 @@ function hash_array(array $args = array()) {
 		}
 	}
 
-	return serialize($serializableArgs);
+	return json_encode($serializableArgs);
 }
 
 
