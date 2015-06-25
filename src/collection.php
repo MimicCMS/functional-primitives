@@ -409,7 +409,7 @@ function reduceRight() {
  * @return array
  */
 function reject($collection, $callback) {
-	return filter($collection, not($callback));
+	return filter($collection, negate($callback));
 }
 
 /**
