@@ -7,6 +7,9 @@
 		"codeclimate/php-test-reporter": "dev-master"
 	},
 	"autoload": {
+		"psr-4": {
+			"Mimic\\Functional\\": "src/"
+		},
 		"files": [
 			"src/collection.php",
 			"src/helpers.php",
@@ -15,6 +18,8 @@
 		]
 	},
 	"autoload-dev": {
-		"classmap": ["tests/"]
+		"psr-4": {
+			"Mimic\\Test\\": "tests/"
+		}
 	}
 }
