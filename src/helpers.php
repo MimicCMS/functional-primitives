@@ -160,9 +160,7 @@ function memoize($callback) {
  * @return MapCollectionCallback|callable
  */
 function fails($callback) {
-	return function($element, $index, $collection) use ($callback) {
-		return ! $callback($element, $index, $collection);
-	};
+	return negate($callback);
 }
 
 /**
@@ -191,7 +189,9 @@ function succeeds($callback) {
  * @return MapCollectionCallback|callable
  */
 function negate($callback) {
-	return fails($callback);
+	return function($element, $index, $collection) use ($callback) {
+		return ! $callback($element, $index, $collection);
+	};
 }
 
 /**
