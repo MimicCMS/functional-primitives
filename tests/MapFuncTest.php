@@ -1,5 +1,8 @@
 <?php
 
+namespace Mimic\Test;
+
+use PHPUnit_Framework_TestCase;
 use Mimic\Functional as F;
 
 /**

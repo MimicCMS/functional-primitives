@@ -1,5 +1,8 @@
 <?php
 
+namespace Mimic\Test;
+
+use PHPUnit_Framework_TestCase;
 use Mimic\Functional as F;
 
 /**
@@ -37,7 +40,7 @@ class NotFuncTest extends PHPUnit_Framework_TestCase {
 	 * @dataProvider dataProviderTrue
 	 * @covers ::Mimic\Functional\not
 	 */
-	public function testNegation($expected, $value) {
+	public function testNegation_not($expected, $value) {
 		$callback = F\not(function($element) {
 			return !!$element;
 		});
@@ -48,8 +51,30 @@ class NotFuncTest extends PHPUnit_Framework_TestCase {
 	 * @dataProvider dataProviderNegate
 	 * @covers ::Mimic\Functional\not
 	 */
-	public function testDoubleBang($expected, $value) {
+	public function testDoubleBang_not($expected, $value) {
 		$callback = F\not(F\not(function($element) {
+			return !!$element;
+		}));
+		$this->assertEquals($expected, $callback($value, null, null));
+	}
+
+	/**
+	 * @dataProvider dataProviderTrue
+	 * @covers ::Mimic\Functional\fails
+	 */
+	public function testNegation_fails($expected, $value) {
+		$callback = F\fails(function($element) {
+			return !!$element;
+		});
+		$this->assertEquals($expected, $callback($value, null, null));
+	}
+
+	/**
+	 * @dataProvider dataProviderNegate
+	 * @covers ::Mimic\Functional\fails
+	 */
+	public function testDoubleBang_fails($expected, $value) {
+		$callback = F\fails(F\fails(function($element) {
 			return !!$element;
 		}));
 		$this->assertEquals($expected, $callback($value, null, null));
