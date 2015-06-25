@@ -52,6 +52,7 @@ The Laravel test suite for the Laravel helpers might be pulled and copied to thi
    * [Group Function](#group-function)
    * [Head Function](#head-function)
    * [Invoke Function](#invoke-function)
+   * [Invoke If Function](#invoke-if-function)
    * [Invoke First Function](#invoke-first-function)
    * [Invoke Last Function](#invoke-last-function)
    * [Last Function](#last-function)
@@ -181,50 +182,306 @@ $false = \Mimic\Functional\every(array(1, 2, 1, 1), $callback);
 
 ## Filter Function
 
+Accepts elements in a collection, when the callback returns true or discards elements when the callback returns false. Opposite of [reject()](#reject-function). The [select()](#select-function) function exists as an alias for semantics.
 
+```php
+/** @todo finish example(s) */
+```
 
 ## First Function
 
+Retrieves the first element in a collection, if there is no callback.
 
+```php
+$collection = array(1, 1, 4, 2, 3, 4, 5);
+
+$result = \Mimic\Functional\first($collection);
+// $result = 1;
+// $index = 0;
+```
+
+When there is a callback, then that callback is applied and the first element that the callback returns true for is returned.
+
+```php
+$collection = array(1, 1, 4, 2, 3, 4, 5);
+
+$result = \Mimic\Functional\first($collection, function($element, $index, $collection) {
+	return $element === 4;
+});
+// $result = 4;
+// $index = 2;
+```
 
 ## First Index Of Function
 
+
+TODO: Complete
+
+```php
+/** @todo finish example(s) */
+```
 
 
 ## Flat Map Function
 
 
+TODO: Complete
+
+```php
+/** @todo finish example(s) */
+```
+
 
 ## Flatten Function
 
+
+TODO: Complete
+
+```php
+/** @todo finish example(s) */
+```
 
 
 ## Group Function
 
 
+TODO: Complete
+
+```php
+/** @todo finish example(s) */
+```
+
 
 ## Head Function
 
 
+TODO: Complete
+
+```php
+/** @todo finish example(s) */
+```
+
 
 ## Invoke Function
 
+Invoke method on class, if the method exists on the class. This can be used for both instance and class methods. It is possible to use this for objects that are mixed and the execution will skip elements that aren't objects or when the element is combined with the method name parameter is not callable.
 
+The arguments are passed as an array to allow for better composition. This is largely a PHP5.3 limitation. PHP7 or PHP5.6 solutions probably won't require this in the future.
+
+```php
+class Example {
+	public method test() {
+		return func_get_args();
+	}
+
+	public static method testStatic() {
+		return func_get_args();
+	}
+}
+
+$instance = new Example;
+
+$collection = array('nothing', $instance, $instance, 'Example', 'Example');
+
+$result = \Mimic\Functional\invoke($collection, 'test');
+// $result = array(
+//     null,
+//     array(),
+//     array(),
+//     null,
+//     null,
+// );
+
+$result = \Mimic\Functional\invoke($collection, 'test', array(1));
+// $result = array(
+//     null,
+//     array(1),
+//     array(1),
+//     null,
+//     null,
+// );
+
+$result = \Mimic\Functional\invoke($collection, 'testStatic');
+// $result = array(
+//     null,
+//     null,
+//     null,
+//     array(),
+//     array(),
+// );
+
+$result = \Mimic\Functional\invoke($collection, 'testStatic', array(1));
+// $result = array(
+//     null,
+//     null,
+//     null,
+//     array(1),
+//     array(1),
+// );
+```
+
+## Invoke If Function
+
+Invoke method on class, only if the result is callable. You can set the default value that will be returned when the given arguments are not callable. The arguments that are passed to the callback are contained in an array.
+
+```php
+class Example {
+	public method test() {
+		return func_get_args();
+	}
+
+	public static method testStatic() {
+		return func_get_args();
+	}
+}
+
+$instance = new Example;
+
+$result = \Mimic\Functional\invokeIf($instance, 'test');
+// $result = array();
+
+$result = \Mimic\Functional\invokeIf($instance, 'test', array(1));
+// $result = array(1);
+
+$result = \Mimic\Functional\invokeIf($instance, 'denied', array(1));
+// $result = null;
+
+$result = \Mimic\Functional\invokeIf($instance, 'denied', array(1), false);
+// $result = false;
+
+$result = \Mimic\Functional\invokeIf('Example', 'testStatic');
+// $result = array();
+
+$result = \Mimic\Functional\invokeIf('Example', 'testStatic', array(1));
+// $result = array(1);
+
+$result = \Mimic\Functional\invokeIf('Example', 'denied', array(1));
+// $result = null;
+
+$result = \Mimic\Functional\invokeIf('Example', 'denied', array(1), false);
+// $result = false;
+```
 
 ## Invoke First Function
 
+Invoke the first element that is callable and return the result from this callback.
 
+```php
+class Example1 {
+	public method test() {
+		return func_get_args();
+	}
+
+	public static method testStatic() {
+		return func_get_args();
+	}
+}
+
+class Example2 {
+	public method test() {
+		return array('example2->test()');
+	}
+
+	public static method testStatic() {
+		return array('example2::testStatic');
+	}
+}
+
+$collection = array('nothing', new Example1, new Example2, 'Example1', 'Example2');
+
+$result = \Mimic\Functional\invokeFirst($collection, 'test');
+// $result = \Mimic\Functional\value(new Example1)->test();
+// $result = array();
+
+$result = \Mimic\Functional\invokeFirst($collection, 'test', array(1));
+// $result = \Mimic\Functional\value(new Example1)->test(1);
+// $result = array(1);
+
+$result = \Mimic\Functional\invokeFirst($collection, 'testStatic'));
+// $result = Example1::testStatic();
+// $result = array();
+
+$result = \Mimic\Functional\invokeFirst($collection, 'testStatic', array(1));
+// $result = Example1::testStatic(1);
+// $result = array(1);
+```
 
 ## Invoke Last Function
 
+Invoke the last element that is callable and return the result from this callback.
 
+```php
+class Example1 {
+	public method test() {
+		return func_get_args();
+	}
+
+	public static method testStatic() {
+		return func_get_args();
+	}
+}
+
+class Example2 {
+	public method test() {
+		return array('example2->test()');
+	}
+
+	public static method testStatic() {
+		return array('example2::testStatic');
+	}
+}
+
+$collection = array('nothing', new Example1, new Example2, 'Example1', 'Example2');
+
+$result = \Mimic\Functional\invokeFirst($collection, 'test');
+// $result = \Mimic\Functional\value(new Example2)->test();
+// $result = array('example2->test()');
+
+$result = \Mimic\Functional\invokeFirst($collection, 'test', array(1));
+// $result = \Mimic\Functional\value(new Example2)->test(1);
+// $result = array('example2->test()');
+
+$result = \Mimic\Functional\invokeFirst($collection, 'testStatic'));
+// $result = Example2::testStatic();
+// $result = array('example2::testStatic');
+
+$result = \Mimic\Functional\invokeFirst($collection, 'testStatic', array(1));
+// $result = Example2::testStatic(1);
+// $result = array('example2::testStatic');
+```
 
 ## Last Function
 
+Retrieve the last element of a collection, when there are no callback given.
 
+```php
+$collection = array(1, 1, 4, 2, 3, 4, 5);
+
+$result = \Mimic\Functional\last($collection);
+// $result = 5;
+// $index = 6;
+```
+
+If there is a callback passed, then it will return the last element that the callback returns true.
+
+```php
+$collection = array(1, 1, 4, 2, 3, 4, 5);
+
+$result = \Mimic\Functional\last($collection, function($element, $index, $collection) {
+	return $element === 4;
+});
+// $result = 4;
+// $index = 5;
+```
 
 ## Last Index Of Function
 
+
+TODO: Complete
+
+```php
+/** @todo finish example(s) */
+```
 
 
 ## Map Function
@@ -257,13 +514,31 @@ $false = \Mimic\Functional\none(array(1, 2, 2, 2), $callback);
 ## Partition Function
 
 
+TODO: Complete
+
+```php
+/** @todo finish example(s) */
+```
+
 
 ## Pick Function
 
 
+TODO: Complete
+
+```php
+/** @todo finish example(s) */
+```
+
 
 ## Pluck Function
 
+
+TODO: Complete
+
+```php
+/** @todo finish example(s) */
+```
 
 
 ## Reduce Function
@@ -293,18 +568,38 @@ $sum = \Mimic\Functional\reduce($values, 5, function($element, $current) {
 ## Reduce Left Function
 
 
+TODO: Complete
+
+```php
+/** @todo finish example(s) */
+```
+
 
 ## Reduce Right Function
 
 
+TODO: Complete
+
+```php
+/** @todo finish example(s) */
+```
+
 
 ## Reject Function
 
+This rejects or discards elements when the callback returns true. Opposite of [filter()](#filter-function) and [select()](#select-function).
 
+```php
+/** @todo finish example(s) */
+```
 
 ## Select Function
 
+Alias for [filter()](#filter-function). This function works the same as [filter()](#filter-function). This exists to be the opposite of [reject()](#reject-function) in semantics. So if you wish to select on a collection instead of filter the collection, then you may use this function to do so. That way when reading the code, rejecting and selecting are semantically describe the process on a collection.
 
+```php
+/** @todo finish example(s) */
+```
 
 ## Short Function
 
@@ -337,21 +632,51 @@ $contains = \Mimic\Functional\reduce($values, true, false, function($element) us
 ## Some Function
 
 
+TODO: Complete
+
+```php
+/** @todo finish example(s) */
+```
+
 
 ## Sort Function
 
+
+TODO: Complete
+
+```php
+/** @todo finish example(s) */
+```
 
 
 ## Tail Function
 
 
+TODO: Complete
+
+```php
+/** @todo finish example(s) */
+```
+
 
 ## Unique Function
 
 
+TODO: Complete
+
+```php
+/** @todo finish example(s) */
+```
+
 
 ## Zip Function
 
+
+TODO: Complete
+
+```php
+/** @todo finish example(s) */
+```
 
 
 # Helper Functions
