@@ -20,7 +20,6 @@ namespace Mimic\Functional;
 
 use Closure;
 use Traversable;
-use Mimic\MemorizeCache;
 
 /**
  * Whether value exists in collection.
@@ -98,7 +97,7 @@ function truthy($collection) {
  * @api
  * @since 0.1.0
  *
- * @param mixed|Closure $value
+ * @param mixed|callable $value
  *   If value is a callback, then it is called without any arguments. Not all
  *   callbacks are supported. Array callbacks will fail.
  * @return mixed
@@ -124,10 +123,10 @@ function value($value) {
  *
  * @param mixed $value
  *   If value is a callback, then it is called without any arguments.
- * @param Closure $callback
+ * @param callable $callback
  * @return mixed
  */
-function with($value, Closure $callback) {
+function with($value, $callback) {
 	return $callback(value($value));
 }
 
@@ -144,11 +143,42 @@ function with($value, Closure $callback) {
  *
  * @todo Needs tests.
  *
- * @param Closure $callback
+ * @param callback $callback
  * @return MemoizeCache
  */
-function memoize(Closure $callback) {
+function memoize($callback) {
 	return new MemoizeCache($callback);
+}
+
+/**
+ * Whether collection element fails callback.
+ *
+ * @api
+ * @since 0.1.0
+ *
+ * @param MapCollectionCallback|callable
+ * @return MapCollectionCallback|callable
+ */
+function fails($callback) {
+	return function($element, $index, $collection) use ($callback) {
+		return ! $callback($element, $index, $collection);
+	};
+}
+
+/**
+ * Whether collection element passes callback.
+ *
+ * @api
+ * @since 0.1.0
+ * @todo Needs tests.
+ *
+ * @param MapCollectionCallback|callable
+ * @return MapCollectionCallback|callable
+ */
+function succeeds($callback) {
+	return function($element, $index, $collection) use ($callback) {
+		return !! $callback($element, $index, $collection);
+	};
 }
 
 /**
@@ -157,13 +187,11 @@ function memoize(Closure $callback) {
  * @api
  * @since 0.1.0
  *
- * @param MapCollectionCallback|Closure
- * @return MapCollectionCallback|Closure
+ * @param MapCollectionCallback|callable
+ * @return MapCollectionCallback|callable
  */
-function not(Closure $callback) {
-	return function($element, $index, $collection) use ($callback) {
-		return ! $callback($element, $index, $collection);
-	};
+function negate($callback) {
+	return fails($callback);
 }
 
 /**
@@ -174,7 +202,7 @@ function not(Closure $callback) {
  *
  * @param mixed $value
  * @param boolean $strict
- * @return MapCollectionCallback|Closure
+ * @return MapCollectionCallback|callable
  */
 function compare($value, $strict = false) {
 	return function($element) use ($value, $strict) {
@@ -201,7 +229,11 @@ function hash_array(array $args = array()) {
 	foreach ( $args as $arg ) {
 		if (is_object($arg) || $arg instanceof Closure) {
 			$serializableArgs[] = get_class($arg) .':'. spl_object_hash($arg);
-		} else {
+		}
+		else if (is_array($arg)) {
+			$serializableArgs[] = hash_array($arg);
+		}
+		else {
 			$serializableArgs[] = $arg;
 		}
 	}
