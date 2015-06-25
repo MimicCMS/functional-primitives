@@ -151,35 +151,6 @@ function memoize($callback) {
 }
 
 /**
- * Whether collection element fails callback.
- *
- * @api
- * @since 0.1.0
- *
- * @param MapCollectionCallback|callable
- * @return MapCollectionCallback|callable
- */
-function fails($callback) {
-	return negate($callback);
-}
-
-/**
- * Whether collection element passes callback.
- *
- * @api
- * @since 0.1.0
- * @todo Needs tests.
- *
- * @param MapCollectionCallback|callable
- * @return MapCollectionCallback|callable
- */
-function succeeds($callback) {
-	return function($element, $index, $collection) use ($callback) {
-		return !! $callback($element, $index, $collection);
-	};
-}
-
-/**
  * Negate result of collection item callback.
  *
  * @api
