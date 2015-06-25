@@ -78,7 +78,7 @@ The Laravel test suite for the Laravel helpers might be pulled and copied to thi
    * [False Function](#false-function)
    * [Falsy Function](#falsy-function)
    * [Memoize Function](#memoize-function)
-   * [Not Function](#not-function)
+   * [Negate Function](#negate-function)
    * [True Function](#true-function)
    * [Truthy Function](#truthy-function)
    * [Value Function](#value-function)
@@ -523,7 +523,7 @@ The result of the call when there are no arguments will also be cached. You may 
 
 **Warning:** At the moment, memorized can not be passed to other functions in the library. This will be fixed before release.
 
-## Not Function
+## Negate Function
 
 Negates any boolean value that is given to the callback. The function is meant to be passed as collection callback functions.
 
@@ -532,7 +532,7 @@ $callback = function($element) {
 	return true;
 }
 
-$negate = \Mimic\Functional\not($callback);
+$negate = \Mimic\Functional\negate($callback);
 
 if ( ! $negate(1, null, null) ) {
 	echo "You shall not pass!"
