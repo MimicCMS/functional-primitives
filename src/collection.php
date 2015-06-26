@@ -245,8 +245,29 @@ function first($collection, $callback = null) {
 	return null;
 }
 
-function firstIndexOf() {
-	/** @todo Incomplete */
+/**
+ * First index in collection matching value, using value as callback if
+ * available.
+ *
+ * @param Traversable|array $collection
+ * @param MapCollectionCallback|callable|mixed $value
+ *   A mixed value allows checking for the given value against element returning
+ *   index in collection.
+ * @param boolean $strict
+ *   Optional. Defaults to true. Only used when value is mixed or not callable.
+ * @return boolean|string|numeric
+ *   False on failure.
+ */
+function firstIndexOf($collection, $value, $strict = true) {
+	if ( is_callable($value) ) {
+		foreach ( $collection as $index => $element ) {
+			if ( $value($element, $index, $collection) ) {
+				return $index;
+			}
+		}
+		return false;
+	}
+	return firstIndexOf($collection, compare($value, $strict));
 }
 
 function flatMap() {
@@ -379,7 +400,7 @@ function invokeIf($object, $methodName, array $arguments = array(), $default = n
  * @return mixed
  */
 function invokeLast($collection, $methodName, array $arguments = array()) {
-	return invokeFirst(array_reverse($collection), $methodName, $arguments);
+	return invokeFirst(array_reverse($collection, true), $methodName, $arguments);
 }
 
 /**
@@ -397,11 +418,24 @@ function invokeLast($collection, $methodName, array $arguments = array()) {
  *   whether none of the elements evaluated to true from this function alone.
  */
 function last($collection, $callback = null) {
-	return first(array_reverse($collection), $callback);
+	return first(array_reverse($collection, true), $callback);
 }
 
-function lastIndexOf() {
-	/** @todo Incomplete */
+/**
+ * Last index in collection matching value, using value as callback if
+ * available.
+ *
+ * @param Traversable|array $collection
+ * @param MapCollectionCallback|callable|mixed $value
+ *   A mixed value allows checking for the given value against element returning
+ *   index in collection.
+ * @param boolean $strict
+ *   Optional. Defaults to true. Only used when value is mixed or not callable.
+ * @return boolean|string|numeric
+ *   False on failure.
+ */
+function lastIndexOf($collection, $value, $strict = true) {
+	return firstIndexOf(array_reverse($collection, true), $value, $strict);
 }
 
 /**
@@ -416,7 +450,7 @@ function lastIndexOf() {
  */
 function partition($collection, $callback) {
 	return group($collection, function($element, $index, $collection) use ($callback) {
-		return !! $callback($element, $index, $collection) ? 1 : 0;
+		return $callback($element, $index, $collection) ? 1 : 0;
 	});
 }
 
