@@ -165,6 +165,46 @@ function negate($callback) {
 	};
 }
 
+function retry() {
+	/** @todo Incomplete */
+}
+
+/**
+ * Put value onto object or array by name.
+ *
+ * This works with both objects and arrays. Other types will simply be returned
+ * with no modifications.
+ *
+ * @api
+ * @since 0.1.0
+ * @todo Needs tests.
+ * @link http://laravel.com/docs/master/helpers#method-array-add
+ *
+ * @param object|array $something
+ * @param string $name
+ * @param mixed $value
+ * @param boolean $override
+ *   Optional. Default is false. Will allow for ignoring, if current value
+ *   exists or overriding current value.
+ * @return object|array
+ *   Copy of something with new value.
+ */
+function put($something, $name, $value, $override = false) {
+	if ( is_object($something) && property_exists($something, $name) ) {
+		$copy = clone $something;
+		if ( $copy->{$name} === null || $override ) {
+			$copy->{$name} = $value;
+		}
+		return $copy;
+	}
+
+	if ( is_array($something) && ( !array_key_exists($name, $something) || $override ) ) {
+		$something[$name] = $value;
+	}
+
+	return $something;
+}
+
 /**
  * Comparison function which checks whether the element matches given value.
  *
