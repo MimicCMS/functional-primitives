@@ -261,8 +261,22 @@ function group() {
 	/** @todo Incomplete */
 }
 
-function head() {
-	/** @todo Incomplete */
+/**
+ * Retrieve first item in collection or first item that passes callback.
+ *
+ * @api
+ * @since 0.1.0
+ * @link \Mimic\Functional\first()
+ *
+ * @param Traversable|array $collection
+ * @param MapCollectionCallback|callable $callback
+ *   Optional. If not given, then will simply return first item in collection.
+ * @return mixed
+ *   Default return value is null. It is technically not possible to tell
+ *   whether none of the elements evaluated to true from this function alone.
+ */
+function head($collection, $callback = null) {
+	return first($collection, $callback);
 }
 
 /**
@@ -436,8 +450,22 @@ function sort() {
 	/** @todo Incomplete */
 }
 
-function tail() {
-	/** @todo Incomplete */
+/**
+ * Retrieve last item in collection or last item that passes callback.
+ *
+ * @api
+ * @since 0.1.0
+ * @link \Mimic\Functional\last()
+ *
+ * @param Traversable|array $collection
+ * @param MapCollectionCallback|callable $callback
+ *   Optional. If not given, then will simply return first item in collection.
+ * @return mixed
+ *   Default return value is null. It is technically not possible to tell
+ *   whether none of the elements evaluated to true from this function alone.
+ */
+function tail($collection, $callback = null) {
+	return last($collection, $callback);
 }
 
 function unique() {

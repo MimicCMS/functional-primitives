@@ -45,12 +45,12 @@ The Laravel test suite for the Laravel helpers might be pulled and copied to thi
    * [Each Function](#each-function)
    * [Every Function](#every-function)
    * [Filter Function](#filter-function)
-   * [First Function](#first-function)
+   * [First Function](#first-and-head-function)
    * [First Index Of Function](#first-index-of-function)
    * [Flat Map Function](#flat-map-function)
    * [Flatten Function](#flatten-function)
    * [Group Function](#group-function)
-   * [Head Function](#head-function)
+   * [Head Function](#first-and-head-function)
    * [Invoke Function](#invoke-function)
    * [Invoke If Function](#invoke-if-function)
    * [Invoke First Function](#invoke-first-function)
@@ -188,7 +188,7 @@ Accepts elements in a collection, when the callback returns true or discards ele
 /** @todo finish example(s) */
 ```
 
-## First Function
+## First and Head Function
 
 Retrieves the first element in a collection, if there is no callback.
 
@@ -198,6 +198,10 @@ $collection = array(1, 1, 4, 2, 3, 4, 5);
 $result = \Mimic\Functional\first($collection);
 // $result = 1;
 // $index = 0;
+
+$result = \Mimic\Functional\head($collection);
+// $result = 1;
+// $index = 0;
 ```
 
 When there is a callback, then that callback is applied and the first element that the callback returns true for is returned.
@@ -205,9 +209,15 @@ When there is a callback, then that callback is applied and the first element th
 ```php
 $collection = array(1, 1, 4, 2, 3, 4, 5);
 
-$result = \Mimic\Functional\first($collection, function($element, $index, $collection) {
+$callback = function($element, $index, $collection) {
 	return $element === 4;
-});
+};
+
+$result = \Mimic\Functional\first($collection, callback);
+// $result = 4;
+// $index = 2;
+
+$result = \Mimic\Functional\head($collection, callback);
 // $result = 4;
 // $index = 2;
 ```
@@ -243,16 +253,6 @@ TODO: Complete
 
 
 ## Group Function
-
-
-TODO: Complete
-
-```php
-/** @todo finish example(s) */
-```
-
-
-## Head Function
 
 
 TODO: Complete
@@ -450,7 +450,7 @@ $result = \Mimic\Functional\invokeFirst($collection, 'testStatic', array(1));
 // $result = array('example2::testStatic');
 ```
 
-## Last Function
+## Last and Tail Function
 
 Retrieve the last element of a collection, when there are no callback given.
 
@@ -460,6 +460,10 @@ $collection = array(1, 1, 4, 2, 3, 4, 5);
 $result = \Mimic\Functional\last($collection);
 // $result = 5;
 // $index = 6;
+
+$result = \Mimic\Functional\tail($collection);
+// $result = 5;
+// $index = 6;
 ```
 
 If there is a callback passed, then it will return the last element that the callback returns true.
@@ -467,9 +471,15 @@ If there is a callback passed, then it will return the last element that the cal
 ```php
 $collection = array(1, 1, 4, 2, 3, 4, 5);
 
-$result = \Mimic\Functional\last($collection, function($element, $index, $collection) {
+$callback = function($element, $index, $collection) {
 	return $element === 4;
-});
+};
+
+$result = \Mimic\Functional\last($collection, callback);
+// $result = 4;
+// $index = 5;
+
+$result = \Mimic\Functional\tail($collection, callback);
 // $result = 4;
 // $index = 5;
 ```
@@ -640,16 +650,6 @@ TODO: Complete
 
 
 ## Sort Function
-
-
-TODO: Complete
-
-```php
-/** @todo finish example(s) */
-```
-
-
-## Tail Function
 
 
 TODO: Complete
