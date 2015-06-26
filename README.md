@@ -37,6 +37,8 @@ There are going to be differences. I'm going off of the documentation web site a
 
 The Laravel test suite for the Laravel helpers might be pulled and copied to this library to provide a match, but I don't really think it matters that much to completely match Laravel's function. If you are using Laravel, then you will be using Laravel's functions. This library is for those that don't want to pull the Laravel library, but still want to use similar functions.
 
+**Functions that mutate the collection along with returning data will not be ported.** The functions contained in the library may mutate or access data, but not both at the same time. The functions will also return a copy of the collection with the mutation. The original collection must never be mutated by calling any of the below functions.
+
 # Guide Table of Contents
 
  * [Collection Callback Functions](#helper-functions)
