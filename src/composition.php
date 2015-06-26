@@ -30,12 +30,23 @@
 /** @package Mimic\Functional */
 namespace Mimic\Functional;
 
+function partialAny() {
+	/** @todo Incomplete */
+}
+
+function partialLeft() {
+	/** @todo Incomplete */
+}
+
+function partialRight() {
+	/** @todo Incomplete */
+}
 
 function compose() {
 	/** @todo Incomplete */
 }
 
 function pipeline() {
-
+	/** @todo Incomplete */
 }
 
