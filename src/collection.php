@@ -515,8 +515,37 @@ function some($collection, $callback) {
 	return short($collection, true, false, $callback);
 }
 
-function sort() {
-	/** @todo Incomplete */
+/**
+ * Sorts a collection with a user-defined function, optionally perserving keys.
+ *
+ * @link https://github.com/lstrojny/functional-php See src/Functional/Sort.php
+ * @license MIT
+ * @copyright 2011-2015 Lars Strojny <lstrojny@php.net>
+ *
+ * @param Traversable|array $collection
+ * @param callable $callback {
+ *     @param mixed $left
+ *     @param mixed $right
+ *     @param Traversable|array $collection
+ *     @return int
+ *       -1 to push to left, 0 for equal, or 1 to push to right.
+ * }
+ * @param boolean $preserveKeys
+ *   Optional. Default is false.
+ * @return array
+ */
+function sort($collection, callable $callback, $preserveKeys = false) {
+    if ($collection instanceof Traversable) {
+        $array = iterator_to_array($collection);
+    } else {
+        $array = $collection;
+    }
+
+    $fn = $preserveKeys ? 'uasort' : 'usort';
+    $fn($array, function ($left, $right) use ($callback, $collection) {
+        return $callback($left, $right, $collection);
+    });
+    return $array;
 }
 
 /**
