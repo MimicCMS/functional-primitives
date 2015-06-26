@@ -257,8 +257,21 @@ function flatten() {
 	/** @todo Incomplete */
 }
 
-function group() {
-	/** @todo Incomplete */
+/**
+ * Groups a collection by callback.
+ *
+ * @param Traversable|array $collection
+ * @param MapCollectionCallback|callable $callback
+ *   Callback must return either a string or numeric value.
+ * @return array
+ */
+function group($collection, $callback) {
+	$groups = array();
+	each($collection, function($element, $index, $collection) use (&$groups, $callback) {
+		$group = $callback($element, $index, $collection);
+		$groups[$group][$index] = $element;
+	});
+	return $groups;
 }
 
 /**
@@ -391,8 +404,20 @@ function lastIndexOf() {
 	/** @todo Incomplete */
 }
 
-function partition() {
-	/** @todo Incomplete */
+/**
+ * Separates a collection by callback into truthy and falsy parts.
+ *
+ * @param Traversable|array $collection
+ * @param MapCollectionCallback|callable $callback
+ *   Callback must return boolean.
+ * @return array
+ *   Array contains the keys '0' and '1'. Truthy part is in '1' and falsy part
+ *   is in '0'.
+ */
+function partition($collection, $callback) {
+	return group($collection, function($element, $index, $collection) use ($callback) {
+		return !! $callback($element, $index, $collection) ? 1 : 0;
+	});
 }
 
 function pick() {
