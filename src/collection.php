@@ -501,8 +501,18 @@ function select($collection, $callback) {
 	return filter($collection, $callback);
 }
 
-function some() {
-	/** @todo Incomplete */
+/**
+ * Whether some of the elements in collection match callback.
+ *
+ * This will short-circuit the loop, returning true immediately on the first
+ * element where the callback is true.
+ *
+ * @param Traversable|array $collection
+ * @param MapCollectionCallback|callable $callback
+ * @return bool
+ */
+function some($collection, $callback) {
+	return short($collection, true, false, $callback);
 }
 
 function sort() {
