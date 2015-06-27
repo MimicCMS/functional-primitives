@@ -31,6 +31,7 @@
 namespace Mimic\Functional;
 
 use Traversable;
+use Countable;
 
 /**
  * Split the collection into separate arrays for indexes and values.
@@ -353,6 +354,27 @@ function indexesOf($collection, $value, $strict = true) {
 }
 
 /**
+ * Exclude the given amount from the end of the collection.
+ *
+ * @api
+ * @since 0.1.0
+ * @todo Needs tests.
+ * @todo Need to add to guide documentation.
+ *
+ * @param Traversable|array $collection
+ * @param int $ignore
+ *   Must be positive. Will take from end.
+ * @return array
+ */
+function initial($collection, $ignore) {
+	$array = $collection;
+	if (is_object($collection) && $collection instanceof Traversable) {
+		$array = iterator_to_array($collection);
+	}
+	return array_slice($array, 0, (-1 * abs($ignore)), true);
+}
+
+/**
  * Invoke method on class on collection passing all results.
  *
  * @api
@@ -620,6 +642,28 @@ function reduceRight($collection, $callback, $initial = null) {
 }
 
 /**
+ * Exclude the given amount from the beginning of the collection.
+ *
+ * @api
+ * @since 0.1.0
+ * @todo Needs tests.
+ * @todo Need to add to guide documentation.
+ *
+ * @param Traversable|array $collection
+ * @param int $from
+ *   Must be positive. Will take from beginning.
+ *   Obviously, this must be less than 
+ * @return array
+ */
+function rest($collection, $from) {
+	$array = $collection;
+	if (is_object($collection) && $collection instanceof Traversable) {
+		$array = iterator_to_array($collection);
+	}
+	return array_slice($array, abs($from), count($array), true);
+}
+
+/**
  * Remove elements from collection that pass callback.
  *
  * @api
@@ -734,6 +778,30 @@ function short($collection, $passed, $default, $callback) {
 		}
 	}
 	return $default;
+}
+
+/**
+ * Amount of elements in a collection.
+ *
+ * @api
+ * @since 0.1.0
+ * @todo Needs tests.
+ * @todo Needs guide documentation.
+ *
+ * @param Traversable|array $collection
+ * @return int
+ */
+function size($collection) {
+	if ( !is_object($collection) || !is_array($collection) ) {
+		return 0;
+	}
+	if (is_array($collection) || $collection instanceof Countable) {
+		return count($collection);
+	}
+	if ($collection instanceof Traversable) {
+		return count(iterator_to_array($collection));
+	}
+	return 0;
 }
 
 /**
