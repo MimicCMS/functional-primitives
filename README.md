@@ -29,7 +29,7 @@ Validations should happen outside of the function and the functions in this libr
 
 The other change is that the code in this library reuses existing functions as much as possible. The goal is function composition and reducing duplicated code. The best way to do that is to reuse as much code as possible, even if it will have less performance.
 
-### Laravel Helpers
+### Laravel Array Helpers
 
 Some of the functions from Laravel repository have been ported to this library. The names will be different and are under the same namespace as the rest of the library.
 
@@ -38,6 +38,10 @@ There are going to be differences. I'm going off of the documentation web site a
 The Laravel test suite for the Laravel helpers might be pulled and copied to this library to provide a match, but I don't really think it matters that much to completely match Laravel's function. If you are using Laravel, then you will be using Laravel's functions. This library is for those that don't want to pull the Laravel library, but still want to use similar functions.
 
 **Functions that mutate the collection along with returning data will not be ported.** The functions contained in the library may mutate or access data, but not both at the same time. The functions will also return a copy of the collection with the mutation. The original collection must never be mutated by calling any of the below functions.
+
+### Underscore PHP
+
+To further extend the library [Underscore PHP](http://anahkiasen.github.io/underscore-php) was used as a reference. Some of the function names are different since some of the functionality matches that of functional PHP and Laravel array Helpers.
 
 # Guide Table of Contents
 
@@ -56,6 +60,7 @@ The Laravel test suite for the Laravel helpers might be pulled and copied to thi
    * [Forget Function](#forget-function)
    * [Get Function](#get-function)
    * [Group Function](#group-function)
+   * [Has Function](#has-function)
    * [Head Function](#first-and-head-function)
    * [Indexes Of Function](#indexes-of-function)
    * [Invoke Function](#invoke-function)
