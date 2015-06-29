@@ -22,6 +22,21 @@ use Closure;
 use Traversable;
 
 /**
+ * Execute single callback with optional arguments.
+ *
+ * @param callable $callback
+ * @param mixed ...$args
+ * @return mixed
+ */
+function apply($callback) {
+	if ( func_num_args() === 1 ) {
+		return $callback();
+	}
+	return call_user_func_array($callback, array_slice(func_get_args(), 1));
+}
+
+
+/**
  * Execute callback when test callback passed.
  *
  * @api
