@@ -30,29 +30,10 @@
 /** @package Mimic\Functional */
 namespace Mimic\Functional;
 
-/**
- * Wrap callback in a closure.
- *
- * @api
- * @since 0.1.0
- * @todo Needs tests.
- *
- * @param callback $callback
- *   Every callback type is supported. Arguments will be passed to callback, if any exist.
- * @param mixed ...$args
- *   Arguments to pass to callback.
- * @return \Closure {
- *     @return mixed
- * }
- */
-function bind($callback) {
-	$arguments = array();
-	if (func_num_args() > 1) {
-		$arguments = array_slice(func_get_args(), 1);
-	}
-	return function() use ($callback, $arguments) {
-		return call_user_func_array($callback, $arguments);
-	};
+use Closure;
+
+function compose() {
+	/** @todo Incomplete */
 }
 
 function partialAny() {
@@ -67,11 +48,52 @@ function partialRight() {
 	/** @todo Incomplete */
 }
 
-function compose() {
-	/** @todo Incomplete */
-}
-
 function pipeline() {
 	/** @todo Incomplete */
 }
 
+/**
+ * Wrap callback in a closure.
+ *
+ * @api
+ * @since 0.1.0
+ * @todo Needs tests.
+ *
+ * @param callback $callback
+ *   Every callback type is supported. Arguments will be passed to callback, if any exist.
+ * @param mixed ...$args
+ *   Arguments to pass to callback.
+ * @return Closure {
+ *     @return mixed
+ * }
+ */
+function wrap($callback) {
+	$arguments = array();
+	if (func_num_args() > 1) {
+		$arguments = array_slice(func_get_args(), 1);
+	}
+	return function() use ($callback, $arguments) {
+		return call_user_func_array($callback, $arguments);
+	};
+}
+
+/**
+ * Mutates or accesses implementation based on name.
+ *
+ * @param string $name
+ *   It is better to namespace and set the name to something that won't conflict
+ *   with other requirements.
+ * @param callable $callback
+ *   Optional. Setting this value will override whatever implementation is
+ *   currently set for the name.
+ * return callable
+ */
+function implementation($name, $callback = null) {
+	static $_store = array();
+
+	if ( $callback !== null ) {
+		$_store[ $name ] = $callback;
+	}
+
+	return $_store[ $name ];
+}
