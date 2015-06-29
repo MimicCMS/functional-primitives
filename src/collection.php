@@ -33,6 +33,10 @@ namespace Mimic\Functional;
 use Traversable;
 use Countable;
 
+function clean() {
+	/** @todo Complete */
+}
+
 /**
  * Split the collection into separate arrays for indexes and values.
  *
@@ -258,6 +262,30 @@ function flattenDot() {
  * @link http://laravel.com/docs/master/helpers#method-array-forget
  */
 function forget() {
+	/** @todo Incomplete */
+}
+
+/**
+ *
+ * @api
+ * @since 0.1.0
+ * @todo Needs tests.
+ * @todo Complete
+ * @link http://laravel.com/docs/master/helpers#method-array-forget
+ */
+function forgetFirst() {
+	/** @todo Incomplete */
+}
+
+/**
+ *
+ * @api
+ * @since 0.1.0
+ * @todo Needs tests.
+ * @todo Complete
+ * @link http://laravel.com/docs/master/helpers#method-array-forget
+ */
+function forgetLast() {
 	/** @todo Incomplete */
 }
 
@@ -589,6 +617,10 @@ function pluck() {
 	/** @todo Incomplete */
 }
 
+function random() {
+	/** @todo Incomplete */
+}
+
 /**
  * Iterate through each element of collection to reduce to a single value.
  *
@@ -652,7 +684,7 @@ function reduceRight($collection, $callback, $initial = null) {
  * @param Traversable|array $collection
  * @param int $from
  *   Must be positive. Will take from beginning.
- *   Obviously, this must be less than 
+ *   Obviously, this must be less than
  * @return array
  */
 function rest($collection, $from) {
@@ -909,6 +941,10 @@ function unique($collection, $strict = true, $callback = null) {
 		}
 		return false;
 	});
+}
+
+function without() {
+	/** @todo Incomplete */
 }
 
 function zip() {
