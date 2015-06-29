@@ -30,6 +30,31 @@
 /** @package Mimic\Functional */
 namespace Mimic\Functional;
 
+/**
+ * Wrap callback in a closure.
+ *
+ * @api
+ * @since 0.1.0
+ * @todo Needs tests.
+ *
+ * @param callback $callback
+ *   Every callback type is supported. Arguments will be passed to callback, if any exist.
+ * @param mixed ...$args
+ *   Arguments to pass to callback.
+ * @return \Closure {
+ *     @return mixed
+ * }
+ */
+function bind($callback) {
+	$arguments = array();
+	if (func_num_args() > 1) {
+		$arguments = array_slice(func_get_args(), 1);
+	}
+	return function() use ($callback, $arguments) {
+		return call_user_func_array($callback, $arguments);
+	};
+}
+
 function partialAny() {
 	/** @todo Incomplete */
 }
