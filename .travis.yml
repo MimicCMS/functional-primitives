@@ -1,14 +1,14 @@
 language: php
 php:
-  - 7.0
-  - 5.6
-  - 5.5
-  - 5.4
-  - 5.3
-  - hhvm
+- 7.0
+- 5.6
+- 5.5
+- 5.4
+- 5.3
+- hhvm
 install: composer install --dev --prefer-source -n
 after_script:
-  - vendor/bin/test-reporter
+- vendor/bin/test-reporter
 addons:
   code_climate:
-    repo_token: 284ae674366101961a019f40b8fe0874256072179004107fe319ae9aa6251afc
+    secure: hIUSTs1MTWXwhj1ryHVqPtflg61VBz1iS4bBxJaMxLEKpxYWmiruc3YNPu3NBYPnGyft90/qeBRwg6O1V8m05LdhfNU1xGIh4Mp8clYVlgGVBbPdQMXOdZIzqMrC/UVXyHT2DcMmZdpHZ9LNTJsjz6V1BX8iaUyPzM/7YH8GGsIanxh6bp7UOKnchC9i83GOgxzp6Q5ZeagAybGh3RuxzpFW+SyeCF+H23EF2eV7BJ8DsYPCgJX0A5ROkjuxEoc7vxeRuYE2Hl1/nDt+K2DoIciT591bZGCuFG/nZmEyP3TVVaGmFPVcoLrRy7RpbZ/eRn4E/rKiOFrvPy+dzIbWg+SXyV2WwFxo1oH53X1iRYn2+0vAujyh+yTg+z5TKAyTkOJ0tkHKTQVNYCpVmb9rQIbLYsxGOiBefyxDmexYL8mLJ88VOFJ/3Jx32zPXtL9RqOX2UzuN0NRgomAX8ligDdotHtePazV2Ts2MoIMqiK+mKYLxYcyHz84MreW9rE1SvlTIsnOfjmbE/SMDf1wW7wmJFxqgfLlqxBovdxIcKvO50pajS2BJn5m7D1tlVAfMQYhEKbQE5/X5fe7ws5NfAr529FoXCUQb2zKVwJXWCClKbe6L/kAoNIbxZ2R0GjepCtPF3PkO3S6RCQPXznA6ltdZZionkAK8bxlifvMiiJQ=
