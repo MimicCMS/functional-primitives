@@ -36,6 +36,32 @@ function compose() {
 	/** @todo Incomplete */
 }
 
+/**
+ * Mutates or accesses implementation based on name.
+ *
+ * @param string $name
+ *   It is better to namespace and set the name to something that won't conflict
+ *   with other requirements.
+ * @param callable|bool $callback
+ *   Optional. Setting this value will override whatever implementation is
+ *   currently set for the name.
+ *
+ *   Setting callback to false will remove implementation.
+ * return callable
+ */
+function implementation($name, $callback = null) {
+	static $_store = array();
+
+	if ( $callback !== null ) {
+		$_store[ $name ] = $callback;
+	}
+	else if ( $callback === false ) {
+		unset($_store[ $name ]);
+	}
+
+	return $_store[ $name ];
+}
+
 function partialAny() {
 	/** @todo Incomplete */
 }
@@ -75,25 +101,4 @@ function wrap($callback) {
 	return function() use ($callback, $arguments) {
 		return call_user_func_array($callback, $arguments);
 	};
-}
-
-/**
- * Mutates or accesses implementation based on name.
- *
- * @param string $name
- *   It is better to namespace and set the name to something that won't conflict
- *   with other requirements.
- * @param callable $callback
- *   Optional. Setting this value will override whatever implementation is
- *   currently set for the name.
- * return callable
- */
-function implementation($name, $callback = null) {
-	static $_store = array();
-
-	if ( $callback !== null ) {
-		$_store[ $name ] = $callback;
-	}
-
-	return $_store[ $name ];
 }
