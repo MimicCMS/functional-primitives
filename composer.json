@@ -12,9 +12,13 @@
 		},
 		"files": [
 			"src/collection.php",
+			"src/composition.php",
+			"src/comparison.php",
+			"src/contains.php",
 			"src/helpers.php",
+			"src/invoke.php",
 			"src/math.php",
-			"src/composition.php"
+			"src/transform.php"
 		]
 	},
 	"autoload-dev": {
