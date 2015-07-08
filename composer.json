@@ -11,14 +11,14 @@
 			"Mimic\\Functional\\": "src/"
 		},
 		"files": [
-			"src/collection.php",
+			"src/collection/collection.php",
+			"src/collection/contains.php",
+			"src/collection/transform.php",
 			"src/composition.php",
 			"src/comparison.php",
-			"src/contains.php",
 			"src/helpers.php",
 			"src/invoke.php",
-			"src/math.php",
-			"src/transform.php"
+			"src/math.php"
 		]
 	},
 	"autoload-dev": {
