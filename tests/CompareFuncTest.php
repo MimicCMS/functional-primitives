@@ -16,9 +16,10 @@ class CompareFuncTest extends PHPUnit_Framework_TestCase {
 	public function dataProvider() {
 		return array(
 			array(true, 1, 1, true),
+			array(false, 1, true, true),
+			array(false, '1', 1, true),
 			array(true, '1', 1, false),
 			array(false, 0, 1, true),
-			array(false, '1', 1, true),
 		);
 	}
 
