@@ -119,15 +119,15 @@ function dropLast($collection, $callback) {
  *   whether none of the elements evaluated to true from this function alone.
  */
 function first($collection, $callback = null) {
+	// Do not break the state of collection, by changing the internal
+	// pointer.
+	$copy = $collection;
+	reset($copy);
 	if ( $callback === null ) {
-		// Do not break the state of collection, by changing the internal
-		// pointer.
-		$copy = $collection;
-		reset($copy);
 		return current($copy);
 	}
 
-	foreach ( $collection as $index => $element ) {
+	foreach ( $copy as $index => $element ) {
 		if ( $callback($element, $index, $collection) ) {
 			return $element;
 		}
@@ -212,7 +212,9 @@ function initial($collection, $ignore) {
  *   whether none of the elements evaluated to true from this function alone.
  */
 function last($collection, $callback = null) {
-	return first(array_reverse($collection, true), $callback);
+	return first(array_reverse($collection, true), function($element, $index) use ($collection, $callback) {
+		return $callback($element, $index, $collection);
+	});
 }
 
 /**
