@@ -77,7 +77,7 @@ class FirstFuncTest extends PHPUnit_Framework_TestCase {
 	 */
 	public function testStateIsNotChangedWithCallback($_, $collection) {
 		$callback = function($element, $index, $array) use ($collection) {
-			return $index === 1;
+			return $index === 2;
 		};
 
 		$expected = next($collection);

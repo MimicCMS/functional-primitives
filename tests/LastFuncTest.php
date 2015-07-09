@@ -15,8 +15,8 @@ class LastFuncTest extends PHPUnit_Framework_TestCase {
 		return array(
 			array(5, range(1, 5, 1)),
 			array(200, range(100, 200, 10)),
-			array('else', array('something', 'else')),
-			array('world', array('hello', 'world')),
+			array('else', array('something', 'else', 'anything')),
+			array('world', array('hello', 'world', 'name')),
 		);
 	}
 
@@ -77,7 +77,7 @@ class LastFuncTest extends PHPUnit_Framework_TestCase {
 	 */
 	public function testStateIsNotChangedWithCallback($_, $collection) {
 		$callback = function($element, $index, $array) use ($collection) {
-			return $index === 1;
+			return $index === 2;
 		};
 
 		$expected = next($collection);
