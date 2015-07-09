@@ -31,14 +31,28 @@ class ApplyFuncTest extends PHPUnit_Framework_TestCase {
 	/**
 	 * @covers ::Mimic\Functional\apply
 	 */
-	public function testFileExistsFunction_DirectoryExists() {
+	public function testWrappedFileExistsFunction_DirectoryExists() {
 		$this->assertTrue(F\apply(F\wrap('file_exists', __DIR__)));
 	}
 
 	/**
 	 * @covers ::Mimic\Functional\apply
 	 */
-	public function testFileExistsFunction_FileExists() {
+	public function testWrappedFileExistsFunction_FileExists() {
 		$this->assertTrue(F\apply(F\wrap('file_exists', __FILE__)));
+	}
+
+	/**
+	 * @covers ::Mimic\Functional\apply
+	 */
+	public function testFileExistsFunction_DirectoryExists() {
+		$this->assertTrue(F\apply('file_exists', __DIR__));
+	}
+
+	/**
+	 * @covers ::Mimic\Functional\apply
+	 */
+	public function testFileExistsFunction_FileExists() {
+		$this->assertTrue(F\apply('file_exists', __FILE__));
 	}
 }
