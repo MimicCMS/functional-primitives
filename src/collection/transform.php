@@ -120,8 +120,11 @@ function dropLast($collection, $callback) {
  */
 function first($collection, $callback = null) {
 	if ( $callback === null ) {
-		reset($collection);
-		return current($collection);
+		// Do not break the state of collection, by changing the internal
+		// pointer.
+		$copy = $collection;
+		reset($copy);
+		return current($copy);
 	}
 
 	foreach ( $collection as $index => $element ) {
