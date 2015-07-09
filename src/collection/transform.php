@@ -212,9 +212,13 @@ function initial($collection, $ignore) {
  *   whether none of the elements evaluated to true from this function alone.
  */
 function last($collection, $callback = null) {
-	return first(array_reverse($collection, true), function($element, $index) use ($collection, $callback) {
-		return $callback($element, $index, $collection);
-	});
+	$closure = null;
+	if ($callback !== null) {
+		$closure = function($element, $index) use ($collection, $callback) {
+			return $callback($element, $index, $collection);
+		};
+	}
+	return first(array_reverse($collection, true), $closure);
 }
 
 /**
