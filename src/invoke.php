@@ -79,15 +79,15 @@ function either($left, $right) {
  */
 function execute() {
 	if (func_num_args() < 1) {
-		return;
+		return array();
 	}
-	$values = array();
-	foreach (func_get_args() as $callback) {
-		if ( is_callable($callback) ) {
-			$values = $callback();
+
+	return map(func_get_args(), function($element) {
+		if ( is_callable($element) ) {
+			return apply($element);
 		}
-	}
-	return $values;
+		return null;
+	});
 }
 
 /**
