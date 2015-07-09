@@ -11,43 +11,29 @@ use Mimic\Functional as F;
  * @since 0.1.0
  */
 class InvokeFuncTest extends PHPUnit_Framework_TestCase {
-	/**
-	 * @covers ::Mimic\Functional\invoke
-	 */
-	public function testDummy_Invoke_exists() {
-		$collection = array(new Dummy\Invoke, new Dummy\Invoke);
-		$expected = array(true, true);
-		$actual = F\invoke($collection, 'exists');
-		$this->assertEquals($expected, $actual);
+	public function dataProvider() {
+		return array(
+			array(array(true, false), array(), 'exists'),
+			array(array(null, null), array(), '__doesnotexist__'),
+			array(array(array(1, 2, 3), array(3, 2, 1)), array(1, 2, 3), 'with'),
+		);
 	}
 
 	/**
+	 * @dataProvider dataProvider
 	 * @covers ::Mimic\Functional\invoke
 	 */
-	public function testDummy_Invoke_with() {
-		$collection = array(new Dummy\Invoke, new Dummy\Invoke);
-		$arguments = array(1, 2, 3);
-		$expected = array($arguments, $arguments);
-		$actual = F\invoke($collection, 'with', $arguments);
-		$this->assertEquals($expected, $actual);
-	}
-
-	/**
-	 * @covers ::Mimic\Functional\invoke
-	 */
-	public function testMethodDoesNotExist() {
-		$collection = array(new Dummy\Invoke, new Dummy\Invoke);
-		$expected = array(null, null);
-		$actual = F\invoke($collection, '__doesnotexist__');
-		$this->assertEquals($expected, $actual);
+	public function testInstanceMethods($expected, $args, $methodName) {
+		$collection = array(new Stub\InvokeTrue, new Stub\InvokeFalse);
+		$this->assertEquals($expected, F\invoke($collection, $methodName, $args));
 	}
 
 	/**
 	 * @covers ::Mimic\Functional\invoke
 	 */
 	public function testClassMethod() {
-		$collection = array('\Mimic\Test\Dummy\Invoke', '\Mimic\Test\Dummy\Invoke');
-		$expected = array(true, true);
+		$collection = array('\Mimic\Test\Stub\InvokeTrue', '\Mimic\Test\Stub\InvokeFalse');
+		$expected = array(true, false);
 		$actual = F\invoke($collection, 'method');
 		$this->assertEquals($expected, $actual);
 	}
