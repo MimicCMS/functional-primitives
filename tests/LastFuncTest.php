@@ -62,8 +62,12 @@ class LastFuncTest extends PHPUnit_Framework_TestCase {
 			}
 			return false;
 		};
-		$this->assertEquals($expected, F\last($collection, $callback));
-		$this->assertEquals($expected, F\tail($collection, $callback));
+
+		$actual = F\last($collection, $callback);
+		$this->assertEquals($expected, $actual);
+
+		$actual = F\tail($collection, $callback);
+		$this->assertEquals($expected, $actual);
 	}
 
 	/**

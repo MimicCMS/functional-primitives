@@ -62,8 +62,12 @@ class FirstFuncTest extends PHPUnit_Framework_TestCase {
 			}
 			return false;
 		};
-		$this->assertEquals($expected, F\first($collection, $callback));
-		$this->assertEquals($expected, F\head($collection, $callback));
+
+		$actual = F\first($collection, $callback);
+		$this->assertEquals($expected, $actual);
+
+		$actual = F\head($collection, $callback);
+		$this->assertEquals($expected, $actual);
 	}
 
 	/**
