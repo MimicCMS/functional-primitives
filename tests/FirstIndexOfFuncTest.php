@@ -17,10 +17,10 @@ class FirstIndexOfFuncTest extends PHPUnit_Framework_TestCase {
 		$float = array('1.2', 1, 1.2);
 		$collection = array(0, 1, false, true, 1.0, 'something', 'else', '1');
 		return array(
-			array(1, false, true, $boolean),
+			array(2, false, true, $boolean),
 			array(0, false, false, $boolean),
-			array(3, true, true, $boolean),
-			array(0, true, false, $boolean),
+			array(4, true, true, $boolean),
+			array(1, true, false, $boolean),
 			array(1, 1, true, $integer),
 			array(0, 1, false, $integer),
 			array(2, 1.2, true, $float),

@@ -119,5 +119,10 @@ function indexesOf($collection, $value, $strict = true) {
  *   False on failure.
  */
 function lastIndexOf($collection, $value, $strict = true) {
+	if ( is_callable($value) ) {
+		return firstIndexOf(array_reverse($collection, true), function($element, $index) use ($collection, $value) {
+			return $value($element, $index, $collection);
+		});
+	}
 	return firstIndexOf(array_reverse($collection, true), $value, $strict);
 }

@@ -15,8 +15,8 @@ class LastFuncTest extends PHPUnit_Framework_TestCase {
 		return array(
 			array(5, range(1, 5, 1)),
 			array(200, range(100, 200, 10)),
-			array('else', array('something', 'else', 'anything')),
-			array('world', array('hello', 'world', 'name')),
+			array('anything', array('something', 'else', 'anything')),
+			array('name', array('hello', 'world', 'name')),
 		);
 	}
 
