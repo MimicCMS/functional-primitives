@@ -102,6 +102,22 @@ class MemoizeCacheFuncTest extends PHPUnit_Framework_TestCase {
 	/**
 	 * @covers \Mimic\Functional\MemoizeCache::clean
 	 */
+	public function testClean0Args() {
+		$memoize = $this->memoize;
+
+		$expected = array();
+		$this->assertEquals($expected, $memoize());
+		$this->assertEquals(1, $this->executed[\json_encode($expected)]);
+
+		$memoize->clean();
+
+		$this->assertEquals($expected, $memoize());
+		$this->assertEquals(2, $this->executed[\json_encode($expected)]);
+	}
+
+	/**
+	 * @covers \Mimic\Functional\MemoizeCache::clean
+	 */
 	public function testClean1Args() {
 		$memoize = $this->memoize;
 
