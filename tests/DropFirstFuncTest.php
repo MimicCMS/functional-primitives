@@ -44,7 +44,7 @@ class DropFirstFuncTest extends PHPUnit_Framework_TestCase {
 	 */
 	public function testWhenElementIs2() {
 		$callback = function($element, $index) {
-			return $element === 2;
+			return $element !== 2;
 		};
 
 		$collection = array(0, 1, 3, 4, 2, 5, 6);
