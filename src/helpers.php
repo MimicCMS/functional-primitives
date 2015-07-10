@@ -27,7 +27,6 @@ use Traversable;
  * This is not really part of the API and you should probably use something else
  * if you want this implemented correctly. It is not tuned for performance.
  *
- * @api
  * @since 0.1.0
  *
  * @todo Needs tests.
@@ -111,6 +110,21 @@ function value($value) {
 		$value = $value();
 	}
 	return $value;
+}
+
+/**
+ * When reversing arrays, you need to fix the map collection callable.
+ *
+ * @since 0.1.0
+ *
+ * @param Traversable|array $collection
+ * @param MapCollectionCallback|callable $callback
+ * @return MapCollectionCallback|callable
+ */
+function passOriginalCollection($collection, $callback) {
+	return function($element, $index) use ($collection, $callback) {
+		return $callback($element, $index, $collection);
+	};
 }
 
 /**

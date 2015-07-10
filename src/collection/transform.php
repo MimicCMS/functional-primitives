@@ -235,9 +235,7 @@ function initial($collection, $ignore) {
 function last($collection, $callback = null) {
 	$closure = null;
 	if ($callback !== null) {
-		$closure = function($element, $index) use ($collection, $callback) {
-			return $callback($element, $index, $collection);
-		};
+		$closure = passOriginalCollection($collection, $callback);
 	}
 	return first(array_reverse($collection, true), $closure);
 }

@@ -215,7 +215,7 @@ function reduceLeft($collection, $callback, $initial = null) {
  * @return mixed
  */
 function reduceRight($collection, $callback, $initial = null) {
-	return reduce(array_reverse($collection, true), $initial, $callback);
+	return reduce(array_reverse($collection, true), $initial, passOriginalCollection($collection, $callback));
 }
 
 /**
