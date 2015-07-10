@@ -12,15 +12,40 @@ use Mimic\Functional as F;
  */
 class HashArrayFuncTest extends PHPUnit_Framework_TestCase {
 	public function dataProvider() {
+		$callback = function() { return true; };
 		return array(
-			array(),
-			array(1, 2, 3),
-			array(new Stub\InvokeTrue, new Stub\InvokeFalse, 1, 2),
-			array(1, 2, new Stub\InvokeTrue, new Stub\InvokeFalse),
-			array(function() { return true; }),
-			array(1, function() { return true; }),
-			array(0, 1, function() { return true; }),
-			array(0, 1, function() { return true; }, new Stub\InvokeTrue),
+			array(
+				array(),
+				''
+			),
+			array(
+				array(1, 2, 3),
+				''
+			),
+			array(
+				array(new Stub\InvokeTrue, new Stub\InvokeFalse, 1, 2),
+				''
+			),
+			array(
+				array(1, 2, new Stub\InvokeTrue, new Stub\InvokeFalse),
+				''
+			),
+			array(
+				array($callback),
+				''
+			),
+			array(
+				array(1, $callback),
+				''
+			),
+			array(
+				array(0, 1, $callback),
+				''
+			),
+			array(
+				array(0, 1, $callback, new Stub\InvokeTrue),
+				''
+			),
 		);
 	}
 
