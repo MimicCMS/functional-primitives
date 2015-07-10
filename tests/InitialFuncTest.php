@@ -4,6 +4,7 @@ namespace Mimic\Test;
 
 use PHPUnit_Framework_TestCase;
 use Mimic\Functional as F;
+use ArrayIterator;
 
 /**
  * Unit Test for initial Mimic library function.
@@ -11,33 +12,24 @@ use Mimic\Functional as F;
  * @since 0.1.0
  */
 class InitialFuncTest extends PHPUnit_Framework_TestCase {
-	/**
-	 * @covers ::Mimic\Functional\initial
-	 */
-	public function testDroppingLast2() {
+	public function dataProvider() {
 		$collection = array(0, 1, 2, 3, 4, 5, 6);
 		$expected = array(0 => 0, 1 => 1, 2 => 2, 3 => 3, 4 => 4);
-		$actual = F\initial($collection, 2);
-		$this->assertEquals($expected, $actual);
+		return array(
+			array(2, $collection, $expected),
+			array(-2, $collection, $expected),
+			array(8, $collection, array()),
+			array(2, new ArrayIterator($collection), $expected),
+			array(-2, new ArrayIterator($collection), $expected),
+			array(8, new ArrayIterator($collection), array()),
+		);
 	}
 
 	/**
+	 * @dataProvider dataProvider
 	 * @covers ::Mimic\Functional\initial
 	 */
-	public function testDroppingLastNeg2() {
-		$collection = array(0, 1, 2, 3, 4, 5, 6);
-		$expected = array(0 => 0, 1 => 1, 2 => 2, 3 => 3, 4 => 4);
-		$actual = F\initial($collection, -2);
-		$this->assertEquals($expected, $actual);
-	}
-
-	/**
-	 * @covers ::Mimic\Functional\initial
-	 */
-	public function testOverArrayCount() {
-		$collection = array(0, 1, 2, 3, 4, 5);
-		$expected = array();
-		$actual = F\initial($collection, 7);
-		$this->assertEquals($expected, $actual);
+	public function testResults($drop, $collection, $expected) {
+		$this->assertEquals($expected, F\initial($collection, $drop));
 	}
 }
