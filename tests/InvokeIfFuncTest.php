@@ -15,12 +15,14 @@ class InvokeIfFuncTest extends PHPUnit_Framework_TestCase {
 		return array(
 			array(true, array(), new Stub\InvokeTrue, 'exists', null),
 			array(false, array(), new Stub\InvokeFalse, 'exists', null),
+			array(array(1, 2, 3), array(1, 2, 3), Stub\InvokeTrue, 'with', null),
+			array(array(3, 2, 1), array(1, 2, 3), Stub\InvokeFalse, 'with', null),
 			array(null, array(), new Stub\InvokeTrue, '__doesnotexist__', null),
 			array(false, array(), new Stub\InvokeTrue, '__doesnotexist__', false),
 			array(true, array(), new Stub\InvokeTrue, '__doesnotexist__', true),
 			array('something', array(), new Stub\InvokeTrue, '__doesnotexist__', 'something'),
-			array(array(1, 2, 3), array(1, 2, 3), '\Mimic\Test\Stub\InvokeTrue', 'method', null),
-			array(array(3, 2, 1), array(1, 2, 3), '\Mimic\Test\Stub\InvokeFalse', 'method', null),
+			array(true, array(), '\Mimic\Test\Stub\InvokeTrue', 'method', null),
+			array(false, array(), '\Mimic\Test\Stub\InvokeFalse', 'method', null),
 		);
 	}
 
