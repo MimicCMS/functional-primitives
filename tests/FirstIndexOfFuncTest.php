@@ -29,6 +29,7 @@ class FirstIndexOfFuncTest extends PHPUnit_Framework_TestCase {
 			array(1, '1', false, $collection),
 			array(6, 'else', true, $collection),
 			array(5, 'something', true, $collection),
+			array(false, '__doesnotexist__', true, $collection),
 		);
 	}
 
