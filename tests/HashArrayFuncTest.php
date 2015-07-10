@@ -26,19 +26,19 @@ class HashArrayFuncTest extends PHPUnit_Framework_TestCase {
 			),
 			array(
 				array(new Stub\InvokeTrue, new Stub\InvokeFalse, 1, 2),
-				'/\["'.$invokeTrue.'\:[0-9a-zA-Z]+","'.$invokeFalse.'\:[0-9a-zA-Z]+",1,2\]/'
+				'/\["'.$invokeTrue.':[0-9a-zA-Z]+","'.$invokeFalse.':[0-9a-zA-Z]+",1,2\]/'
 			),
 			array(
 				array(1, 2, new Stub\InvokeTrue, new Stub\InvokeFalse),
-				'/\[1,2,"'.$invokeTrue.'\:[0-9a-zA-Z]+","'.$invokeFalse.'\:[0-9a-zA-Z]+"\]/'
+				'/\[1,2,"'.$invokeTrue.':[0-9a-zA-Z]+","'.$invokeFalse.':[0-9a-zA-Z]+"\]/'
 			),
 			array(
 				array($callback),
-				'/\["Closure\:[0-9a-zA-Z]+"\]/'
+				'/\["Closure:[0-9a-zA-Z]+"\]/'
 			),
 			array(
 				array(1, $callback),
-				'/\[1,"Closure\:[0-9a-zA-Z]+"\]/'
+				'/\[1,"Closure:[0-9a-zA-Z]+"\]/'
 			),
 			array(
 				array(0, 1, $callback),
@@ -46,7 +46,7 @@ class HashArrayFuncTest extends PHPUnit_Framework_TestCase {
 			),
 			array(
 				array(0, 1, $callback, new Stub\InvokeTrue),
-				'/\[0,1,"Closure\:[0-9a-zA-Z]+","'.$invokeTrue.'\:[0-9a-zA-Z]+"\]/'
+				'/\[0,1,"Closure:[0-9a-zA-Z]+","'.$invokeTrue.'\:[0-9a-zA-Z]+"\]/'
 			),
 		);
 	}
