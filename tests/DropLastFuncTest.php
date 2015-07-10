@@ -30,7 +30,7 @@ class DropLastFuncTest extends PHPUnit_Framework_TestCase {
 	 */
 	public function testIsEmptyArray() {
 		$callback = function($element, $index) {
-			return false;
+			return true;
 		};
 
 		$collection = array(0, 1, 2);
