@@ -1,6 +1,6 @@
 <?php
 
-namespace Mimic\Test\Stub;
+namespace Mimic\Test\Fake;
 
 class InvokeTrue {
 	public function exists() {

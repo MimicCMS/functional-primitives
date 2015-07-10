@@ -24,7 +24,7 @@ class InvokeFuncTest extends PHPUnit_Framework_TestCase {
 	 * @covers ::Mimic\Functional\invoke
 	 */
 	public function testInstanceMethods($expected, $args, $methodName) {
-		$collection = array(new Stub\InvokeTrue, new Stub\InvokeFalse);
+		$collection = array(new Fake\InvokeTrue, new Fake\InvokeFalse);
 		$this->assertEquals($expected, F\invoke($collection, $methodName, $args));
 	}
 
@@ -32,7 +32,7 @@ class InvokeFuncTest extends PHPUnit_Framework_TestCase {
 	 * @covers ::Mimic\Functional\invoke
 	 */
 	public function testClassMethod() {
-		$collection = array('\Mimic\Test\Stub\InvokeTrue', '\Mimic\Test\Stub\InvokeFalse');
+		$collection = array('\Mimic\Test\Fake\InvokeTrue', '\Mimic\Test\Fake\InvokeFalse');
 		$expected = array(true, false);
 		$actual = F\invoke($collection, 'method');
 		$this->assertEquals($expected, $actual);

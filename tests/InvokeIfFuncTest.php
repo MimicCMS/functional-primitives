@@ -13,17 +13,17 @@ use Mimic\Functional as F;
 class InvokeIfFuncTest extends PHPUnit_Framework_TestCase {
 	public function dataProvider() {
 		return array(
-			array(true, array(), new Stub\InvokeTrue, 'exists', null),
-			array(false, array(), new Stub\InvokeFalse, 'exists', null),
-			array(array(1, 2, 3), array(1, 2, 3), new Stub\InvokeTrue, 'with', null),
-			array(array(3, 2, 1), array(1, 2, 3), new Stub\InvokeFalse, 'with', null),
-			array(true, array(), '\Mimic\Test\Stub\InvokeTrue', 'method', null),
-			array(false, array(), '\Mimic\Test\Stub\InvokeFalse', 'method', null),
+			array(true, array(), new Fake\InvokeTrue, 'exists', null),
+			array(false, array(), new Fake\InvokeFalse, 'exists', null),
+			array(array(1, 2, 3), array(1, 2, 3), new Fake\InvokeTrue, 'with', null),
+			array(array(3, 2, 1), array(1, 2, 3), new Fake\InvokeFalse, 'with', null),
+			array(true, array(), '\Mimic\Test\Fake\InvokeTrue', 'method', null),
+			array(false, array(), '\Mimic\Test\Fake\InvokeFalse', 'method', null),
 
-			array(null, array(), new Stub\InvokeTrue, '__doesnotexist__', null),
-			array(false, array(), new Stub\InvokeTrue, '__doesnotexist__', false),
-			array(true, array(), new Stub\InvokeTrue, '__doesnotexist__', true),
-			array('something', array(), new Stub\InvokeTrue, '__doesnotexist__', 'something'),
+			array(null, array(), new Fake\InvokeTrue, '__doesnotexist__', null),
+			array(false, array(), new Fake\InvokeTrue, '__doesnotexist__', false),
+			array(true, array(), new Fake\InvokeTrue, '__doesnotexist__', true),
+			array('something', array(), new Fake\InvokeTrue, '__doesnotexist__', 'something'),
 		);
 	}
 
