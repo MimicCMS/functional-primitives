@@ -11,63 +11,25 @@ use Mimic\Functional as F;
  * @since 0.1.0
  */
 class FilterFuncTest extends PHPUnit_Framework_TestCase {
-	/**
-	 * @covers ::Mimic\Functional\filter
-	 */
-	public function testEverythingAccepted() {
-		$collection = range(0, 10);
-		$expected = $collection;
-		$actual = F\filter($collection, function() { return true; });
-		$this->assertEquals($expected, $actual);
+	public function dataProvider() {
+		$range = range(0, 10);
+		return array(
+			array($range, $range, function() { return true; }),
+			array($range, array(), function() { return false; }),
+			array($range, array(1 => 1, 3 => 3, 5 => 5, 7 => 7, 9 => 9), function($element) { return ! (($element % 2) === 0); }),
+			array($range, array(0 => 0, 2 => 2, 4 => 4, 6 => 6, 8 => 8, 10 => 10), function($element) { return (($element % 2) === 0); }),
+			array($range, array(1 => 1, 3 => 3, 5 => 5, 7 => 7, 9 => 9), function($element, $index) { return ! (($index % 2) === 0); }),
+			array($range, array(0 => 0, 2 => 2, 4 => 4, 6 => 6, 8 => 8, 10 => 10), function($element, $index) { return (($index % 2) === 0); }),
+		);
 	}
 
 	/**
+	 * @dataProvider dataProvider
 	 * @covers ::Mimic\Functional\filter
+	 * @covers ::Mimic\Functional\select
 	 */
-	public function testNothingAccepted() {
-		$collection = range(0, 10);
-		$expected = array();
-		$actual = F\filter($collection, function() { return false; });
-		$this->assertEquals($expected, $actual);
-	}
-
-	/**
-	 * @covers ::Mimic\Functional\filter
-	 */
-	public function testOnlyOddElements() {
-		$collection = range(0, 10);
-		$expected = array(1 => 1, 3 => 3, 5 => 5, 7 => 7, 9 => 9);
-		$actual = F\filter($collection, function($element) { return ! (($element % 2) === 0); });
-		$this->assertEquals($expected, $actual);
-	}
-
-	/**
-	 * @covers ::Mimic\Functional\filter
-	 */
-	public function testOnlyEvenElements() {
-		$collection = range(0, 10);
-		$expected = array(0 => 0, 2 => 2, 4 => 4, 6 => 6, 8 => 8, 10 => 10);
-		$actual = F\filter($collection, function($element) { return (($element % 2) === 0); });
-		$this->assertEquals($expected, $actual);
-	}
-
-	/**
-	 * @covers ::Mimic\Functional\filter
-	 */
-	public function testOnlyOddIndexes() {
-		$collection = range(0, 10);
-		$expected = array(1 => 1, 3 => 3, 5 => 5, 7 => 7, 9 => 9);
-		$actual = F\filter($collection, function($element, $index) { return ! (($index % 2) === 0); });
-		$this->assertEquals($expected, $actual);
-	}
-
-	/**
-	 * @covers ::Mimic\Functional\filter
-	 */
-	public function testOnlyEvenIndexes() {
-		$collection = range(0, 10);
-		$expected = array(0 => 0, 2 => 2, 4 => 4, 6 => 6, 8 => 8, 10 => 10);
-		$actual = F\filter($collection, function($element, $index) { return (($index % 2) === 0); });
-		$this->assertEquals($expected, $actual);
+	public function testResults($collection, $expected, $callback) {
+		$this->assertEquals($expected, F\filter($collection, $callback));
+		$this->assertEquals($expected, F\select($collection, $callback));
 	}
 }
