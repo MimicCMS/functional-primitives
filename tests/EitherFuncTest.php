@@ -28,7 +28,7 @@ class EitherFuncTest extends PHPUnit_Framework_TestCase {
 	public function testFirstCallbackValue($expected) {
 		$left = function() use ($expected) { return $expected; };
 		$right = function() { return false; };
-		$this->assertEquals($expected, F\either($left, $right));
+		$this->assertEquals($expected, F\apply(F\either($left, $right)));
 	}
 
 	/**
@@ -38,6 +38,6 @@ class EitherFuncTest extends PHPUnit_Framework_TestCase {
 	public function testSecondCallbackValue($expected) {
 		$left = function() { return false; };
 		$right = function() use ($expected) { return $expected; };
-		$this->assertEquals($expected, F\either($left, $right));
+		$this->assertEquals($expected, F\apply(F\either($left, $right)));
 	}
 }
