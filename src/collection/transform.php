@@ -69,7 +69,7 @@ function dropFirst($collection, $callback) {
 	$keep = array();
 	$drop = true;
 	each($collection, function($element, $index, $collection) use (&$keep, &$drop, $callback) {
-		if ( ! $callback($element, $index, $collection) ) {
+		if ( $drop && ! $callback($element, $index, $collection) ) {
 			$drop = false;
 		}
 		if ( ! $drop ) {
@@ -92,10 +92,10 @@ function dropFirst($collection, $callback) {
  */
 function dropLast($collection, $callback) {
 	$keep = array();
-	$drop = true;
+	$drop = false;
 	each($collection, function($element, $index, $collection) use (&$keep, &$drop, $callback) {
 		if ( $drop && $callback($element, $index, $collection) ) {
-			$drop = false;
+			$drop = true;
 		}
 		if ( ! $drop ) {
 			$keep[ $index ] = $element;
