@@ -125,26 +125,6 @@ function none($collection, $callback) {
 }
 
 /**
- * Keep only the given elements that match given indexes.
- *
- * @api
- * @since 0.1.0
- * @todo Needs tests.
- * @link http://laravel.com/docs/master/helpers#method-array-only
- *
- * @param Traversable|array $collection
- * @param array $keep
- *   List of indexes.
- * @return array
- *   Array of elements in collection that are in keys list.
- */
-function only($collection, array $keep) {
-	return filter($collection, function($_, $index) use ($keep) {
-		return in_array($index, $keep);
-	});
-}
-
-/**
  * Iterate through collection short-circuiting when callback returns true.
  *
  * This prevents the entire loop from executing for some performance. At worst,
