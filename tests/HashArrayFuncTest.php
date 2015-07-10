@@ -13,8 +13,8 @@ use Mimic\Functional as F;
 class HashArrayFuncTest extends PHPUnit_Framework_TestCase {
 	public function dataProvider() {
 		$callback = function() { return true; };
-		$invokeTrue = 'Mimic\\\\Test\\\\Stub\\\\InvokeTrue';
-		$invokeFalse = 'Mimic\\\\Test\\\\Stub\\\\InvokeFalse';
+		$invokeTrue = 'Mimic\\\\\\\\Test\\\\\\\\Stub\\\\\\\\InvokeTrue';
+		$invokeFalse = 'Mimic\\\\\\\\Test\\\\\\\\Stub\\\\\\\\InvokeFalse';
 		return array(
 			array(
 				array(),
