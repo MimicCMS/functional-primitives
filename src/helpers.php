@@ -87,10 +87,6 @@ function put($something, $name, $value, $override = false) {
 	return $something;
 }
 
-function retry() {
-	/** @todo Incomplete */
-}
-
 /**
  * Passes through value, unless callback then returns result of callback.
  *
