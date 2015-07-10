@@ -50,25 +50,25 @@ class MemoizeCacheFuncTest extends PHPUnit_Framework_TestCase {
 	public function testCallbackArguments() {
 		$memoize = $this->memoize;
 		$this->assertEquals(array(), $memoize());
-		$this->assertEquals(1, $this->executed[0]);
+		$this->assertEquals(1, $this->executed[\json_encode(array())]);
 
 		$this->assertEquals(array(), $memoize());
-		$this->assertEquals(1, $this->executed[0]);
+		$this->assertEquals(1, $this->executed[\json_encode(array())]);
 
 		$this->assertEquals(array(1), $memoize(1));
-		$this->assertEquals(1, $this->executed[1]);
+		$this->assertEquals(1, $this->executed[\json_encode(array(1))]);
 
 		$this->assertEquals(array(1), $memoize(1));
-		$this->assertEquals(1, $this->executed[1]);
+		$this->assertEquals(1, $this->executed[\json_encode(array(1))]);
 
 		$this->assertEquals(array(), $memoize());
-		$this->assertEquals(1, $this->executed[0]);
+		$this->assertEquals(1, $this->executed[\json_encode(array())]);
 
 		$this->assertEquals(array(1, 2), $memoize(1, 2));
-		$this->assertEquals(1, $this->executed[2]);
+		$this->assertEquals(1, $this->executed[\json_encode(array(1, 2))]);
 
 		$this->assertEquals(array(1, 2), $memoize(1, 2));
-		$this->assertEquals(1, $this->executed[2]);
+		$this->assertEquals(1, $this->executed[\json_encode(array(1, 2))]);
 	}
 
 	/**
