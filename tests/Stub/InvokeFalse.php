@@ -2,7 +2,7 @@
 
 namespace Mimic\Test\Stub;
 
-class Invoke {
+class InvokeFalse {
 	public function exists() {
 		return false;
 	}
