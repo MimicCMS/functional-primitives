@@ -73,13 +73,14 @@ class PutFuncTest extends PHPUnit_Framework_TestCase {
 		$this->assertEquals($expected1, $actual1);
 		$this->assertNotSame($collection, $actual1);
 
-		$actual2 = F\put($collection, 'one', 2, false);
+		$actual2 = F\put($actual1, 'one', 2, false);
 		$this->assertEquals($expected1, $actual2);
 		$this->assertNotSame($collection, $actual2);
 
 		$expected2 = clone $expected1;
 		$expected2->one = 2;
-		$actual3 = F\put($collection, 'one', 2, true);
+
+		$actual3 = F\put($actual1, 'one', 2, true);
 		$this->assertEquals($expected2, $actual3);
 		$this->assertNotSame($collection, $actual3);
 	}
@@ -97,13 +98,14 @@ class PutFuncTest extends PHPUnit_Framework_TestCase {
 		$this->assertEquals($expected1, $actual1);
 		$this->assertNotSame($collection, $actual1);
 
-		$actual2 = F\put($collection, 'two', 3, false);
+		$actual2 = F\put($actual1, 'two', 3, false);
 		$this->assertEquals($expected1, $actual2);
 		$this->assertNotSame($collection, $actual2);
 
 		$expected2 = clone $expected1;
 		$expected2->two = 3;
-		$actual3 = F\put($collection, 'two', 3, true);
+
+		$actual3 = F\put($actual1, 'two', 3, true);
 		$this->assertEquals($expected2, $actual3);
 		$this->assertNotSame($collection, $actual3);
 	}
@@ -125,15 +127,15 @@ class PutFuncTest extends PHPUnit_Framework_TestCase {
 		$expected2->something = 'else';
 		$expected2->hello = 'world';
 
-		$actual2 = F\put($collection, 'hello', 'world', false);
+		$actual2 = F\put($actual1, 'hello', 'world', false);
 		$this->assertEquals($expected2, $actual2);
 		$this->assertNotSame($collection, $actual2);
 
-		$actual3 = F\put($collection, 'something', 'something', false);
+		$actual3 = F\put($actual2, 'something', 'something', false);
 		$this->assertEquals($expected1, $actual3);
 		$this->assertNotSame($collection, $actual3);
 
-		$actual4 = F\put($collection, 'hello', 'hello', false);
+		$actual4 = F\put($actual2, 'hello', 'hello', false);
 		$this->assertEquals($expected2, $actual4);
 		$this->assertNotSame($collection, $actual4);
 	}
