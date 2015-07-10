@@ -94,7 +94,7 @@ function dropLast($collection, $callback) {
 	$keep = array();
 	$drop = false;
 	each($collection, function($element, $index, $collection) use (&$keep, &$drop, $callback) {
-		if ( $drop && $callback($element, $index, $collection) ) {
+		if ( ! $drop && $callback($element, $index, $collection) ) {
 			$drop = true;
 		}
 		if ( ! $drop ) {
