@@ -23,6 +23,7 @@ class ReduceFuncTest extends PHPUnit_Framework_TestCase {
 	/**
 	 * @dataProvider dataProvider_numbers
 	 * @covers ::Mimic\Functional\reduce
+	 * @covers ::Mimic\Functional\reduceLeft
 	 */
 	public function testAddResults($initial, $data) {
 		$self = $this;
@@ -38,10 +39,12 @@ class ReduceFuncTest extends PHPUnit_Framework_TestCase {
 		$expected = array_sum($data) + $initial;
 
 		$this->assertEquals($expected, F\reduce($data, $initial, $callback));
+		$this->assertEquals($expected, F\reduceLeft($data, $initial, $callback));
 	}
 
 	/**
 	 * @covers ::Mimic\Functional\reduce
+	 * @covers ::Mimic\Functional\reduceLeft
 	 */
 	public function testAppendString() {
 		$data = array('something', 'else', 'hello', 'world');
@@ -53,10 +56,12 @@ class ReduceFuncTest extends PHPUnit_Framework_TestCase {
 		$expected = ' something else hello world';
 
 		$this->assertEquals($expected, F\reduce($data, '', $callback));
+		$this->assertEquals($expected, F\reduceLeft($data, '', $callback));
 	}
 
 	/**
 	 * @covers ::Mimic\Functional\reduce
+	 * @covers ::Mimic\Functional\reduceLeft
 	 */
 	public function testPrependString() {
 		$data = array('something', 'else', 'hello', 'world');
@@ -68,5 +73,6 @@ class ReduceFuncTest extends PHPUnit_Framework_TestCase {
 		$expected = 'world hello else something ';
 
 		$this->assertEquals($expected, F\reduce($data, '', $callback));
+		$this->assertEquals($expected, F\reduceLeft($data, '', $callback));
 	}
 }
