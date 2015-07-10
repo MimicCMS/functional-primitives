@@ -105,6 +105,27 @@ function dropLast($collection, $callback) {
 }
 
 /**
+ * Remove elements from collection that do not pass callback.
+ *
+ * @api
+ * @since 0.1.0
+ * @todo Needs tests.
+ *
+ * @param Traversable|array $collection
+ * @param MapCollectionCallback|callable $callback
+ * @return array
+ */
+function filter($collection, $callback) {
+	$aggregation = array();
+	each($collection, function($element, $index, $collection) use (&$aggregation, $callback) {
+		if ( $callback($element, $index, $collection) ) {
+			$aggregation[ $index ] = $element;
+		}
+	});
+	return $aggregation;
+}
+
+/**
  * Retrieve first item in collection or first item that passes callback.
  *
  * @api
