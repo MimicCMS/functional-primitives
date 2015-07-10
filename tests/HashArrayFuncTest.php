@@ -13,6 +13,8 @@ use Mimic\Functional as F;
 class HashArrayFuncTest extends PHPUnit_Framework_TestCase {
 	public function dataProvider() {
 		$callback = function() { return true; };
+		$callbackName = get_class($callback);
+		$callbackRef = spl_object_hash($callback);
 		$invokeTrue = 'Mimic\\\\\\\\Test\\\\\\\\Stub\\\\\\\\InvokeTrue';
 		$invokeFalse = 'Mimic\\\\\\\\Test\\\\\\\\Stub\\\\\\\\InvokeFalse';
 		return array(
@@ -34,19 +36,19 @@ class HashArrayFuncTest extends PHPUnit_Framework_TestCase {
 			),
 			array(
 				array($callback),
-				'/\["Closure:[0-9a-zA-Z]+"\]/'
+				'/\["'.$callbackName.':'.$callbackRef.'"\]/'
 			),
 			array(
 				array(1, $callback),
-				'/\[1,"Closure:[0-9a-zA-Z]+"\]/'
+				'/\[1,"'.$callbackName.':'.$callbackRef.'"\]/'
 			),
 			array(
 				array(0, 1, $callback),
-				'/\[0,1,"Closure:[0-9a-zA-Z]+"\]/'
+				'/\[0,1,"'.$callbackName.':'.$callbackRef.'"\]/'
 			),
 			array(
 				array(0, 1, $callback, new Stub\InvokeTrue),
-				'/\[0,1,"Closure:[0-9a-zA-Z]+","'.$invokeTrue.':[0-9a-zA-Z]+"\]/'
+				'/\[0,1,"'.$callbackName.':'.$callbackRef.'","'.$invokeTrue.':[0-9a-zA-Z]+"\]/'
 			),
 		);
 	}
