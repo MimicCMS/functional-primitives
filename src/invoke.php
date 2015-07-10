@@ -197,7 +197,15 @@ function invokeLast($collection, $methodName, array $arguments = array()) {
  * @return MemoizeCache
  */
 function memoize($callback) {
-	return new MemoizeCache($callback);
+	static $_container = array();
+
+	$hash = hash_array(array($callback));
+	
+	if ( ! isset($_container[ $hash ]) ) {
+		$_container[ $hash ] = new MemoizeCache($callback);
+	}
+
+	return $_container[ $hash ];
 }
 
 /**
