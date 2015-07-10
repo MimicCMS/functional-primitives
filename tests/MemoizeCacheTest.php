@@ -38,7 +38,9 @@ class MemoizeCacheFuncTest extends PHPUnit_Framework_TestCase {
 		$expected = function() { return true; };
 		$memoize = new MemoizeCache($expected);
 		$reflect = new \ReflectionClass($memoize);
-		$actual = $reflect->getProperty('_callback')->getValue();
+		$property = $reflect->getProperty('_callback');
+		$property->setAccessible(true);
+		$actual = $property->getValue();
 		$this->assertSame($expected, $actual);
 	}
 
