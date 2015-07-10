@@ -14,7 +14,7 @@ class MemoizeCacheFuncTest extends PHPUnit_Framework_TestCase {
 
 	private $memoize;
 
-	protected $executed = array();
+	public $executed = array();
 
 	public function setUp() {
 		$self = $this;
