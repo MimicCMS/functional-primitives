@@ -8,8 +8,6 @@
 /** @package Mimic\Functional */
 namespace Mimic\Functional;
 
-use Closure;
-
 /**
  * Memorize cache stores the results of invocation of callback arguments.
  *
@@ -41,7 +39,7 @@ final class MemoizeCache {
 	/**
 	 * Stores the callback to delegate to.
 	 *
-	 * @var Closure
+	 * @var callable
 	 * @since 0.1.0
 	 */
 	private $_callback = null;
