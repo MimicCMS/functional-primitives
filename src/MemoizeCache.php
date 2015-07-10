@@ -48,10 +48,10 @@ final class MemoizeCache {
 
 	/**
 	 *
-	 * @param Closure $callback
+	 * @param callable $callback
 	 *   Callback to be wrapped.
 	 */
-	public function __construct(Closure $callback) {
+	public function __construct($callback) {
 		$this->_callback = $callback;
 	}
 
