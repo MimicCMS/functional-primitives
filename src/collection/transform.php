@@ -237,7 +237,7 @@ function last($collection, $callback = null) {
  */
 function only($collection, array $keep) {
 	return filter($collection, function($_, $index) use ($keep) {
-		return in_array($index, $keep);
+		return in_array($index, $keep, true);
 	});
 }
 
