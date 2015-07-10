@@ -27,6 +27,10 @@ class HashArrayFuncTest extends PHPUnit_Framework_TestCase {
 				'/\[1,2,3\]/'
 			),
 			array(
+				array(1, 2, 3, array(1, 2, 3)),
+				'/\[1,2,3,\[1,2,3\]\]/'
+			),
+			array(
 				array(new Stub\InvokeTrue, new Stub\InvokeFalse, 1, 2),
 				'/\["'.$invokeTrue.':[0-9a-zA-Z]+","'.$invokeFalse.':[0-9a-zA-Z]+",1,2\]/'
 			),
