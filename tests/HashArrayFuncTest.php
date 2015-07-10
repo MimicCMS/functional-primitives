@@ -46,7 +46,7 @@ class HashArrayFuncTest extends PHPUnit_Framework_TestCase {
 			),
 			array(
 				array(0, 1, $callback, new Stub\InvokeTrue),
-				'/\[0,1,"Closure:[0-9a-zA-Z]+","'.$invokeTrue.'\:[0-9a-zA-Z]+"\]/'
+				'/\[0,1,"Closure:[0-9a-zA-Z]+","'.$invokeTrue.':[0-9a-zA-Z]+"\]/'
 			),
 		);
 	}
