@@ -35,7 +35,7 @@ class ReduceRightFuncTest extends PHPUnit_Framework_TestCase {
 			return $element + $initial;
 		};
 
-		$expected = array_reduce(array_reverse($data), $callback, $initial);
+		$expected = array_reduce(array_reverse($data), function($initial, $element) { return $element + $initial; }, $initial);
 
 		$this->assertEquals($expected, F\reduceRight($data, $callback, $initial));
 	}
@@ -55,7 +55,7 @@ class ReduceRightFuncTest extends PHPUnit_Framework_TestCase {
 			return $element - $initial;
 		};
 
-		$expected = array_reduce(array_reverse($data), $callback, $initial);
+		$expected = array_reduce(array_reverse($data), function($initial, $element) { return $element - $initial; }, $initial);
 
 		$this->assertEquals($expected, F\reduceRight($data, $callback, $initial));
 	}
