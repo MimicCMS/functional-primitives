@@ -29,8 +29,8 @@ class DropLastFuncTest extends PHPUnit_Framework_TestCase {
 	 * @covers ::Mimic\Functional\dropLast
 	 */
 	public function testIsEmptyArray() {
-		$callback = function($element, $index) {
-			return true;
+		$callback = function() {
+			return false;
 		};
 
 		$collection = array(0, 1, 2);
