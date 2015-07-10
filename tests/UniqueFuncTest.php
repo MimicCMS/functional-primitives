@@ -37,6 +37,6 @@ class UniqueFuncTest extends PHPUnit_Framework_TestCase {
 	 * @covers ::Mimic\Functional\unique
 	 */
 	public function testResults($expected, $collection, $strict, $callback) {
-		$this->assertEquals($expected, F\unique($collection, $collection, $strict, $callback));
+		$this->assertEquals($expected, F\unique($collection, $strict, $callback));
 	}
 }
