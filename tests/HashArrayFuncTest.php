@@ -28,7 +28,7 @@ class HashArrayFuncTest extends PHPUnit_Framework_TestCase {
 			),
 			array(
 				array(1, 2, 3, array(1, 2, 3)),
-				'/\[1,2,3,\[1,2,3\]\]/'
+				'/\[1,2,3,"\[1,2,3\]"\]/'
 			),
 			array(
 				array(new Stub\InvokeTrue, new Stub\InvokeFalse, 1, 2),
