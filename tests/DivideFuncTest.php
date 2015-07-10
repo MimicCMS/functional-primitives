@@ -6,7 +6,7 @@ use PHPUnit_Framework_TestCase;
 use Mimic\Functional as F;
 
 /**
- * Unit Test for true Mimic library function.
+ * Unit Test for divide Mimic library function.
  *
  * @since 0.1.0
  *
@@ -28,7 +28,7 @@ class DivideFuncTest extends PHPUnit_Framework_TestCase {
 
 	/**
 	 * @dataProvider dataProvider
-	 * @covers ::Mimic\Functional\compare
+	 * @covers ::Mimic\Functional\divide
 	 */
 	public function testResults($collection, $expected) {
 		$actual = F\divide($collection);
