@@ -27,7 +27,7 @@ class UniqueFuncTest extends PHPUnit_Framework_TestCase {
 				array(1),
 				array(1, 1, '1', 2, 2, '2', 3, '3', 4, 5, 4.5, 6, 6, '6'),
 				false,
-				function($element) { return 1; }
+				function() { return 1; }
 			),
 		);
 	}
