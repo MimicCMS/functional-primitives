@@ -17,7 +17,7 @@ class AttemptFuncTest extends PHPUnit_Framework_TestCase {
 	 */
 	public function testTrueWhenCallbackIsTrue() {
 		$callback = function() { return true; };
-		$this->assertTrue(F\attempt($callback, $callback));
+		$this->assertTrue(F\apply(F\attempt($callback, $callback)));
 	}
 
 	/**
@@ -26,7 +26,7 @@ class AttemptFuncTest extends PHPUnit_Framework_TestCase {
 	public function testFalseWhenCallbackIsFalse() {
 		$callback = function() { return false; };
 		$something = function() { return 'something'; };
-		$this->assertFalse(F\attempt($something, $callback));
+		$this->assertFalse(F\apply(F\attempt($something, $callback)));
 	}
 
 	/**
@@ -35,6 +35,6 @@ class AttemptFuncTest extends PHPUnit_Framework_TestCase {
 	public function testSomethingWhenCallbackIsTrue() {
 		$callback = function() { return true; };
 		$something = function() { return 'something'; };
-		$this->assertEquals('something', F\attempt($something, $callback));
+		$this->assertEquals('something', F\apply(F\attempt($something, $callback)));
 	}
 }
