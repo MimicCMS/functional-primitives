@@ -17,12 +17,13 @@ class InvokeIfFuncTest extends PHPUnit_Framework_TestCase {
 			array(false, array(), new Stub\InvokeFalse, 'exists', null),
 			array(array(1, 2, 3), array(1, 2, 3), Stub\InvokeTrue, 'with', null),
 			array(array(3, 2, 1), array(1, 2, 3), Stub\InvokeFalse, 'with', null),
+			array(true, array(), '\Mimic\Test\Stub\InvokeTrue', 'method', null),
+			array(false, array(), '\Mimic\Test\Stub\InvokeFalse', 'method', null),
+			
 			array(null, array(), new Stub\InvokeTrue, '__doesnotexist__', null),
 			array(false, array(), new Stub\InvokeTrue, '__doesnotexist__', false),
 			array(true, array(), new Stub\InvokeTrue, '__doesnotexist__', true),
 			array('something', array(), new Stub\InvokeTrue, '__doesnotexist__', 'something'),
-			array(true, array(), '\Mimic\Test\Stub\InvokeTrue', 'method', null),
-			array(false, array(), '\Mimic\Test\Stub\InvokeFalse', 'method', null),
 		);
 	}
 
@@ -30,7 +31,7 @@ class InvokeIfFuncTest extends PHPUnit_Framework_TestCase {
 	 * @dataProvider dataProvider
 	 * @covers ::Mimic\Functional\invokeIf
 	 */
-	public function testInstanceMethod_InvokeTrue($expected, $args, $obj, $methodName, $default) {
+	public function testInstanceMethod($expected, $args, $obj, $methodName, $default) {
 		$this->assertEquals($expected, F\invokeIf($obj, $methodName, $args, $default));
 	}
 }
