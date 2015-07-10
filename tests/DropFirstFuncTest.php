@@ -30,7 +30,7 @@ class DropFirstFuncTest extends PHPUnit_Framework_TestCase {
 	 */
 	public function testIsEmptyArray() {
 		$callback = function($element, $index) {
-			return $index < 3;
+			return false;
 		};
 
 		$collection = array(0, 1, 2);

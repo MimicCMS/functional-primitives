@@ -16,7 +16,7 @@ class DropLastFuncTest extends PHPUnit_Framework_TestCase {
 	 */
 	public function testDropFirst2() {
 		$callback = function($element, $index) {
-			return $index > 2;
+			return $index < 2;
 		};
 
 		$collection = array(0, 1, 2, 3, 4, 5, 6);
@@ -44,7 +44,7 @@ class DropLastFuncTest extends PHPUnit_Framework_TestCase {
 	 */
 	public function testWhenElementIs2() {
 		$callback = function($element, $index) {
-			return $element === 2;
+			return $element !== 2;
 		};
 
 		$collection = array(0, 1, 3, 4, 2, 5, 6);
