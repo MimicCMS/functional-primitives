@@ -23,8 +23,10 @@ class ImplementationFuncTest extends PHPUnit_Framework_TestCase {
 
 	/**
 	 * @covers ::Mimic\Functional\implementation
+	 * @expectedException Exception
 	 */
 	public function testCallbackIsRemoved() {
+		set_error_handler(array($this, "error"));
 		$expected = function() { return true; };
 		F\implementation('test', $expected);
 		$actual = F\implementation('test');
@@ -32,5 +34,10 @@ class ImplementationFuncTest extends PHPUnit_Framework_TestCase {
 
 		F\implementation('test', false);
 		$this->assertEquals(null, F\implementation('test'));
+		restore_error_handler();
+	}
+
+	public function error($errno, $errstr, $errfile, $errline, $errcontext) {
+		throw new Exception($errstr);
 	}
 }
