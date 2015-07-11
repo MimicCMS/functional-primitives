@@ -12,41 +12,46 @@ use ArrayIterator;
  * @since 0.1.0
  */
 class SizeFuncTest extends PHPUnit_Framework_TestCase {
-	/**
-	 * @covers ::Mimic\Functional\size
-	 */
-	public function testNotObjectNorArray() {
-		$this->assertEquals(0, F\size(null));
-		$this->assertEquals(0, F\size('something'));
-		$this->assertEquals(0, F\size(1));
-		$this->assertEquals(0, F\size(1.0));
+	public function dataProvider_zero() {
+		return array(
+			array(null),
+			array('something'),
+			array(1),
+			array(1.0),
+			array((object) array()),
+		);
+	}
+
+	public function dataProvider_countable() {
+		return array(
+			array(0, array()),
+			array(1, array(1)),
+			array(2, array(1, 2)),
+			array(0, new Fake\SizeCount(0)),
+			array(1, new Fake\SizeCount(1)),
+			array(2, new Fake\SizeCount(2)),
+			array(0, new Fake\Size(0)),
+			array(1, new Fake\Size(1)),
+			array(2, new Fake\Size(2)),
+			array(3, new Fake\Size(3)),
+			array(4, new Fake\Size(4)),
+			array(5, new Fake\Size(5)),
+		);
 	}
 
 	/**
+	 * @dataProvider dataProvider_zero
 	 * @covers ::Mimic\Functional\size
 	 */
-	public function testCountableorArray() {
-		$this->assertEquals(0, F\size(array()));
-		$this->assertEquals(0, F\size(new Fake\SizeCount(0)));
-		$this->assertEquals(1, F\size(array(1)));
-		$this->assertEquals(1, F\size(new Fake\SizeCount(1)));
-		$this->assertEquals(2, F\size(array(1, 2)));
-		$this->assertEquals(2, F\size(new Fake\SizeCount(2)));
+	public function testZeroAmount($value) {
+		$this->assertEquals(0, F\size($value));
 	}
 
 	/**
+	 * @dataProvider dataProvider_countable
 	 * @covers ::Mimic\Functional\size
 	 */
-	public function testIteratorToArray() {
-		foreach (range(0, 5) as $expected) {
-			$this->assertEquals($expected, F\size(new Fake\Size($expected)));
-		}
-	}
-
-	/**
-	 * @covers ::Mimic\Functional\size
-	 */
-	public function testNotIterator() {
-		$this->assertEquals(0, F\size((object) array()));
+	public function testCountable($expected, $value) {
+		$this->assertEquals($expected, F\size($value));
 	}
 }
