@@ -6,13 +6,13 @@ class Put {
 	public $one;
 	public $two;
 
-	protected $_internal = array();
+	public $internal = array();
 
 	public function __get($name) {
-		return $this->_internal[$name];
+		return $this->internal[$name];
 	}
 
 	public function __set($name, $value) {
-		$this->_internal[$name] = $value;
+		$this->internal[$name] = $value;
 	}
 }
