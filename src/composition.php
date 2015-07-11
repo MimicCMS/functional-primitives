@@ -59,7 +59,7 @@ function implementation($name, $callback = null) {
 		$_store[ $name ] = $callback;
 	}
 
-	return $_store[ $name ];
+	return isset($_store[ $name ]) ? $_store[ $name ] : null;
 }
 
 function partialAny() {
