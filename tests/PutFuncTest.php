@@ -39,24 +39,29 @@ class PutFuncTest extends PHPUnit_Framework_TestCase {
 	public function testStandardObject() {
 		$collection = (object) array();
 
+		$expected1 = (object) array('test' => 'value');
+		$expected2 = (object) array('test' => 'something');
+		$expected3 = (object) array('test' => 'something', 'something' => 'else');
+		$expected4 = (object) array('test' => 'something', 'something' => 'else', 'hello' => 'world');
+
 		$actual1 = F\put($collection, 'test', 'value', false);
-		$this->assertEquals((object) array('test' => 'value'), $actual1, 'Actual 1');
+		$this->assertEquals($expected1, $actual1, 'Actual 1: '.\json_encode($expected1).' = '.\json_encode($actual1));
 		$this->assertNotSame($collection, $actual1);
 
 		$actual2 = F\put($actual1, 'test', 'something', false);
-		$this->assertEquals((object) array('test' => 'value'), $actual2, 'Actual 2');
+		$this->assertEquals($expected1, $actual2, 'Actual 2'.\json_encode($expected1).' = '.\json_encode($actual2));
 		$this->assertNotSame($actual1, $actual2);
 
 		$actual3 = F\put($actual2, 'test', 'something', true);
-		$this->assertEquals((object) array('test' => 'something'), $actual3, 'Actual 3');
+		$this->assertEquals($expected2, $actual3, 'Actual 3'.\json_encode($expected2).' = '.\json_encode($actual3));
 		$this->assertNotSame($actual2, $actual3);
 
 		$actual4 = F\put($actual3, 'something', 'else', false);
-		$this->assertEquals((object) array('test' => 'something', 'something' => 'else'), $actual4, 'Actual 4');
+		$this->assertEquals($expected3, $actual4, 'Actual 4'.\json_encode($expected3).' = '.\json_encode($actual4));
 		$this->assertNotSame($actual3, $actual4);
 
 		$actual5 = F\put($actual4, 'hello', 'world', false);
-		$this->assertEquals((object) array('test' => 'something', 'something' => 'else', 'hello' => 'world'), $actual5, 'Actual 5');
+		$this->assertEquals($expected4, $actual5, 'Actual 5'.\json_encode($expected4).' = '.\json_encode($actual5));
 		$this->assertNotSame($actual4, $actual5);
 	}
 
