@@ -52,11 +52,11 @@ function compose() {
 function implementation($name, $callback = null) {
 	static $_store = array();
 
-	if ( $callback !== null ) {
-		$_store[ $name ] = $callback;
-	}
-	else if ( $callback === false ) {
+	if ( $callback === false ) {
 		unset($_store[ $name ]);
+	}
+	else if ( $callback !== null ) {
+		$_store[ $name ] = $callback;
 	}
 
 	return $_store[ $name ];
