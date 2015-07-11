@@ -34,6 +34,9 @@ class SizeFuncTest extends PHPUnit_Framework_TestCase {
 		$this->assertEquals(2, F\size(new ArrayIterator(array(1, 2))));
 	}
 
+	/**
+	 * @covers ::Mimic\Functional\size
+	 */
 	public function testIteratorToArray() {
 		foreach (range(0, 5) as $expected) {
 			$this->assertEquals($expected, F\size(new Fake\Size($expected)));
