@@ -95,7 +95,6 @@ function falsy($collection) {
  *
  * @api
  * @since 0.1.0
- * @todo Needs tests.
  *
  * @param Traversable|array $collection
  * @param string|int $key

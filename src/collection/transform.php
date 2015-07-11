@@ -37,7 +37,6 @@ use Traversable;
  *
  * @api
  * @since 0.1.0
- * @todo Needs tests.
  * @link http://laravel.com/docs/master/helpers#method-array-divide
  *
  * @param Traversable|array $collection
@@ -59,7 +58,6 @@ function divide($collection) {
  *
  * @api
  * @since 0.1.0
- * @todo Needs tests.
  *
  * @param Traversable|array $collection
  * @param MapCollectionCallback|callable $callback
@@ -84,7 +82,6 @@ function dropFirst($collection, $callback) {
  *
  * @api
  * @since 0.1.0
- * @todo Needs tests.
  *
  * @param Traversable|array $collection
  * @param MapCollectionCallback|callable $callback
@@ -109,7 +106,6 @@ function dropLast($collection, $callback) {
  *
  * @api
  * @since 0.1.0
- * @todo Needs tests.
  *
  * @param Traversable|array $collection
  * @param MapCollectionCallback|callable $callback
@@ -130,7 +126,6 @@ function filter($collection, $callback) {
  *
  * @api
  * @since 0.1.0
- * @todo Needs tests.
  *
  * @param Traversable|array $collection
  * @param MapCollectionCallback|callable $callback
@@ -162,7 +157,6 @@ function first($collection, $callback = null) {
  *
  * @api
  * @since 0.1.0
- * @todo Needs tests.
  *
  * @param Traversable|array $collection
  * @param MapCollectionCallback|callable $callback
@@ -201,8 +195,6 @@ function head($collection, $callback = null) {
  *
  * @api
  * @since 0.1.0
- * @todo Needs tests.
- * @todo Need to add to guide documentation.
  *
  * @param Traversable|array $collection
  * @param int $ignore
@@ -223,7 +215,6 @@ function initial($collection, $ignore) {
  *
  * @api
  * @since 0.1.0
- * @todo Needs tests.
  *
  * @param Traversable|array $collection
  * @param MapCollectionCallback|callable $callback
@@ -245,7 +236,6 @@ function last($collection, $callback = null) {
  *
  * @api
  * @since 0.1.0
- * @todo Needs tests.
  * @link http://laravel.com/docs/master/helpers#method-array-only
  *
  * @param Traversable|array $collection
@@ -265,7 +255,6 @@ function only($collection, array $keep) {
  *
  * @api
  * @since 0.1.0
- * @todo Needs tests.
  *
  * @param Traversable|array $collection
  * @param MapCollectionCallback|callable $callback
@@ -285,8 +274,6 @@ function partition($collection, $callback) {
  *
  * @api
  * @since 0.1.0
- * @todo Needs tests.
- * @todo Need to add to guide documentation.
  *
  * @param Traversable|array $collection
  * @param int $from
@@ -325,7 +312,6 @@ function tail($collection, $callback = null) {
  *
  * @api
  * @since 0.1.0
- * @todo Needs tests.
  *
  * @param Traversable|array $collection
  * @param boolean $strict

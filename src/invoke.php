@@ -13,6 +13,9 @@ use Traversable;
 /**
  * Execute single callback with optional arguments.
  *
+ * @api
+ * @since 0.1.0
+ *
  * @param callable $callback
  * @param mixed ...$args
  * @return mixed
@@ -30,7 +33,6 @@ function apply($callback) {
  *
  * @api
  * @since 0.1.0
- * @todo Needs tests.
  *
  * @param callable $callback
  * @param callable $test
@@ -53,7 +55,6 @@ function attempt($callback, $test) {
  *
  * @api
  * @since 0.1.0
- * @todo Needs tests.
  *
  * @param callable $left
  * @param callable $right
@@ -73,6 +74,9 @@ function either($left, $right) {
 
 /**
  * Execute callback.
+ *
+ * @api
+ * @since 0.1.0
  *
  * @param callable ...$args
  * @return array<mixed>
@@ -95,7 +99,6 @@ function execute() {
  *
  * @api
  * @since 0.1.0
- * @todo Needs tests.
  *
  * @param Traversable|array<string|object> $collection
  *   It is possible to call both class methods by passing strings and instance
@@ -118,7 +121,6 @@ function invoke($collection, $methodName, array $arguments = array()) {
  *
  * @api
  * @since 0.1.0
- * @todo Needs tests.
  *
  * @param Traversable|array<string|object> $collection
  *   It is possible to call both class methods by passing strings and instance
@@ -142,7 +144,6 @@ function invokeFirst($collection, $methodName, array $arguments = array()) {
  *
  * @api
  * @since 0.1.0
- * @todo Needs tests.
  *
  * @param object|string $object
  * @param string $methodName
@@ -164,7 +165,6 @@ function invokeIf($object, $methodName, array $arguments = array(), $default = n
  *
  * @api
  * @since 0.1.0
- * @todo Needs tests.
  *
  * @param Traversable|array<string|object> $collection
  *   It is possible to call both class methods by passing strings and instance
@@ -191,8 +191,6 @@ function invokeLast($collection, $methodName, array $arguments = array()) {
  * @api
  * @since 0.1.0
  *
- * @todo Needs tests.
- *
  * @param callable $callback
  * @return MemoizeCache
  */
@@ -200,7 +198,7 @@ function memoize($callback) {
 	static $_container = array();
 
 	$hash = hash_array(array($callback));
-	
+
 	if ( ! isset($_container[ $hash ]) ) {
 		$_container[ $hash ] = new MemoizeCache($callback);
 	}

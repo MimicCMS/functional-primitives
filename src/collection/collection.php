@@ -57,8 +57,6 @@ function each($collection, $callback) {
  *
  * @api
  * @since 0.1.0
- * @todo Needs tests.
- * @todo Complete
  * @link http://laravel.com/docs/master/helpers#method-array-except
  */
 function except() {
@@ -77,8 +75,6 @@ function flatten() {
  *
  * @api
  * @since 0.1.0
- * @todo Needs tests.
- * @todo Complete
  * @link http://laravel.com/docs/master/helpers#method-array-dot
  */
 function flattenDot() {
@@ -89,8 +85,6 @@ function flattenDot() {
  *
  * @api
  * @since 0.1.0
- * @todo Needs tests.
- * @todo Complete
  * @link http://laravel.com/docs/master/helpers#method-array-forget
  */
 function forget() {
@@ -101,8 +95,6 @@ function forget() {
  *
  * @api
  * @since 0.1.0
- * @todo Needs tests.
- * @todo Complete
  * @link http://laravel.com/docs/master/helpers#method-array-forget
  */
 function forgetFirst() {
@@ -113,8 +105,6 @@ function forgetFirst() {
  *
  * @api
  * @since 0.1.0
- * @todo Needs tests.
- * @todo Complete
  * @link http://laravel.com/docs/master/helpers#method-array-forget
  */
 function forgetLast() {
@@ -125,8 +115,6 @@ function forgetLast() {
  *
  * @api
  * @since 0.1.0
- * @todo Needs tests.
- * @todo Complete
  * @link http://laravel.com/docs/master/helpers#method-array-get
  */
 function get() {
@@ -189,7 +177,6 @@ function reduce($collection, $initial, $callback) {
  *
  * @api
  * @since 0.1.0
- * @todo Needs Tests.
  *
  * @param Traversable|array $collection
  * @param ReduceCollectionCallback|callable $callback
@@ -206,7 +193,6 @@ function reduceLeft($collection, $callback, $initial = null) {
  *
  * @api
  * @since 0.1.0
- * @todo Needs Tests.
  *
  * @param Traversable|array $collection
  * @param ReduceCollectionCallback|callable $callback
@@ -228,7 +214,6 @@ function reduceRight($collection, $callback, $initial = null) {
  *
  * @api
  * @since 0.1.0
- * @todo Needs tests.
  *
  * @param Traversable|array $collection
  * @param MapCollectionCallback|callable $callback
@@ -244,7 +229,6 @@ function reject($collection, $callback) {
  * @api
  * @since 0.1.0
  * @link \Mimic\Functional\filter() Alias of filter.
- * @todo Needs tests.
  *
  * @param Traversable|array $collection
  * @param MapCollectionCallback|callable $callback
@@ -263,7 +247,6 @@ function select($collection, $callback) {
  *
  * @api
  * @since 0.1.0
- * @todo Needs tests.
  * @link http://laravel.com/docs/master/helpers#method-array-set
  *
  * @param Traversable|array $collection
@@ -319,8 +302,6 @@ function set($collection, $lookup, $value) {
  *
  * @api
  * @since 0.1.0
- * @todo Needs tests.
- * @todo Needs guide documentation.
  *
  * @param Traversable|array $collection
  * @return int
@@ -347,8 +328,6 @@ function size($collection) {
  * @link https://github.com/lstrojny/functional-php See src/Functional/Sort.php
  * @license MIT
  * @copyright 2011-2015 Lars Strojny <lstrojny@php.net>
- *
- * @todo Needs tests.
  *
  * @param Traversable|array $collection
  * @param callable $callback {

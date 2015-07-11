@@ -29,8 +29,6 @@ use Traversable;
  *
  * @since 0.1.0
  *
- * @todo Needs tests.
- *
  * @param array<mixed> $args
  * @return string
  */
@@ -59,7 +57,6 @@ function hash_array(array $args = array()) {
  *
  * @api
  * @since 0.1.0
- * @todo Needs tests.
  * @link http://laravel.com/docs/master/helpers#method-array-add
  *
  * @param object|array $something

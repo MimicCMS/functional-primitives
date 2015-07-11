@@ -54,7 +54,6 @@ function compare($value, $strict = false) {
  *
  * @api
  * @since 0.1.0
- * @todo Needs tests.
  *
  * @param Traversable|array $collection
  * @param MapCollectionCallback|callable|mixed $value
@@ -82,8 +81,6 @@ function firstIndexOf($collection, $value, $strict = true) {
  *
  * @api
  * @since 0.1.0
- * @todo Needs tests.
- * @todo Need to add to guide documentation.
  *
  * @param Traversable|array $collection
  * @param MapCollectionCallback|callable|mixed $value
@@ -107,7 +104,6 @@ function indexesOf($collection, $value, $strict = true) {
  *
  * @api
  * @since 0.1.0
- * @todo Needs tests.
  *
  * @param Traversable|array $collection
  * @param MapCollectionCallback|callable|mixed $value
