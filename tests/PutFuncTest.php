@@ -136,6 +136,11 @@ class PutFuncTest extends PHPUnit_Framework_TestCase {
 		$this->assertEquals($expected2, $actual2, 'Actual 2');
 		$this->assertNotSame($collection, $actual2);
 
+		$this->assertTrue(property_exists($actual2, 'something'), 'something property');
+		$this->assertTrue(property_exists($actual2, 'hello'), 'hello property');
+		$this->assertTrue(isset($actual2->something), 'something property');
+		$this->assertTrue(isset($actual2->hello), 'hello property');
+
 		$actual3 = F\put($actual2, 'something', 'something', false);
 		$this->assertEquals($expected2, $actual3, 'Actual 3');
 		$this->assertNotSame($collection, $actual3);
