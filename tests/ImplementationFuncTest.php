@@ -11,6 +11,9 @@ use Mimic\Functional as F;
  * @since 0.1.0
  */
 class ImplementationFuncTest extends PHPUnit_Framework_TestCase {
+	/**
+	 * @covers ::Mimic\Functional\implementation
+	 */
 	public function testCallBackIsSame() {
 		$expected = function() { return true; };
 		F\implementation('test', $expected);
@@ -18,6 +21,9 @@ class ImplementationFuncTest extends PHPUnit_Framework_TestCase {
 		$this->assertSame($expected, $actual);
 	}
 
+	/**
+	 * @covers ::Mimic\Functional\implementation
+	 */
 	public function testCallbackIsRemoved() {
 		$expected = function() { return true; };
 		F\implementation('test', $expected);
