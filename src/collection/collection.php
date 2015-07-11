@@ -326,7 +326,7 @@ function set($collection, $lookup, $value) {
  * @return int
  */
 function size($collection) {
-	if ( !is_object($collection) || !is_array($collection) ) {
+	if ( !is_object($collection) && !is_array($collection) ) {
 		return 0;
 	}
 	if (is_array($collection) || $collection instanceof Countable) {
