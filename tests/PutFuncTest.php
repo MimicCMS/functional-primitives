@@ -124,24 +124,24 @@ class PutFuncTest extends PHPUnit_Framework_TestCase {
 		$expected1 = new Fake\Put;
 		$expected1->something = 'else';
 
-		$actual1 = F\put($collection, 'something', 'else', false);
-		$this->assertEquals($expected1, $actual1, 'Actual 1');
-		$this->assertNotSame($collection, $actual1);
-
 		$expected2 = new Fake\Put;
 		$expected2->something = 'else';
 		$expected2->hello = 'world';
 
+		$actual1 = F\put($collection, 'something', 'else', false);
+		$this->assertEquals($expected1, $actual1, 'Actual 1: '.\json_encode($expected1).' = '.\json_encode($actual1));
+		$this->assertNotSame($collection, $actual1);
+
 		$actual2 = F\put($actual1, 'hello', 'world', false);
-		$this->assertEquals($expected2, $actual2, 'Actual 2');
+		$this->assertEquals($expected2, $actual2, 'Actual 2: '.\json_encode($expected2).' = '.\json_encode($actual2));
 		$this->assertNotSame($collection, $actual2);
 
 		$actual3 = F\put($actual2, 'something', 'something', false);
-		$this->assertEquals($expected1, $actual3, 'Actual 3');
+		$this->assertEquals($expected1, $actual3, 'Actual 3: '.\json_encode($expected1).' = '.\json_encode($actual3));
 		$this->assertNotSame($collection, $actual3);
 
 		$actual4 = F\put($actual2, 'hello', 'hello', false);
-		$this->assertEquals($expected2, $actual4, 'Actual 4');
+		$this->assertEquals($expected2, $actual4, 'Actual 4: '.\json_encode($expected2).' = '.\json_encode($actual4));
 		$this->assertNotSame($collection, $actual4);
 	}
 }
