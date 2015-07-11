@@ -40,23 +40,23 @@ class PutFuncTest extends PHPUnit_Framework_TestCase {
 		$collection = (object) array();
 
 		$actual1 = F\put($collection, 'test', 'value', false);
-		$this->assertEquals((object) array('test' => 'value'), $actual1);
+		$this->assertEquals((object) array('test' => 'value'), $actual1, 'Actual 1');
 		$this->assertNotSame($collection, $actual1);
 
 		$actual2 = F\put($actual1, 'test', 'something', false);
-		$this->assertEquals((object) array('test' => 'value'), $actual2);
+		$this->assertEquals((object) array('test' => 'value'), $actual2, 'Actual 2');
 		$this->assertNotSame($actual1, $actual2);
 
 		$actual3 = F\put($actual2, 'test', 'something', true);
-		$this->assertEquals((object) array('test' => 'something'), $actual3);
+		$this->assertEquals((object) array('test' => 'something'), $actual3, 'Actual 3');
 		$this->assertNotSame($actual2, $actual3);
 
 		$actual4 = F\put($actual3, 'something', 'else', false);
-		$this->assertEquals((object) array('test' => 'something', 'something' => 'else'), $actual4);
+		$this->assertEquals((object) array('test' => 'something', 'something' => 'else'), $actual4, 'Actual 4');
 		$this->assertNotSame($actual3, $actual4);
 
 		$actual5 = F\put($actual4, 'hello', 'world', false);
-		$this->assertEquals((object) array('test' => 'something', 'something' => 'else', 'hello' => 'world'), $actual5);
+		$this->assertEquals((object) array('test' => 'something', 'something' => 'else', 'hello' => 'world'), $actual5, 'Actual 5');
 		$this->assertNotSame($actual4, $actual5);
 	}
 
@@ -70,18 +70,18 @@ class PutFuncTest extends PHPUnit_Framework_TestCase {
 		$expected1->one = 1;
 
 		$actual1 = F\put($collection, 'one', 1, false);
-		$this->assertEquals($expected1, $actual1);
+		$this->assertEquals($expected1, $actual1, 'Actual 1');
 		$this->assertNotSame($collection, $actual1);
 
 		$actual2 = F\put($actual1, 'one', 2, false);
-		$this->assertEquals($expected1, $actual2);
+		$this->assertEquals($expected1, $actual2, 'Actual 2');
 		$this->assertNotSame($collection, $actual2);
 
 		$expected2 = clone $expected1;
 		$expected2->one = 2;
 
 		$actual3 = F\put($actual1, 'one', 2, true);
-		$this->assertEquals($expected2, $actual3);
+		$this->assertEquals($expected2, $actual3, 'Actual 3');
 		$this->assertNotSame($collection, $actual3);
 	}
 
@@ -95,18 +95,18 @@ class PutFuncTest extends PHPUnit_Framework_TestCase {
 		$expected1->two = 2;
 
 		$actual1 = F\put($collection, 'two', 2, false);
-		$this->assertEquals($expected1, $actual1);
+		$this->assertEquals($expected1, $actual1, 'Actual 1');
 		$this->assertNotSame($collection, $actual1);
 
 		$actual2 = F\put($actual1, 'two', 3, false);
-		$this->assertEquals($expected1, $actual2);
+		$this->assertEquals($expected1, $actual2, 'Actual 2');
 		$this->assertNotSame($collection, $actual2);
 
 		$expected2 = clone $expected1;
 		$expected2->two = 3;
 
 		$actual3 = F\put($actual1, 'two', 3, true);
-		$this->assertEquals($expected2, $actual3);
+		$this->assertEquals($expected2, $actual3, 'Actual 3');
 		$this->assertNotSame($collection, $actual3);
 	}
 
@@ -120,7 +120,7 @@ class PutFuncTest extends PHPUnit_Framework_TestCase {
 		$expected1->something = 'else';
 
 		$actual1 = F\put($collection, 'something', 'else', false);
-		$this->assertEquals($expected1, $actual1);
+		$this->assertEquals($expected1, $actual1, 'Actual 1');
 		$this->assertNotSame($collection, $actual1);
 
 		$expected2 = new Fake\Put;
@@ -128,15 +128,15 @@ class PutFuncTest extends PHPUnit_Framework_TestCase {
 		$expected2->hello = 'world';
 
 		$actual2 = F\put($actual1, 'hello', 'world', false);
-		$this->assertEquals($expected2, $actual2);
+		$this->assertEquals($expected2, $actual2, 'Actual 2');
 		$this->assertNotSame($collection, $actual2);
 
 		$actual3 = F\put($actual2, 'something', 'something', false);
-		$this->assertEquals($expected1, $actual3);
+		$this->assertEquals($expected1, $actual3, 'Actual 3');
 		$this->assertNotSame($collection, $actual3);
 
 		$actual4 = F\put($actual2, 'hello', 'hello', false);
-		$this->assertEquals($expected2, $actual4);
+		$this->assertEquals($expected2, $actual4, 'Actual 4');
 		$this->assertNotSame($collection, $actual4);
 	}
 }
