@@ -39,15 +39,35 @@ use Closure;
  *
  * @api
  * @since 0.1.0
- * @todo Needs tests
  * @link \Mimic\Functional\pipeline
  *   Similar function that executes in reverse order.
  *
  * @param callable ...$callbacks
- * @return mixed
+ *   The first callback will receive arguments from the closure, if any. All
+ *   remaining callbacks must only accept one argument, because only one
+ *   argument will be passed.
+ * @return Closure {
+ *     @param mixed ...$arguments
+ *       These will be passed to the first callback.
+ *     @return mixed
+ * }
  */
 function compose() {
-	/** @todo Incomplete */
+	if (func_num_args() < 1) {
+		return null;
+	}
+	$callbacks = func_get_args();
+	return function() use ($callbacks) {
+		$arguments = func_get_args();
+		$func = array_unshift($callbacks);
+		$result = call_user_func_array($func, $arguments);
+
+		foreach ( $callbacks as $callback ) {
+			$result = $callback($result);
+		}
+
+		return $result;
+	};
 }
 
 /**
@@ -95,7 +115,6 @@ function partialAny() {
  *
  * @api
  * @since 0.1.0
- * @todo Needs tests
  *
  * @param callable $callback
  * @param mixed ...$arguments
@@ -160,7 +179,6 @@ function partialMethod($methodName, $default = null) {
  *
  * @api
  * @since 0.1.0
- * @todo Needs tests
  *
  * @param callable $callback
  * @param mixed ...$arguments
@@ -188,15 +206,18 @@ function partialRight($callback) {
  *
  * @api
  * @since 0.1.0
- * @todo Needs tests
  * @link \Mimic\Functional\compose
  *   Similar function that executes in reverse order.
  *
  * @param callable ...$callbacks
- * @return mixed
+ * @return Closure {
+ *     @param mixed ...$arguments
+ *       These will be passed to the last callback.
+ *     @return mixed
+ * }
  */
 function pipeline() {
-	return compose(array_reverse(func_get_args()));
+	return call_user_func_array(__NAMESPACE__.'\compose', array_reverse(func_get_args()));
 }
 
 /**
