@@ -8,6 +8,10 @@ class Put {
 
 	public $internal = array();
 
+	public function __isset($name) {
+		return array_key_exists($name, $this->internal);
+	}
+
 	public function __get($name) {
 		return $this->internal[$name];
 	}
