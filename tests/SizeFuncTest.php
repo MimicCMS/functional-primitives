@@ -27,11 +27,11 @@ class SizeFuncTest extends PHPUnit_Framework_TestCase {
 	 */
 	public function testCountableorArray() {
 		$this->assertEquals(0, F\size(array()));
-		$this->assertEquals(0, F\size(new ArrayIterator(array())));
+		$this->assertEquals(0, F\size(new Fake\SizeCount(0)));
 		$this->assertEquals(1, F\size(array(1)));
-		$this->assertEquals(1, F\size(new ArrayIterator(array(1))));
+		$this->assertEquals(1, F\size(new Fake\SizeCount(1)));
 		$this->assertEquals(2, F\size(array(1, 2)));
-		$this->assertEquals(2, F\size(new ArrayIterator(array(1, 2))));
+		$this->assertEquals(2, F\size(new Fake\SizeCount(2)));
 	}
 
 	/**
