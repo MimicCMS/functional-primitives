@@ -72,7 +72,7 @@ function hash_array(array $args = array()) {
  *   Copy of something with new value.
  */
 function put($something, $name, $value, $override = false) {
-	if ( is_object($something) && property_exists($something, $name) ) {
+	if ( is_object($something) ) {
 		$copy = clone $something;
 		if ( $copy->{$name} === null || $override ) {
 			$copy->{$name} = $value;

@@ -44,7 +44,7 @@ class PutFuncTest extends PHPUnit_Framework_TestCase {
 		$expected3 = (object) array('test' => 'something', 'something' => 'else');
 		$expected4 = (object) array('test' => 'something', 'something' => 'else', 'hello' => 'world');
 
-		$actual1 = F\put($collection, 'test', 'value', false);
+		$actual1 = F\put($collection, 'test', 'value', true);
 		$this->assertEquals($expected1, $actual1, 'Actual 1: '.\json_encode($expected1).' = '.\json_encode($actual1));
 		$this->assertNotSame($collection, $actual1);
 
