@@ -96,7 +96,7 @@ function compose() {
 	if (func_num_args() < 1) {
 		return function() { return null; };
 	}
-	
+
 	$callbacks = func_get_args();
 	return function() use ($callbacks) {
 		$arguments = func_get_args();
@@ -408,7 +408,7 @@ function partialMethod($methodName, $default = null) {
  * }
  */
 function partialRight($callback) {
-	$innerArguments = func_get_args();
+	$innerArguments = array_slice(func_get_args(), 1);
 	return function() use ($callback, $innerArguments) {
 		$outerArguments = func_get_args();
 		return call_user_func_array($callback, array_merge($innerArguments, $outerArguments));
