@@ -49,45 +49,6 @@ function compare($value, $strict = false) {
 }
 
 /**
- * Basic sort comparison that encompasses the most common user sorting.
- *
- * @api
- * @since 0.1.0
- *
- * @param boolean $strict
- * @param boolean $reversed
- *   Whether to reverse the order.
- * @return \Closure {
- *    Compare left to right.
- *    @param mixed $left
- *    @param mixed $right
- *    @return int
- *       Return 0 for same, -1 for
- * }
- */
-function sortable($reversed = false) {
-	return function($left, $right) use ($reversed) {
-		if ( !is_scalar($left) || !is_scalar($right) ) {
-			if ( !is_scalar($left) && !is_scalar($right) ) {
-				return 0;
-			}
-			$order = !is_scalar($left) ? -1 : 1;
-			return $reversed ? $order * -1 : $order;
-		}
-		if ($left == $right) {
-			return 0;
-		}
-		if (is_string($left) || is_string($right)) {
-			$order = strcasecmp($left, $right);
-		}
-		else {
-			$order = $left < $right ? -1 : 1;
-		}
-		return $reversed ? $order * -1 : $order;
-	};
-}
-
-/**
  * First index in collection matching value, using value as callback if
  * available.
  *
@@ -158,4 +119,43 @@ function lastIndexOf($collection, $value, $strict = true) {
 		return firstIndexOf(array_reverse($collection, true), passOriginalCollection($collection, $value));
 	}
 	return firstIndexOf(array_reverse($collection, true), $value, $strict);
+}
+
+/**
+ * Basic sort comparison that encompasses the most common user sorting.
+ *
+ * @api
+ * @since 0.1.0
+ *
+ * @param boolean $strict
+ * @param boolean $reversed
+ *   Whether to reverse the order.
+ * @return \Closure {
+ *    Compare left to right.
+ *    @param mixed $left
+ *    @param mixed $right
+ *    @return int
+ *       Return 0 for same, -1 for
+ * }
+ */
+function sortable($reversed = false) {
+	return function($left, $right) use ($reversed) {
+		if ( !is_scalar($left) || !is_scalar($right) ) {
+			if ( !is_scalar($left) && !is_scalar($right) ) {
+				return 0;
+			}
+			$order = !is_scalar($left) ? -1 : 1;
+			return $reversed ? $order * -1 : $order;
+		}
+		if ($left == $right) {
+			return 0;
+		}
+		if (is_string($left) || is_string($right)) {
+			$order = strcasecmp($left, $right) % 1;
+		}
+		else {
+			$order = $left < $right ? -1 : 1;
+		}
+		return $reversed ? $order * -1 : $order;
+	};
 }
