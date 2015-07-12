@@ -83,9 +83,11 @@ function flatMap() {
  * @param array
  */
 function flatten($collection) {
+	/*
 	if ($collection instanceof Traversable) {
 		$collection = iterator_to_array($collection);
 	}
+	 */
 	$return = [];
 	array_walk_recursive($collection, function($x) use (&$return) {
 		$return[] = $x;
