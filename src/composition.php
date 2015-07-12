@@ -94,13 +94,14 @@ function attempt($callback, $test) {
  */
 function compose() {
 	if (func_num_args() < 1) {
-		return null;
+		return function() { return null; };
 	}
+	
 	$callbacks = func_get_args();
 	return function() use ($callbacks) {
 		$arguments = func_get_args();
-		$func = array_unshift($callbacks);
-		$result = call_user_func_array($func, $arguments);
+		$callback = array_shift($callbacks);
+		$result = call_user_func_array($callback, $arguments);
 
 		foreach ( $callbacks as $callback ) {
 			$result = $callback($result);
