@@ -373,12 +373,12 @@ function partialLeft($callback) {
  * }
  */
 function partialMethod($methodName, $default = null) {
-	$outerArguments = array_slice(func_get_args(), 2);
-	return function($object) use ($methodName, $default, $outerArguments) {
+	$innerArguments = array_slice(func_get_args(), 2);
+	return function($object) use ($methodName, $default, $innerArguments) {
 		if ( ! is_callable(array($object, $methodName)) ) {
 			return $default;
 		}
-		$innerArguments = array_slice(func_get_args(), 1);
+		$outerArguments = array_slice(func_get_args(), 1);
 		return call_user_func_array(array($object, $methodName), array_merge($innerArguments, $outerArguments));
 	};
 }
