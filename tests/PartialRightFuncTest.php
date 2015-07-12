@@ -14,10 +14,10 @@ class PartialRightFuncTest extends PHPUnit_Framework_TestCase {
 	/**
 	 * @covers ::Mimic\Functional\partialRight
 	 */
-	public function testArraySum() {
-		$expected = array_sum(1, 2, 3, 4, 5, 6);
-		$callback = F\partialRight('array_sum', 1, 2, 3);
-		$this->assertEquals($expected, $callback(4, 5, 6));
+	public function testInvokeIf_InvokeTrue() {
+		$callback = F\partialRight('\Mimic\Functional\invokeIf', new Fake\InvokeTrue);
+		$this->assertTrue($callback('exists'));
+		$this->assertEquals(array(1, 2, 3), $callback('with', array(1, 2, 3)));
 	}
 
 	/**

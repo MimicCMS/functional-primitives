@@ -14,10 +14,10 @@ class PartialLeftFuncTest extends PHPUnit_Framework_TestCase {
 	/**
 	 * @covers ::Mimic\Functional\partialLeft
 	 */
-	public function testArraySum() {
-		$expected = array_sum(4, 5, 6, 1, 2, 3);
-		$callback = F\partialLeft('array_sum', 1, 2, 3);
-		$this->assertEquals($expected, $callback(4, 5, 6));
+	public function testInvokeIf_exists() {
+		$callback = F\partialLeft('\Mimic\Functional\invokeIf', 'exists');
+		$this->assertTrue($callback(new Fake\InvokeTrue));
+		$this->assertFalse($callback(new Fake\InvokeFalse));
 	}
 
 	/**
@@ -26,6 +26,6 @@ class PartialLeftFuncTest extends PHPUnit_Framework_TestCase {
 	public function testArrayMerge() {
 		$expected = array(4, 5, 6, 1, 2, 3);
 		$callback = F\partialLeft('array_merge', array(1, 2, 3));
-		$this->assertEquals($expected, $callback(4, 5, 6));
+		$this->assertEquals($expected, $callback(array(4, 5, 6)));
 	}
 }
