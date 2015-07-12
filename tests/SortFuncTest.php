@@ -23,7 +23,7 @@ class SortFuncTest extends PHPUnit_Framework_TestCase {
 			),
 			array(true, F\sortable(),
 				array('2', '1', 'world', 'hello'),
-				array(2 => '1', 0 => '2', 4 => 'hello', 3 => 'world')
+				array(1 => '1', 0 => '2', 3 => 'hello', 2 => 'world')
 			),
 			array(false, F\sortable(), new ArrayIterator(array(4, 2, 1, 3)), array(1, 2, 3, 4)),
 			array(true, F\sortable(), new ArrayIterator(array(4, 2, 1, 3)), array(2 => 1, 1 => 2, 3 => 3, 0 => 4)),
@@ -33,7 +33,7 @@ class SortFuncTest extends PHPUnit_Framework_TestCase {
 			),
 			array(true, F\sortable(),
 				new ArrayIterator(array('2', '1', 'world', 'hello')),
-				array(2 => '1', 0 => '2', 4 => 'hello', 3 => 'world')
+				array(1 => '1', 0 => '2', 3 => 'hello', 2 => 'world')
 			),
 		);
 	}
