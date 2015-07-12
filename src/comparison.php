@@ -144,7 +144,7 @@ function sortable($reversed = false) {
 			if ( !is_scalar($left) && !is_scalar($right) ) {
 				return 0;
 			}
-			$order = !is_scalar($left) ? -1 : 1;
+			$order = !is_scalar($left) ? 1 : -1;
 			return $reversed ? $order * -1 : $order;
 		}
 		if ($left == $right) {
