@@ -14,6 +14,15 @@ class ComposeFuncTest extends PHPUnit_Framework_TestCase {
 	/**
 	 * @covers ::Mimic\Functional\compose
 	 */
+	public function testEmptyDoesNothing() {
+		$callback = F\compose();
+		$this->assertEquals(null, $callback());
+		$this->assertEquals(null, $callback(array(1, 2, 3)));
+	}
+
+	/**
+	 * @covers ::Mimic\Functional\compose
+	 */
 	public function testArraySumJSONEncode() {
 		$expected = json_encode(array_sum(array(1, 2, 3)));
 		$callback = F\compose('array_sum', 'json_encode');
