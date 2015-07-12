@@ -21,6 +21,14 @@ namespace Mimic\Functional;
 use Closure;
 use Traversable;
 
+function dotArray($string) {
+	$lookup = array($string);
+	if (strpos('.', $string) !== false) {
+		$lookup = explode('.');
+	}
+	return $lookup;
+}
+
 /**
  * Hashes an array preventing closures from throwing errors.
  *
