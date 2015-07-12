@@ -19,7 +19,6 @@ class PartialMethodFuncTest extends PHPUnit_Framework_TestCase {
 			array(array(3, 2, 1), array(1, 2, 3), new Fake\InvokeFalse, 'with', null),
 			array(true, array(), '\Mimic\Test\Fake\InvokeTrue', 'method', null),
 			array(false, array(), '\Mimic\Test\Fake\InvokeFalse', 'method', null),
-
 			array(null, array(), new Fake\InvokeTrue, '__doesnotexist__', null),
 			array(false, array(), new Fake\InvokeTrue, '__doesnotexist__', false),
 			array(true, array(), new Fake\InvokeTrue, '__doesnotexist__', true),
@@ -58,8 +57,8 @@ class PartialMethodFuncTest extends PHPUnit_Framework_TestCase {
 	 */
 	public function testArgumentsAreInCorrectOrder() {
 		$callback = F\partialMethod('with', null, 1, 2);
-		$this->assertEquals(array(1, 2, 3), $callback(new Fake\InvokeTrue, 3));
-		$this->assertEquals(array(3, 2, 1), $callback(new Fake\InvokeFalse, 3));
+		$this->assertEquals(array(1, 2, 3), $callback(new Fake\InvokeTrue, 3), 'invoke true');
+		$this->assertEquals(array(3, 2, 1), $callback(new Fake\InvokeFalse, 3), 'invoke false');
 	}
 
 	/**
