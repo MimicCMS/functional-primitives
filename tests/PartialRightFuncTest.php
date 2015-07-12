@@ -26,6 +26,6 @@ class PartialRightFuncTest extends PHPUnit_Framework_TestCase {
 	public function testArrayMerge() {
 		$expected = array(1, 2, 3, 4, 5, 6);
 		$callback = F\partialRight('array_merge', array(1, 2, 3));
-		$this->assertEquals($expected, $callback(4, 5, 6));
+		$this->assertEquals($expected, $callback(array(4, 5, 6)));
 	}
 }
