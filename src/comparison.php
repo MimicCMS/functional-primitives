@@ -40,11 +40,38 @@ use Traversable;
  *
  * @param mixed $value
  * @param boolean $strict
- * @return MapCollectionCallback|callable
+ * @return MapCollectionCallback|\Closure
  */
 function compare($value, $strict = false) {
 	return function($element) use ($value, $strict) {
 		return $value === $element || (!$strict && $value == $element);
+	};
+}
+
+/**
+ * Basic sort comparison that encompasses the most common user sorting.
+ *
+ * @api
+ * @since 0.1.0
+ *
+ * @param boolean $strict
+ * @param boolean $reversed
+ *   Whether to reverse the order.
+ * @return \Closure {
+ *    Compare left to right.
+ *    @param mixed $left
+ *    @param mixed $right
+ *    @return int
+ *       Return 0 for same, -1 for
+ * }
+ */
+function sortable($reversed = false) {
+	return function($left, $right) use ($reversed) {
+		if ($left == $right) {
+			return 0;
+		}
+		$order = $left < $right ? -1 : 1;
+		return $reversed ? $order * -1 : $order;
 	};
 }
 
