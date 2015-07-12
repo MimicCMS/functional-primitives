@@ -58,7 +58,7 @@ class PartialMethodFuncTest extends PHPUnit_Framework_TestCase {
 	public function testArgumentsAreInCorrectOrder() {
 		$callback = F\partialMethod('with', null, 1, 2);
 		$this->assertEquals(array(1, 2, 3), $callback(new Fake\InvokeTrue, 3), 'invoke true');
-		$this->assertEquals(array(3, 2, 1), $callback(new Fake\InvokeFalse, 3), 'invoke false');
+		$this->assertEquals(array(3, 1, 2), $callback(new Fake\InvokeFalse, 3), 'invoke false');
 	}
 
 	/**
