@@ -151,7 +151,7 @@ function sortable($reversed = false) {
 			return 0;
 		}
 		if (is_string($left) || is_string($right)) {
-			$order = strcasecmp($left, $right) % 1;
+			$order = strcasecmp($left, $right) % 10;
 		}
 		else {
 			$order = $left < $right ? -1 : 1;
