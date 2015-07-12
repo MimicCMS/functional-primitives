@@ -67,10 +67,22 @@ function compare($value, $strict = false) {
  */
 function sortable($reversed = false) {
 	return function($left, $right) use ($reversed) {
+		if ( !is_scalar($left) || !is_scalar($right) ) {
+			if ( !is_scalar($left) && !is_scalar($right) ) {
+				return 0;
+			}
+			$order = !is_scalar($left) ? -1 : 1;
+			return $reversed ? $order * -1 : $order;
+		}
 		if ($left == $right) {
 			return 0;
 		}
-		$order = $left < $right ? -1 : 1;
+		if (is_string($left) || is_string($right)) {
+			$order = strcasecmp($left, $right);
+		}
+		else {
+			$order = $left < $right ? -1 : 1;
+		}
 		return $reversed ? $order * -1 : $order;
 	};
 }
