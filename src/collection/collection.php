@@ -363,7 +363,7 @@ function size($collection) {
  *   Optional. Default is false.
  * @return array
  */
-function sort($collection, callable $callback, $preserveKeys = false) {
+function sort($collection, $callback, $preserveKeys = false) {
     if ($collection instanceof Traversable) {
         $array = iterator_to_array($collection);
     } else {
