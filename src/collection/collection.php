@@ -63,8 +63,28 @@ function except() {
 	/** @todo Incomplete */
 }
 
-function flatMap() {
-	/** @todo Incomplete */
+/**
+ *
+ * @api
+ * @since 0.1.0
+ *
+ * @param Traversable|array $collection
+ * @param MapCollectionCallback|callable $callback
+ * @return array
+ */
+function flattenSingle($collection, $callback) {
+	$flatten = array();
+	each($collection, function($element, $index, $collection) use (&$flatten, $callback) {
+		$result = $callback($element, $index, $collection);
+		if ( is_array($result) || $result instanceof Traversable ) {
+			foreach ( $result as $item ) {
+				$flatten[] = $item;
+			}
+			return;
+		}
+		$flatten[] = $result;
+	});
+	return $flatten;
 }
 
 /**
@@ -75,22 +95,21 @@ function flatMap() {
  * @api
  * @since 0.1.0
  *
- * @license MIT
- * @copyright Taylor Otwell
- * @link https://github.com/laravel/framework/blob/5.1/src/Illuminate/Support/Arr.php#L180
- *
  * @param Traversable|array $collection
  * @param array
  */
-function flatten($collection) {
-	if ($collection instanceof Traversable) {
-		$collection = iterator_to_array($collection);
-	}
-	$return = array();
-	array_walk_recursive($collection, function($x) use (&$return) {
-		$return[] = $x;
+function flattenRecursive($collection) {
+	$flatten = array();
+	each($collection, function($element) use (&$flatten) {
+		if (is_array($element) || $element instanceof Traversable) {
+			foreach ( flatten($element) as $item ) {
+				$flatten[] = $item;
+			}
+			return;
+		}
+		$flatten[] = $element;
 	});
-	return $return;
+	return $flatten;
 }
 
 /**
@@ -258,65 +277,6 @@ function reject($collection, $callback) {
  */
 function select($collection, $callback) {
 	return filter($collection, $callback);
-}
-
-/**
- * Mutate collection using dot notation to lookup indexes.
- *
- * This can modify both objects and arrays. It can also update combination of
- * objects and arrays. So it will attempt to either modify the property or index
- * value.
- *
- * @api
- * @since 0.1.0
- * @link http://laravel.com/docs/master/helpers#method-array-set
- *
- * @param Traversable|array $collection
- * @param string $lookup
- * @param mixed $value
- * @return Traversable|array
- *   Copy of collection with modification applied.
- */
-function set($collection, $lookup, $value) {
-	$indexes = array($lookup);
-	if (strpos('.', $lookup) !== false) {
-		$indexes = explode('.');
-	}
-
-	$store = array($collection);
-	$current = $collection;
-	foreach ( array_slice($indexes, 0, -1) as $index ) {
-		if ( is_object($current) && property_exists($current, $index) ) {
-			$store[] = $current->{$index};
-			$current = $current->{$index};
-		}
-		else if ( is_array($current) && array_key_exists($index, $current) ) {
-			$store[] = $current[$index];
-			$current = $current[$index];
-		}
-	}
-
-	$index = array_pop($indexes);
-	if ( is_object($current) && property_exists($current, $index) ) {
-		$current->{$index} = $value;
-	}
-	else if ( is_array($current) && array_key_exists($index, $current) ) {
-		$current[$index] = $value;
-	}
-
-	$build = $current;
-	foreach (array_reverse($indexes) as $index) {
-		$temp = array_pop($store);
-		if ( is_object($temp) && property_exists($temp, $index) ) {
-			$temp->{$index} = $build;
-		}
-		else if ( is_array($temp) && array_key_exists($index, $temp) ) {
-			$temp[$index] = $build;
-		}
-		$build = $temp;
-	}
-
-	return $build;
 }
 
 /**
