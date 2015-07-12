@@ -15,9 +15,9 @@ class ComposeFuncTest extends PHPUnit_Framework_TestCase {
 	 * @covers ::Mimic\Functional\compose
 	 */
 	public function testArraySumJSONEncode() {
-		$expected = json_encode(array_sum(1, 2, 3));
+		$expected = json_encode(array_sum(array(1, 2, 3)));
 		$callback = F\compose('array_sum', 'json_encode');
-		$this->assertEquals($expected, $callback(1, 2, 3));
+		$this->assertEquals($expected, $callback(array(1, 2, 3)));
 	}
 
 	/**
@@ -36,9 +36,9 @@ class ComposeFuncTest extends PHPUnit_Framework_TestCase {
 	 * @covers ::Mimic\Functional\compose
 	 */
 	public function testArraySumJSONEncodeJSONDecode() {
-		$expected = json_encode(array_sum(1, 2, 3));
+		$expected = json_encode(array_sum(array(1, 2, 3)));
 		$callback = F\compose('array_sum', 'json_encode');
-		$this->assertEquals($expected, $callback(1, 2, 3));
+		$this->assertEquals($expected, $callback(array(1, 2, 3)));
 	}
 
 	/**
@@ -57,9 +57,9 @@ class ComposeFuncTest extends PHPUnit_Framework_TestCase {
 	 * @covers ::Mimic\Functional\pipeline
 	 */
 	public function testArraySumJSONEncode_pipeline() {
-		$expected = json_encode(array_sum(1, 2, 3));
+		$expected = json_encode(array_sum(array(1, 2, 3)));
 		$callback = F\pipeline('json_encode', 'array_sum');
-		$this->assertEquals($expected, $callback(1, 2, 3));
+		$this->assertEquals($expected, $callback(array(1, 2, 3)));
 	}
 
 	/**
@@ -78,9 +78,9 @@ class ComposeFuncTest extends PHPUnit_Framework_TestCase {
 	 * @covers ::Mimic\Functional\pipeline
 	 */
 	public function testArraySumJSONEncodeJSONDecode_pipeline() {
-		$expected = json_encode(array_sum(1, 2, 3));
+		$expected = json_encode(array_sum(array(1, 2, 3)));
 		$callback = F\pipeline('json_encode', 'array_sum');
-		$this->assertEquals($expected, $callback(1, 2, 3));
+		$this->assertEquals($expected, $callback(array(1, 2, 3)));
 	}
 
 	/**
