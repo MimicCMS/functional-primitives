@@ -67,8 +67,30 @@ function flatMap() {
 	/** @todo Incomplete */
 }
 
-function flatten() {
-	/** @todo Incomplete */
+/**
+ * Flatten collection to a single dimension array.
+ *
+ * Does not preserve indexes.
+ *
+ * @api
+ * @since 0.1.0
+ *
+ * @license MIT
+ * @copyright Taylor Otwell
+ * @link https://github.com/laravel/framework/blob/5.1/src/Illuminate/Support/Arr.php#L180
+ *
+ * @param Traversable|array $collection
+ * @param array
+ */
+function flatten($collection) {
+	if ($collection instanceof Traversable) {
+		$collection = iterator_to_array($collection);
+	}
+	$return = [];
+	array_walk_recursive($collection, function($x) use (&$return) {
+		$return[] = $x;
+	});
+	return $return;
 }
 
 /**
