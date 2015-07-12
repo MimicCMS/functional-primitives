@@ -88,7 +88,7 @@ function flatten($collection) {
 		$collection = iterator_to_array($collection);
 	}
 	 */
-	$return = [];
+	$return = array();
 	array_walk_recursive($collection, function($x) use (&$return) {
 		$return[] = $x;
 	});
