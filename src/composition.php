@@ -347,6 +347,10 @@ function partialLeft($callback) {
 }
 
 /**
+ * Execute method on object along with parameters.
+ *
+ * @api
+ * @since 0.1.0
  *
  * @param string $methodName
  * @param mixed $default
