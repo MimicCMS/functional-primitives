@@ -51,6 +51,45 @@ function each($collection, $callback) {
 }
 
 /**
+ * Flatten collection into a single array preserving indexes using dot notation.
+ *
+ * {@internal
+ * This is included to provide a function that flattens and preserves the
+ * indexes. It is not meant to be part of a larger solution. Dot notation will
+ * likely be implemented in a separate library using different mechanism or
+ * using functions in this library to implement dot notation in a functional
+ * style.
+ * }
+ *
+ * @api
+ * @since 0.1.0
+ * @link http://laravel.com/docs/master/helpers#method-array-dot
+ * @link \Mimic\Functional\flattenRecursive
+ *   Like this function, but does not preserve indexes.
+ *
+ * @param Traversable|array $collection
+ * @param array
+ */
+function flattenDot($collection, $prepend = '') {
+	$aggregation = array();
+	each($collection, function($element, $index) use (&$aggregation, $prepend) {
+		if (is_array($element) || $element instanceof Traversable) {
+			$aggregation = array_merge($aggregation, flattenDot($element, $prepend.$index.'.'));
+			return;
+		}
+		$aggregation[$prepend.$index] = $element;
+	});
+	return $aggregation;
+}
+
+/**
+ * Flatten single dimension in collection.
+ *
+ * Does not preserve indexes.
+ *
+ * This is different from `flattenRecursive()` in that this function will only
+ * merge arrays in the result in the bottom layer. Any arrays beyond the first
+ * dimension will not be merged into the result array.
  *
  * @api
  * @since 0.1.0
@@ -81,6 +120,8 @@ function flattenSingle($collection, $callback) {
  *
  * @api
  * @since 0.1.0
+ * @link \Mimic\Functional\flattenRecursive
+ *   Like this function, but preserves indexes using dot notation.
  *
  * @param Traversable|array $collection
  * @param array
@@ -97,16 +138,6 @@ function flattenRecursive($collection) {
 		$flatten[] = $element;
 	});
 	return $flatten;
-}
-
-/**
- *
- * @api
- * @since 0.1.0
- * @link http://laravel.com/docs/master/helpers#method-array-dot
- */
-function flattenDot() {
-	/** @todo Incomplete */
 }
 
 /**
