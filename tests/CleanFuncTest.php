@@ -6,7 +6,7 @@ use PHPUnit_Framework_TestCase;
 use Mimic\Functional as F;
 
 /**
- * Unit Test for filter Mimic library function.
+ * Unit Test for clean Mimic library function.
  *
  * @since 0.1.0
  */
