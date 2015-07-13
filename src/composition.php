@@ -437,6 +437,48 @@ function pipeline() {
 }
 
 /**
+ * Passes through value, unless callback then returns result of callback.
+ *
+ * This is also useful when initializing classes on PHP5.3. Not really that
+ * useful on PHP5.4.
+ *
+ * @api
+ * @since 0.1.0
+ *
+ * @param mixed|callable $value
+ *   If value is a callback, then it is called without any arguments. Not all
+ *   callbacks are supported. Array callbacks will fail.
+ * @return mixed
+ */
+function value($value) {
+	if ( is_callable($value) ) {
+		$value = $value();
+	}
+	return $value;
+}
+
+/**
+ * Apply callback to value and get result.
+ *
+ * You should use {@link \Mimic\Functional\value()} instead of this function
+ * when you are not using a callback. This includes object initialization.
+ *
+ * This function does not match Laravel `with()` definition, but you can still
+ * use {@link \Mimic\Functional\value()}, which does the same thing.
+ *
+ * @api
+ * @since 0.1.0
+ *
+ * @param mixed $value
+ *   If value is a callback, then it is called without any arguments.
+ * @param callable $callback
+ * @return mixed
+ */
+function with($value, $callback) {
+	return $callback(value($value));
+}
+
+/**
  * Wrap callback in a closure.
  *
  * @api
