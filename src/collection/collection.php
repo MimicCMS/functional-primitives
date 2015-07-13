@@ -171,16 +171,6 @@ function forgetLast() {
 }
 
 /**
- *
- * @api
- * @since 0.1.0
- * @link http://laravel.com/docs/master/helpers#method-array-get
- */
-function get() {
-	/** @todo Incomplete */
-}
-
-/**
  * Iterate through each element of collection passing to callback.
  *
  * Each element in the returned array will have an index matched to the original
@@ -222,10 +212,6 @@ function pluck($collection, $name) {
 		}
 	});
 	return $aggregation;
-}
-
-function random() {
-	/** @todo Incomplete */
 }
 
 /**
