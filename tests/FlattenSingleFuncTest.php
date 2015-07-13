@@ -34,6 +34,6 @@ class FlattenSingleFuncTest extends PHPUnit_Framework_TestCase {
 	 * @covers ::Mimic\Functional\flattenSingle
 	 */
 	public function testResults($expected, $collection) {
-		$this->assertEquals($expected, F\flattenSingle($collection));
+		$this->assertEquals($expected, F\flattenSingle($collection, function($element) { return $element; }));
 	}
 }
