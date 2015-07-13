@@ -13,18 +13,6 @@
  *       Collection. Writes to collection will not do anything.
  *     @return mixed
  * }
- *
- * @typedef ReduceCollectionCallback \Closure {
- *     @param mixed $element
- *       Item in the collection.
- *     @param mixed $current
- *       Current value after modification.
- *     @param string|int $index
- *       Index of element in the collection.
- *     @param \Traversable|array $collection
- *       Collection. Writes to collection will not do anything.
- *     @return mixed
- * }
  */
 
 /** @package Mimic\Functional */
@@ -34,6 +22,9 @@ use Traversable;
 
 /**
  * Remove all falsy values.
+ *
+ * @api
+ * @since 0.1.0
  *
  * @param Traversable|array $collection
  * @return array
