@@ -199,14 +199,14 @@ function forgetFirst($collection, $callback = null) {
  * @return array
  */
 function forgetLast($collection, $callback = null) {
+	if ( $collection instanceof Traversable ) {
+		$collection = iterator_to_array($collection);
+	}
 	if ( is_callable($callback) ) {
 		$correction = function($element, $index) use ($callback, $collection) {
 			return $callback($element, $index, $collection);
 		};
 		return array_reverse(forgetFirst(array_reverse($collection, true), $correction), true);
-	}
-	if ( $collection instanceof Traversable ) {
-		$collection = iterator_to_array($collection);
 	}
 	$copy = $collection;
 	array_pop($copy);
