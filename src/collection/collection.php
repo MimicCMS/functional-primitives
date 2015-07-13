@@ -102,7 +102,7 @@ function flattenRecursive($collection) {
 	$flatten = array();
 	each($collection, function($element) use (&$flatten) {
 		if (is_array($element) || $element instanceof Traversable) {
-			foreach ( flatten($element) as $item ) {
+			foreach ( flattenRecursive($element) as $item ) {
 				$flatten[] = $item;
 			}
 			return;
