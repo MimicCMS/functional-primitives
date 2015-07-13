@@ -16,7 +16,6 @@
 			"src/collection/helpers.php",
 			"src/collection/math.php",
 			"src/collection/transform.php",
-			"src/comparison.php",
 			"src/composition.php",
 			"src/helpers.php"
 		]
