@@ -14,9 +14,10 @@ use ArrayIterator;
  */
 class ForgetFirstFuncTest extends PHPUnit_Framework_TestCase {
 	public function dataProvider() {
+		$instance = new ArrayIterator(array(1, 2, 3));
 		return array(
 			array(array(1, 2, 3), array(1, 2, 3), array(2, 3)),
-			array(new ArrayIterator(array(1, 2, 3)), array(1, 2, 3), array(2, 3)),
+			array($instance, $instance, array(2, 3)),
 			array(array('something', 'else'), array('something', 'else'), array('else')),
 			array(array('else'), array('else'), array()),
 			array(array(), array(), array()),
