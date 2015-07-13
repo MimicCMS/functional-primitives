@@ -33,6 +33,16 @@ namespace Mimic\Functional;
 use Traversable;
 
 /**
+ * Remove all falsy values.
+ *
+ * @param Traversable|array $collection
+ * @return array
+ */
+function clean($collection) {
+	return filter($collection, negate(compare(false, false)));
+}
+
+/**
  * Split the collection into separate arrays for indexes and values.
  *
  * @api
@@ -99,6 +109,33 @@ function dropLast($collection, $callback) {
 		}
 	});
 	return $keep;
+}
+
+/**
+ * Exclude indexes from collection.
+ *
+ * @api
+ * @since 0.1.0
+ * @link http://laravel.com/docs/master/helpers#method-array-except
+ * @link \Mimic\Functional\without Excludes values.
+ *
+ * @param Traversable|array $collection
+ * @param array|mixed $ignoreList
+ *   If the this is an array, it will be what is used for the ignore value list.
+ *   If this is not an array, then it will be assumed to be a value in the
+ *   ignore list.
+ * @param mixed ...$arguments
+ *   All values passed will be ignored if they are matched.
+ * @return array
+ */
+function except($collection) {
+	$ignore = array_slice(func_get_args(), 1);
+	if (count($ignore) === 1 && is_array($ignore[0])) {
+		$ignore = $ignore[0];
+	}
+	return filter($collection, function($_, $index) use ($ignore) {
+		return !in_array($index, $ignore, true);
+	});
 }
 
 /**
@@ -336,5 +373,30 @@ function unique($collection, $strict = true, $callback = null) {
 			return true;
 		}
 		return false;
+	});
+}
+
+/**
+ * Exclude values from collection.
+ *
+ * @api
+ * @since 0.1.0
+ *
+ * @param Traversable|array $collection
+ * @param array|mixed $ignoreList
+ *   If the this is an array, it will be what is used for the ignore value list.
+ *   If this is not an array, then it will be assumed to be a value in the
+ *   ignore list.
+ * @param mixed ...$arguments
+ *   All values passed will be ignored if they are matched.
+ * @return array
+ */
+function without($collection) {
+	$ignore = array_slice(func_get_args(), 1);
+	if (count($ignore) === 1 && is_array($ignore[0])) {
+		$ignore = $ignore[0];
+	}
+	return filter($collection, function($element) use ($ignore) {
+		return !in_array($element, $ignore, true);
 	});
 }
