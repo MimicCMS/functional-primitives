@@ -5,6 +5,8 @@ namespace Mimic\Test;
 use PHPUnit_Framework_TestCase;
 use Mimic\Functional as F;
 
+use ArrayIterator;
+
 /**
  * Unit Test for forgetLast Mimic library function.
  *
