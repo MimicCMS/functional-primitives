@@ -68,7 +68,7 @@ function each($collection, $callback) {
  *   Like this function, but does not preserve indexes.
  *
  * @param Traversable|array $collection
- * @param array
+ * @return array
  */
 function flattenDot($collection, $prepend = '') {
 	$aggregation = array();
@@ -124,7 +124,7 @@ function flattenSingle($collection, $callback) {
  *   Like this function, but preserves indexes using dot notation.
  *
  * @param Traversable|array $collection
- * @param array
+ * @return array
  */
 function flattenRecursive($collection) {
 	$flatten = array();
@@ -151,23 +151,66 @@ function forget() {
 }
 
 /**
+ * Remove first item or first time callback is true in collection.
  *
  * @api
  * @since 0.1.0
- * @link http://laravel.com/docs/master/helpers#method-array-forget
+ * @link http://anahkiasen.github.io/underscore-php/#Arrays-removeFirst
+ *
+ * @param Traversable|array $collection
+ * @param MapCollectionCallback|callable $callback
+ *   Optional. If callable, will remove first item that is true. Else will
+ *   shift the array and return the new array.
+ * @return array
  */
-function forgetFirst() {
-	/** @todo Incomplete */
+function forgetFirst($collection, $callback = null) {
+	if ( is_callable($callback) ) {
+		$aggregation = array();
+		$forgotten = false;
+		$forget = function($element, $index, $collection) use (&$aggregation, &$forgotten, $callback) {
+			if ( !$forgotten && $callback($element, $index, $collection)) {
+				$forgotten = true;
+				return;
+			}
+			$aggregation[$index] = $element;
+		};
+		each($collection, $forget);
+		return $aggregation;
+	}
+	if ( $collection instanceof Traversable ) {
+		$collection = iterator_to_array($collection);
+	}
+	$copy = $collection;
+	array_shift($copy);
+	return $copy;
 }
 
 /**
+ * Remove last item or last time callback is true in collection.
  *
  * @api
  * @since 0.1.0
- * @link http://laravel.com/docs/master/helpers#method-array-forget
+ * @link http://anahkiasen.github.io/underscore-php/#Arrays-removeLast
+ *
+ * @param Traversable|array $collection
+ * @param MapCollectionCallback|callable $callback
+ *   Optional. If callable, will remove last item that is true, else will shift
+ *   the array and return the new array.
+ * @return array
  */
-function forgetLast() {
-	/** @todo Incomplete */
+function forgetLast($collection, $callback = null) {
+	if ( is_callable($callback) ) {
+		$correction = function($element, $index) use ($callback, $collection) {
+			return $callback($element, $index, $collection);
+		};
+		return array_reverse(forgetFirst(array_reverse($collection, true), $correction), true);
+	}
+	if ( $collection instanceof Traversable ) {
+		$collection = iterator_to_array($collection);
+	}
+	$copy = $collection;
+	array_pop($copy);
+	return $copy;
 }
 
 /**
