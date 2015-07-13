@@ -26,9 +26,9 @@ class ForgetFirstFuncTest extends PHPUnit_Framework_TestCase {
 
 	public function dataProvider_removeSecond() {
 		return array(
-			array(array(1, 2, 3), array(1, 2, 3), array(1, 3)),
-			array(new ArrayIterator(array(1, 2, 3)), array(1, 2, 3), array(1, 3)),
-			array(array('something', 'else', 'hello', 'world'), array('something', 'else', 'hello', 'world'), array('something', 'hello', 'world')),
+			array(array(1, 2, 3), array(1, 2, 3), array(1, 2 => 3)),
+			array(new ArrayIterator(array(1, 2, 3)), array(1, 2, 3), array(1, 2 => 3)),
+			array(array('something', 'else', 'hello', 'world'), array('something', 'else', 'hello', 'world'), array('something', 2 => 'hello', 3 => 'world')),
 			array(array('else'), array('else'), array('else')),
 			array(array(), array(), array()),
 		);
