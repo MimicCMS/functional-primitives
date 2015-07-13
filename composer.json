@@ -13,6 +13,7 @@
 		"files": [
 			"src/collection/collection.php",
 			"src/collection/contains.php",
+			"src/collection/helpers.php",
 			"src/collection/math.php",
 			"src/collection/transform.php",
 			"src/comparison.php",
