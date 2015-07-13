@@ -29,7 +29,7 @@ class ExceptFuncTest extends PHPUnit_Framework_TestCase {
 	 * @covers ::Mimic\Functional\except
 	 */
 	public function testResults($collection, $expected, $parameters) {
-		$this->assertEquals($expected, F\except($collection));
+		$this->assertEquals($expected, F\except($collection, $parameters));
 		$this->assertEquals($expected, call_user_func_array('F\except', array_merge(array($collection), $parameters)));
 	}
 }

@@ -30,7 +30,7 @@ class WithoutFuncTest extends PHPUnit_Framework_TestCase {
 	 * @covers ::Mimic\Functional\without
 	 */
 	public function testResults($collection, $expected, $parameters) {
-		$this->assertEquals($expected, F\without($collection));
+		$this->assertEquals($expected, F\without($collection, $parameters));
 		$this->assertEquals($expected, call_user_func_array('F\without', array_merge(array($collection), $parameters)));
 	}
 }
