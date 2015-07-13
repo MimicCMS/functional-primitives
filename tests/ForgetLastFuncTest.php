@@ -21,12 +21,53 @@ class ForgetLastFuncTest extends PHPUnit_Framework_TestCase {
 		);
 	}
 
+	public function dataProvider_removeSecond() {
+		return array(
+			array(array(1, 2, 3), array(1, 2, 3), array(1, 3)),
+			array(new ArrayIterator(array(1, 2, 3)), array(1, 2, 3), array(1, 3)),
+			array(array('something', 'else', 'hello', 'world'), array('something', 'else', 'hello', 'world'), array('something', 'else', 'world')),
+			array(array('else'), array('else'), array('else')),
+			array(array(), array(), array()),
+		);
+	}
+
 	/**
 	 * @dataProvider dataProvider
 	 * @covers ::Mimic\Functional\forgetLast
 	 */
 	public function testResults($collection, $check, $expected) {
 		$this->assertEquals($expected, F\forgetLast($collection));
+		$this->assertSame($check, $collection, 'collection has changed');
+	}
+
+	/**
+	 * @dataProvider dataProvider
+	 * @covers ::Mimic\Functional\forgetLast
+	 */
+	public function testResultWithCallbacks_keepAll($collection) {
+		$self = $this;
+		$callback = function($element, $index, $array) use ($self, $collection) {
+			$self->assertSame($collection, $array, 'callback collection is different from given');
+			$self->assertEquals($collection[$index], $element, 'element does not match element with index at given collection');
+			return false;
+		};
+		$this->assertEquals($collection, F\forgetLast($collection, $callback));
+	}
+
+	/**
+	 * @dataProvider dataProvider_removeSecond
+	 * @covers ::Mimic\Functional\forgetLast
+	 */
+	public function testResultWithCallbacks_removeSecond($collection, $check, $expected) {
+		$self = $this;
+		$at = 0;
+		$callback = function($element, $index, $array) use (&$at, $self, $collection) {
+			$self->assertSame($collection, $array, 'callback collection is different from given');
+			$self->assertEquals($collection[$index], $element, 'element does not match element with index at given collection');
+			$at += 1;
+			return $at === 2;
+		};
+		$this->assertEquals($expected, F\forgetLast($collection, $callback));
 		$this->assertSame($check, $collection, 'collection has changed');
 	}
 }
