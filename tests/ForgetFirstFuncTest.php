@@ -54,7 +54,12 @@ class ForgetFirstFuncTest extends PHPUnit_Framework_TestCase {
 			$self->assertEquals($collection[$index], $element, 'element does not match element with index at given collection');
 			return false;
 		};
-		$this->assertEquals($collection, F\forgetFirst($collection, $callback));
+		if ($collection instanceof Traversable) {
+			$this->assertEquals(\array_to_iterator($collection), F\forgetFirst($collection, $callback));
+		}
+		else {
+			$this->assertEquals($collection, F\forgetFirst($collection, $callback));
+		}
 	}
 
 	/**
