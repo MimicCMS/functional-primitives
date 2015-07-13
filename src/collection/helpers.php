@@ -23,6 +23,9 @@ use ArrayAccess;
 /**
  * Access value from collection by index.
  *
+ * @api
+ * @since 0.1.0
+ *
  * @param ArrayAccess|array $collection
  * @param string $index
  * @param mixed $default

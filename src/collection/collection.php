@@ -243,6 +243,9 @@ function map($collection, $callback) {
  * Indexes will be preserved. The value in the array will be the value contained
  * in the property or array of `$name`.
  *
+ * @api
+ * @since 0.1.0
+ *
  * @param Traversable<object,array>|array<object,array> $collection
  * @param string $name
  * @return array
