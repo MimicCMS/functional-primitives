@@ -13,8 +13,8 @@ use Mimic\Functional as F;
 class CleanFuncTest extends PHPUnit_Framework_TestCase {
 	public function dataProvider() {
 		return array(
-			array(array(1, 2, 3, 4), array(1, false, 0, 2, 3, 4, '')),
-			array(array('something', 'else', 'hello'), array('something', 'else', false, 0, '', 'hello')),
+			array(array(0 => 1, 3 => 2, 4 => 3, 5 => 4), array(1, false, 0, 2, 3, 4, '')),
+			array(array(0 => 'something', 1 => 'else', 5 => 'hello'), array('something', 'else', false, 0, '', 'hello')),
 		);
 	}
 
