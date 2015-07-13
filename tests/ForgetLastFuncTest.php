@@ -57,7 +57,7 @@ class ForgetLastFuncTest extends PHPUnit_Framework_TestCase {
 			return false;
 		};
 		if ($collection instanceof Traversable) {
-			$this->assertEquals(\array_to_iterator($collection), F\forgetLast($collection, $callback));
+			$this->assertEquals(\iterator_to_array($collection), F\forgetLast($collection, $callback));
 		}
 		else {
 			$this->assertEquals($collection, F\forgetLast($collection, $callback));
