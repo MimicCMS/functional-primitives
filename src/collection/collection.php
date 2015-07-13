@@ -32,10 +32,7 @@ namespace Mimic\Functional;
 
 use Traversable;
 use Countable;
-
-function clean() {
-	/** @todo Complete */
-}
+use ArrayAccess;
 
 /**
  * Iterate through each element of collection passing to callback.
@@ -51,16 +48,6 @@ function each($collection, $callback) {
 	foreach ($collection as $index => $element) {
 		$callback($element, $index, $collection);
 	}
-}
-
-/**
- *
- * @api
- * @since 0.1.0
- * @link http://laravel.com/docs/master/helpers#method-array-except
- */
-function except() {
-	/** @todo Incomplete */
 }
 
 /**
@@ -183,12 +170,27 @@ function map($collection, $callback) {
 	return $values;
 }
 
-function pick() {
-	/** @todo Incomplete */
-}
-
-function pluck() {
-	/** @todo Incomplete */
+/**
+ * Aggregate value from collection that contains name in object or array.
+ *
+ * Indexes will be preserved. The value in the array will be the value contained
+ * in the property or array of `$name`.
+ *
+ * @param Traversable<object,array>|array<object,array> $collection
+ * @param string $name
+ * @return array
+ */
+function pluck($collection, $name) {
+	$aggregation = array();
+	each($collection, function($element, $index) use ($name, &$aggregation) {
+		if ( is_object($element) && isset($element->{$name}) ) {
+			$aggregation[$index] = $element->{$name};
+		}
+		else if ( (is_array($element) || $element instanceof ArrayAccess) && isset($element[$name]) ) {
+			$aggregation[$index] = $element[$name];
+		}
+	});
+	return $aggregation;
 }
 
 function random() {
@@ -335,10 +337,6 @@ function sort($collection, $callback, $preserveKeys = false) {
         return $callback($left, $right, $collection);
     });
     return $array;
-}
-
-function without() {
-	/** @todo Incomplete */
 }
 
 function zip() {
