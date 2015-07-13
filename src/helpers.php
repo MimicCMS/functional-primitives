@@ -22,6 +22,26 @@ use Closure;
 use Traversable;
 
 /**
+ * Check whether element is numeric applying callback or return current value.
+ *
+ * @since 0.1.0
+ *
+ * @param \Closure $callback {
+ *     @param Number $element
+ *     @param Number|null $current
+ * }
+ * @return Number|null
+ */
+function collectionNumberOperation(\Closure $callback) {
+	return function($element, $current) use ($callback) {
+		if ( is_numeric($element) ) {
+			return $callback($element, $current);
+		}
+		return $current;
+	};
+}
+
+/**
  * Comparison function which checks whether the element matches given value.
  *
  * @api
@@ -78,6 +98,23 @@ function passOriginalCollection($collection, $callback) {
 	return function($element, $index) use ($collection, $callback) {
 		return $callback($element, $index, $collection);
 	};
+}
+
+/**
+ * Reduce numeric values in a collection.
+ *
+ * @since 0.1.0
+ *
+ * @param array<Number>|\Traversable<Number> $collection
+ * @param Number|null $initial
+ * @param \Closure $callback {
+ *     @param Number $element
+ *     @param Number|null $current
+ * }
+ * @return Number|null
+ */
+function reduceNumber($collection, $initial, \Closure $callback) {
+	return reduce($collection, $initial, collectionNumberOperation($callback));
 }
 
 /**
