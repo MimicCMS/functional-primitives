@@ -6,6 +6,7 @@ use PHPUnit_Framework_TestCase;
 use Mimic\Functional as F;
 
 use ArrayIterator;
+use Traversable;
 
 /**
  * Unit Test for forgetFirst Mimic library function.
