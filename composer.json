@@ -1,5 +1,5 @@
 {
-	"name": "mimic-cms/functional-primitives",
+	"name": "speedy-spec/functional",
 	"description": "Functional primitives library.",
 	"minimum-stability": "dev",
 	"license": "MIT",
