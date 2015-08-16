@@ -1,9 +1,9 @@
-# Mimic Function Primitives
+# Functional Library
 
-[![Code Climate](https://codeclimate.com/github/MimicCMS/functional-primitives.png)](https://codeclimate.com/github/MimicCMS/functional-primitives)
-[![Test Coverage](https://codeclimate.com/github/MimicCMS/functional-primitives/coverage.png)](https://codeclimate.com/github/MimicCMS/functional-primitives)
-[![Build Status](https://travis-ci.org/MimicCMS/functional-primitives.svg?branch=master)](https://travis-ci.org/MimicCMS/functional-primitives)
-[![Scrutinizer Code Quality](https://scrutinizer-ci.com/g/MimicCMS/functional-primitives/badges/quality-score.png?b=master)](https://scrutinizer-ci.com/g/MimicCMS/functional-primitives/?branch=master)
+[![Code Climate](https://codeclimate.com/github/SpeedySpec/phFunctional.png)](https://codeclimate.com/github/SpeedySpec/phFunctional)
+[![Test Coverage](https://codeclimate.com/github/SpeedySpec/phFunctional/coverage.png)](https://codeclimate.com/github/SpeedySpec/phFunctional)
+[![Build Status](https://travis-ci.org/SpeedySpec/phFunctional.svg?branch=master)](https://travis-ci.org/SpeedySpec/phFunctional)
+[![Scrutinizer Code Quality](https://scrutinizer-ci.com/g/SpeedySpec/phFunctional/badges/quality-score.png?b=master)](https://scrutinizer-ci.com/g/SpeedySpec/phFunctional/?branch=master)
 
 Function primitives form a base of function composition allowing for reusable components.
 
