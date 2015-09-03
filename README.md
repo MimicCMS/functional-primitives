@@ -270,11 +270,11 @@ $result = \Mimic\Functional\head($collection, callback);
 
 ## First Index Of Function
 
-
-TODO: Complete
+Returns the first index in an array where the value is matched.
 
 ```php
-/** @todo finish example(s) */
+$index = \Mimic\Functional\firstIndexOf(['this', 'is', 'a', 'test'], 'a');
+// $index = 2
 ```
 
 
